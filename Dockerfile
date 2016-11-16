@@ -67,14 +67,14 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
 
-RUN git clone https://github.com/coala-analyzer/coala.git
+RUN git clone https://github.com/coala/coala.git
 WORKDIR /coala
 RUN pip3 install -r requirements.txt
 RUN pip3 install -r test-requirements.txt
 RUN pip3 install -e .
 WORKDIR /
 
-RUN git clone https://github.com/coala-analyzer/coala-bears.git
+RUN git clone https://github.com/coala/coala-bears.git
 WORKDIR /coala-bears
 RUN pip3 install -r requirements.txt
 RUN pip3 install -r test-requirements.txt
