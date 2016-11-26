@@ -11,7 +11,8 @@ RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
 # Add packaged flawfinder
-RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
+RUN zypper --no-gpg-checks --non-interactive refresh && \
+  zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
   # Add repo for luarocks
   zypper addrepo -f \
     http://download.opensuse.org/repositories/devel:/languages:/lua/openSUSE_Factory/ \
