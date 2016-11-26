@@ -56,6 +56,7 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   R-base \
   ruby \
   ruby-devel \
+  ruby-common \
   ShellCheck \
   subversion \
   sudo \
