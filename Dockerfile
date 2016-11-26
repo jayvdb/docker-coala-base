@@ -16,6 +16,8 @@ RUN zypper addrepo -f \
   http://download.opensuse.org/repositories/devel:/languages:/lua/openSUSE_Factory/ \
   devel:languages:lua
 
+RUN zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/devel:languages:nodejs.repo
+
 # Package dependencies
 RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   zypper --non-interactive install -t pattern devel_basis && \
@@ -23,6 +25,7 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   bzr \
   cppcheck \
   curl \
+  eslint \
   espeak \
   gcc-c++ \
   gcc-fortran \
@@ -35,6 +38,7 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   java \
   java-1_8_0-openjdk-devel \
   julia \
+  jshint \
   libcholmod-3_0_6 \
   libclang3_8 \
   libcurl-devel \
