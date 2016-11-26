@@ -24,6 +24,7 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   bzr \
   cppcheck \
   curl \
+  eslint \
   espeak \
   gcc-c++ \
   gcc-fortran \
@@ -36,6 +37,7 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   java \
   java-1_8_0-openjdk-devel \
   julia \
+  jshint \
   libcholmod-3_0_6 \
   libclang3_8 \
   libcurl-devel \
