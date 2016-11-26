@@ -14,6 +14,9 @@ RUN zypper addrepo -f \
   http://download.opensuse.org/repositories/devel:/languages:/lua/openSUSE_Factory/ \
   devel:languages:lua
 
+# Add repo for rubygem-bundler
+RUN zypper addrepo http://download.opensuse.org/repositories/home:AtastaChloeD:ChiliProject/openSUSE_Factory/home:AtastaChloeD:ChiliProject.repo
+
 # Package dependencies
 RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   zypper --non-interactive install -t pattern devel_basis && \
@@ -56,7 +59,9 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   python3-setuptools \
   R-base \
   ruby \
+  ruby-common \
   ruby-devel \
+  ruby2.2-rubygem-bundler \
   ShellCheck \
   subversion \
   sudo \
@@ -80,11 +85,19 @@ WORKDIR /
 
 RUN git clone https://github.com/coala/coala-bears.git
 WORKDIR /coala-bears
+
 RUN pip3 download -r requirements.txt -r test-requirements.txt
 RUN git checkout release/$COALA_VERSION
 RUN pip3 install -r requirements.txt
 RUN pip3 install -r test-requirements.txt
 RUN pip3 install -e .
+
+RUN npm install --global
+
+# Remove Ruby directive from Gemfile
+RUN sed -i '/^ruby/d' Gemfile
+RUN bundle install
+
 WORKDIR /
 
 # Dart Lint setup
@@ -132,25 +145,6 @@ RUN julia -e 'Pkg.add("Lint")'
 # Lua commands
 RUN luarocks install luacheck
 
-# NPM setup
-# FIXME: we should use package.json from coala
-RUN npm install -g \
-  alex \
-  autoprefixer \
-  bootlint \
-  coffeelint \
-  complexity-report \
-  csslint \
-  dockerfile_lint \
-  eslint \
-  jshint \
-  postcss-cli \
-  remark-cli \
-  tslint \
-  typescript \
-  ramllint \
-  write-good
-
 # Nltk data
 RUN python3 -m nltk.downloader punkt
 RUN python3 -m nltk.downloader maxent_treebank_pos_tagger
@@ -167,14 +161,6 @@ RUN echo '.libPaths( c( "~/.RLibrary", .libPaths()) )' >> ~/.Rprofile
 RUN echo 'options(repos=structure(c(CRAN="http://cran.rstudio.com")))' >> ~/.Rprofile
 RUN R -e "install.packages('lintr', dependencies=TRUE,  verbose=FALSE)"
 RUN R -e "install.packages('formatR', dependencies=TRUE, verbose=FALSE)"
-
-# Ruby gems
-# FIXME: we should use gemfile from coala
-RUN gem install rubocop sqlint scss_lint reek && \
-  ln -s /usr/bin/rubocop.ruby2.2 /usr/bin/rubocop && \
-  ln -s /usr/bin/scss-lint.ruby2.2 /usr/bin/scss-lint && \
-  ln -s /usr/bin/sqlint.ruby2.2 /usr/bin/sqlint && \
-  ln -s /usr/bin/reek.ruby2.2 /usr/bin/reek
 
 # Tailor (Swift) setup
 RUN curl -fsSL https://tailor.sh/install.sh | sed 's/read -r CONTINUE < \/dev\/tty/CONTINUE=y/' > install.sh
