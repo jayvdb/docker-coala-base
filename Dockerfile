@@ -45,7 +45,7 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   luarocks \
   m4 \
   mono \
-  npm \
+  nodejs \
   perl \
   perl-Perl-Critic \
   php \
