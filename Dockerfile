@@ -10,6 +10,9 @@ ENV COALA_VERSION 0.9
 # Add repos for suitesparse and luarocks
 RUN zypper addrepo http://download.opensuse.org/repositories/home:stecue/openSUSE_Tumbleweed/home:stecue.repo
 
+# Use Leap for nodejs
+RUN zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/devel:languages:nodejs.repo
+
 RUN zypper addrepo -f \
   http://download.opensuse.org/repositories/devel:/languages:/lua/openSUSE_Factory/ \
   devel:languages:lua
@@ -47,6 +50,7 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   luarocks \
   m4 \
   mono \
+  nodejs \
   npm \
   perl \
   perl-Perl-Critic \
