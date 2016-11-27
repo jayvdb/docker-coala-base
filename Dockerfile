@@ -7,8 +7,6 @@ ENV LANGUAGE en_US:en
 
 ENV COALA_VERSION 0.9
 
-RUN zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Tumbleweed/devel:languages:nodejs.repo
-
 # Add repos for suitesparse and luarocks
 RUN zypper addrepo http://download.opensuse.org/repositories/home:stecue/openSUSE_Tumbleweed/home:stecue.repo
 
