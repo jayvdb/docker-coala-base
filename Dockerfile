@@ -10,6 +10,9 @@ ENV COALA_VERSION 0.9
 # Add repos for suitesparse and luarocks
 RUN zypper addrepo http://download.opensuse.org/repositories/home:stecue/openSUSE_Tumbleweed/home:stecue.repo
 
+# Add repo for verilator
+RUN zypper addrepo http://download.opensuse.org/repositories/electronics/openSUSE_Tumbleweed/electronics.repo
+
 RUN zypper addrepo -f \
   http://download.opensuse.org/repositories/devel:/languages:/lua/openSUSE_Factory/ \
   devel:languages:lua
