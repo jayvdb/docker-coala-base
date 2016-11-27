@@ -17,13 +17,16 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   zypper addrepo http://download.opensuse.org/repositories/home:AtastaChloeD:ChiliProject/openSUSE_Factory/home:AtastaChloeD:ChiliProject.repo && \
   # Package dependencies
   zypper --no-gpg-checks --non-interactive install \
+    bison \
     bzr \
     cppcheck \
     curl \
     expect \
     flawfinder \
+    flex \
     gcc-c++ \
     gcc-fortran \
+    gdb \
     git \
     go \
     gsl \
@@ -48,6 +51,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     patch \
     perl \
     perl-Perl-Critic \
+    perl-SystemPerl-devel \
     php \
     php7-pear \
     php7-tokenizer \
@@ -58,6 +62,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     python3-pip \
     python3-setuptools \
     R-base \
+    rpmbuild \
     ruby \
     ruby-devel \
     ruby2.2-rubygem-bundler \
@@ -71,6 +76,14 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     wget && \
   # Clear zypper cache
   zypper clean -a
+
+RUN mkdir -p ~/rpmbuild/SRPMS && cd ~/rpmbuild/SRPMS/ && \
+  curl -fSSLO http://download.opensuse.org/source/tumbleweed/repo/oss/suse/src/verilator-3.862-1.10.src.rpm && \
+  echo '%_topdir /root/rpmbuild' > ~/.rpmmacros && \
+  rpm -i verilator-3.862-1.10.src.rpm && \
+  LDFLAGS=-fPIC rpmbuild -bb ~/rpmbuild/SPECS/verilator.spec && \
+  rpm -i ~/rpmbuild/RPMS/*/verilator*.rpm && \
+  rm -rf ~/.rpmmacros ~/rpmbuild
 
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
