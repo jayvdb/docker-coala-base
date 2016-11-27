@@ -83,6 +83,10 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   unzip \
   wget
 
+# Fix verilator to work with exec
+RUN awk '{if(NR == 1){print "#/usr/bin/env perl";}else{print($0)}}' /usr/bin/verilator > /tmp/verilator
+RUN chmod 755 /tmp/verilator && mv /tmp/verilator /usr/bin/verilator
+
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
 
