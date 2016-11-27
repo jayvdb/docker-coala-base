@@ -7,6 +7,13 @@ ENV LANGUAGE en_US:en
 
 ENV COALA_VERSION 0.9
 
+RUN zypper --non-interactive install wget rpm-build perl-SystemPerl-devel gdb gcc-c++
+RUN zypper --non-interactive install -t pattern devel_basis
+
+RUN wget http://download.opensuse.org/source/tumbleweed/repo/oss/suse/src/verilator-3.862-1.10.src.rpm
+RUN rpm -i verilator-3.862-1.10.src.rpm
+RUN rpmbuild -bi /usr/src/packages/SPECS/verilator.spec
+
 RUN zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Tumbleweed/devel:languages:nodejs.repo
 
 # Add repos for suitesparse and luarocks
@@ -67,7 +74,6 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   tar \
   texlive-chktex \
   unzip \
-  verilator \
   wget
 
 # Coala setup and python deps
