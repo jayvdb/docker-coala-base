@@ -51,6 +51,7 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   npm \
   perl \
   perl-Perl-Critic \
+  perl-Verilog-Perl \
   php \
   python3 \
   python3-dbm \
