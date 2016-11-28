@@ -142,12 +142,15 @@ RUN luarocks install luacheck
 RUN npm install -g \
   alex \
   autoprefixer \
+  babel-eslint \
   bootlint \
   coffeelint \
   complexity-report \
   csslint \
   dockerfile_lint \
   eslint \
+  eslint-plugin-import \
+  happiness \
   jshint \
   postcss-cli \
   remark-cli \
