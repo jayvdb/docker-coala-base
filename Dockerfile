@@ -140,7 +140,7 @@ RUN luarocks install luacheck
 # NPM setup
 # FIXME: we should use package.json from coala
 RUN npm install -g \
-  alex \
+  alex==3.1.0 \
   autoprefixer \
   babel-eslint \
   bootlint \
@@ -148,8 +148,8 @@ RUN npm install -g \
   complexity-report \
   csslint \
   dockerfile_lint \
-  eslint \
-  eslint-plugin-import \
+  eslint==2.13.1 \
+  eslint-plugin-import==1.16.0 \
   happiness \
   jshint \
   postcss-cli \
