@@ -85,6 +85,10 @@ WORKDIR /
 
 RUN git clone https://github.com/coala/coala-bears.git
 WORKDIR /coala-bears
+
+# NPM setup
+RUN npm install -g typescript `sed -ne '/~/{s/^[^"]*"//;s/".*"~/@/;s/",*//;p}' package.json`
+
 RUN pip3 download -r requirements.txt -r test-requirements.txt
 RUN git checkout release/$COALA_VERSION
 RUN pip3 install -r requirements.txt
@@ -136,10 +140,6 @@ RUN julia -e 'Pkg.add("Lint")'
 
 # Lua commands
 RUN luarocks install luacheck
-
-# NPM setup
-# FIXME: we should use package.json from coala
-RUN npm install -g /coala-bears
 
 # Nltk data
 RUN python3 -m nltk.downloader punkt
