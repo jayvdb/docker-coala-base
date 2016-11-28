@@ -5,6 +5,8 @@ MAINTAINER Fabian Neuschmidt fabian@neuschmidt.de
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 
+ENV NVM_DIR /root/.nvm
+
 ENV COALA_VERSION 0.9
 
 # Add repos for suitesparse and luarocks
@@ -45,7 +47,6 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   luarocks \
   m4 \
   mono \
-  npm \
   perl \
   perl-Perl-Critic \
   php \
@@ -66,6 +67,15 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   unzip \
   verilator \
   wget
+
+# Set up node
+RUN touch ~/.bashrc
+RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+RUN find $NVM_DIR
+RUN source $NVM_DIR/nvm.sh
+RUN $NVM_DIR/nvm install 5.5
+
+RUN $NVM_DIR/nvm alias default 5.5
 
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
