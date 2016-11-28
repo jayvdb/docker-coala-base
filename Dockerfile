@@ -77,6 +77,7 @@ RUN make install
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
 
+WORKDIR /
 RUN git clone https://github.com/coala/coala.git
 WORKDIR /coala
 RUN git checkout release/$COALA_VERSION
