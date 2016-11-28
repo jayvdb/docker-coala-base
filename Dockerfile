@@ -14,6 +14,8 @@ RUN zypper addrepo -f \
   http://download.opensuse.org/repositories/devel:/languages:/lua/openSUSE_Factory/ \
   devel:languages:lua
 
+RUN zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/devel:languages:nodejs.repo
+
 # Package dependencies
 RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   zypper --non-interactive install -t pattern devel_basis && \
