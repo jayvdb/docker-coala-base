@@ -45,7 +45,6 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   luarocks \
   m4 \
   mono \
-  npm \
   perl \
   perl-Perl-Critic \
   php \
@@ -66,6 +65,14 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   unzip \
   verilator \
   wget
+
+WORKDIR /tmp
+RUN wget https://nodejs.org/dist/v6.9.1/node-v6.9.1.tar.gz
+RUN tar -xzf node-v6.9.1.tar.gz
+WORKDIR /tmp/node-v6.9.1/
+RUN ./configure
+RUN make
+RUN make install
 
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
