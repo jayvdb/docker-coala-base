@@ -139,25 +139,7 @@ RUN luarocks install luacheck
 
 # NPM setup
 # FIXME: we should use package.json from coala
-RUN npm install -g \
-  alex==3.1.0 \
-  autoprefixer \
-  babel-eslint \
-  bootlint \
-  coffeelint \
-  complexity-report \
-  csslint \
-  dockerfile_lint \
-  eslint==2.13.1 \
-  eslint-plugin-import==1.16.0 \
-  happiness \
-  jshint \
-  postcss-cli \
-  remark-cli \
-  tslint \
-  typescript \
-  ramllint \
-  write-good
+RUN npm install -g /coala-bears
 
 # Nltk data
 RUN python3 -m nltk.downloader punkt
