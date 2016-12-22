@@ -40,8 +40,7 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   mercurial \
   hlint \
   indent \
-  java \
-  java-1_8_0-openjdk-devel \
+  java-1_8_0-openjdk \
   julia \
   libcholmod-3_0_6 \
   libclang3_8 \
@@ -69,7 +68,6 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   python3-setuptools \
   R-base \
   ruby \
-  ruby-common \
   ruby-devel \
   ruby2.2-rubygem-bundler \
   ShellCheck \
