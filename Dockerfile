@@ -1,5 +1,8 @@
 FROM opensuse:tumbleweed
 
+RUN df
+RUN find / -xdev -type f -size +10M
+
 MAINTAINER Fabian Neuschmidt fabian@neuschmidt.de
 
 # Set the locale
@@ -184,3 +187,6 @@ RUN curl -fsSL https://tailor.sh/install.sh | sed 's/read -r CONTINUE < \/dev\/t
 # ADD http://downloads.sourceforge.net/project/fpgalibre/bakalint/0.4.0/bakalint-0.4.0.tar.gz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Ffpgalibre%2Ffiles%2Fbakalint%2F0.4.0%2F&ts=1461844926&use_mirror=netcologne /root/bl.tar.gz
 # RUN tar xf /root/bl.tar.gz -C /root/
 # ENV PATH=$PATH:/root/bakalint-0.4.0
+
+RUN df
+RUN find / -xdev -type f -size +10M
