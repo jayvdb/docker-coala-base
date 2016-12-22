@@ -1,22 +1,28 @@
 FROM opensuse:tumbleweed
+
 MAINTAINER Fabian Neuschmidt fabian@neuschmidt.de
 
 # Set the locale
 ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin
 
 # Add packaged flawfinder
-RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
+RUN \
+  zypper --gpg-auto-import-keys addrepo -f \
+    http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
   # Add repos for suitesparse and luarocks
-  zypper addrepo http://download.opensuse.org/repositories/home:stecue/openSUSE_Tumbleweed/home:stecue.repo && \
-  zypper addrepo -f \
+  zypper --gpg-auto-import-keys addrepo -f \
+    http://download.opensuse.org/repositories/home:stecue/openSUSE_Tumbleweed/home:stecue.repo && \
+  zypper --gpg-auto-import-keys addrepo -f \
     http://download.opensuse.org/repositories/devel:/languages:/lua/openSUSE_Factory/ \
     devel:languages:lua && \
   # Use Leap for nodejs
-  zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/devel:languages:nodejs.repo && \
+  zypper --gpg-auto-import-keys addrepo -f \
+    http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/devel:languages:nodejs.repo && \
   # Add repo for rubygem-bundler
-  zypper addrepo http://download.opensuse.org/repositories/home:AtastaChloeD:ChiliProject/openSUSE_Factory/home:AtastaChloeD:ChiliProject.repo && \
+  zypper --gpg-auto-import-keys addrepo -f \
+    http://download.opensuse.org/repositories/home:AtastaChloeD:ChiliProject/openSUSE_Factory/home:AtastaChloeD:ChiliProject.repo && \
   # Package dependencies
-  zypper --non-interactive install \
+  zypper --gpg-auto-import-keys --non-interactive install \
     bzr \
     cppcheck \
     curl \
@@ -177,4 +183,3 @@ RUN curl -fsSL https://tailor.sh/install.sh | sed 's/read -r CONTINUE < \/dev\/t
 # ADD http://downloads.sourceforge.net/project/fpgalibre/bakalint/0.4.0/bakalint-0.4.0.tar.gz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Ffpgalibre%2Ffiles%2Fbakalint%2F0.4.0%2F&ts=1461844926&use_mirror=netcologne /root/bl.tar.gz
 # RUN tar xf /root/bl.tar.gz -C /root/
 # ENV PATH=$PATH:/root/bakalint-0.4.0
-
