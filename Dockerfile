@@ -55,7 +55,6 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   lua-devel \
   luarocks \
   m4 \
-  mono \
   nodejs \
   npm \
   perl \
