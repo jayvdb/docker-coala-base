@@ -54,6 +54,7 @@ RUN \
     mono \
     nodejs \
     npm \
+    patch \
     perl \
     perl-Perl-Critic \
     php \
