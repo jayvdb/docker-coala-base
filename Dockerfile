@@ -30,7 +30,6 @@ RUN zypper --no-gpg-checks --non-interactive dist-upgrade && \
   bzr \
   cppcheck \
   curl \
-  espeak \
   expect \
   flawfinder \
   gcc-c++ \
