@@ -67,10 +67,13 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     suitesparse-devel \
     tar \
     texlive-chktex \
+    findutils mlocate \
     unzip \
     wget && \
   # Clear zypper cache
   zypper clean -a
+
+RUN updatedb && locate jdk
 
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
