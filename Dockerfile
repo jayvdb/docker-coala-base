@@ -69,6 +69,9 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     texlive-chktex \
     unzip \
     wget && \
+  rpm -e -f --nodeps -v \
+    R-core-doc \
+    && \
   # Clear zypper cache
   zypper clean -a
 
