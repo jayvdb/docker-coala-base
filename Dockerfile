@@ -2,7 +2,7 @@ FROM opensuse:tumbleweed
 MAINTAINER Fabian Neuschmidt fabian@neuschmidt.de
 
 # Set the locale
-ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin
+ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin
 
 # Add packaged flawfinder
 RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
@@ -148,8 +148,7 @@ RUN luarocks install luacheck
 # NPM setup
 # Extract dependencies from coala-bear package.json
 # typescript is a peer dependency
-RUN npm install -g typescript \
-    $(sed -ne '/~/{s/^[^"]*"//;s/".*"~/@/;s/",*//;p}' coala-bears/package.json)
+RUN npm install
 
 # Nltk data
 RUN python3 -m nltk.downloader punkt maxent_treebank_pos_tagger averaged_perceptron_tagger
