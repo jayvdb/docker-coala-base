@@ -8,7 +8,10 @@ install:
   - docker images
 
 script:
-  - docker run -t -i coala-docker /bin/sh -c "cd /coala; python3 -m pytest --cov; cd /coala-bears; python3 -m pytest"
+  - mkdir coala-bears
+  - docker create -v ./coala-bears:/coala-bears --name test-container coala-docker
+  - docker start test-container
+  - docker run test-container -t -i /bin/sh -c "cd /coala; python3 -m pytest --cov; cd /coala-bears; python3 -m pytest"
 
 notifications:
   email: false
