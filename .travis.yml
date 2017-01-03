@@ -14,7 +14,6 @@ script:
       cd /coala-bears;
       rm -rf tests/vhdl tests/verilog/;
       rm tests/c_languages/CSharpLintBearTest.py;
-      rm tests/java/InferBearTest.py;
       python3 -m pytest --cov --cov-fail-under=100
     "
 
