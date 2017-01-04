@@ -95,7 +95,7 @@ WORKDIR /coala-bears
 RUN pip3 download -r requirements.txt -r test-requirements.txt
 RUN git checkout release/$COALA_VERSION
 RUN sed -i.bak "s/REQUIREMENTS = {PipRequirement('pycodestyle')}/REQUIREMENTS = {PipRequirement('pycodestyle', '2.2')}/" bears/python/PycodestyleBear.py
-RUN pip3 install language-check~=0.8
+RUN pip3 install language-check~=0.8 pycodestyle~=2.2
 RUN pip3 install -r requirements.txt
 RUN pip3 install -r test-requirements.txt
 RUN pip3 install -e .
