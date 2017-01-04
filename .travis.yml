@@ -17,7 +17,7 @@ script:
       rm bears/java/InferBear.py tests/java/InferBearTest.py;
       rm -r bears/verilog tests/verilog/;
       rm -r bears/vhdl tests/vhdl/;
-      python3 -m pytest --cov --cov-fail-under=100
+      python3 -m pytest -r a --cov --cov-fail-under=100
     "
 
 notifications:
