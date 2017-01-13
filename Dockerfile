@@ -36,12 +36,12 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     indent \
     java-1_8_0-openjdk \
     julia \
-    libcholmod-3_0_6 \
+    libcholmod \
     libclang3_8 \
     libcurl-devel \
     libncurses5 \
     libopenssl-devel \
-    libpcre2-8-0 \
+    libpcre2 \
     libxml2-tools \
     lua \
     lua-devel \
@@ -52,7 +52,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     patch \
     perl \
     perl-Perl-Critic \
-    php \
+    php7 \
     php7-pear \
     php7-tokenizer \
     php7-xmlwriter \
