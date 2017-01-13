@@ -40,6 +40,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     libclang3_8 \
     libcurl-devel \
     libncurses5 \
+    libopenblas_openmp0 \
     libopenssl-devel \
     libpcre2-8-0 \
     libxml2-tools \
