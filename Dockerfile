@@ -36,7 +36,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     java-1_8_0-openjdk \
     julia \
     libcholmod-3_0_6 \
-    libclang3_8 \
     libcurl-devel \
     libncurses5 \
     libopenssl-devel \
