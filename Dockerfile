@@ -21,16 +21,22 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Package dependencies
   zypper --no-gpg-checks --non-interactive install \
     bzr \
+    cabal-install \
     cppcheck \
     curl \
     expect \
     flawfinder \
     gcc-c++ \
     gcc-fortran \
+    ghc \
+    ghc-Cabal \
+    ghc-haskell-src-exts \
+    ghc-monad-journal \
     git \
     go \
     gsl \
     mercurial \
+    happy \
     hlint \
     indent \
     java-1_8_0-openjdk \
@@ -104,6 +110,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     && \
   # Clear zypper cache
   zypper clean -a
+
+RUN cabal update && cabal install ghc-mod
 
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
