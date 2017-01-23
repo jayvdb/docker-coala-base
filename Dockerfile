@@ -118,6 +118,7 @@ RUN cd / && \
 RUN cd / && \
   git clone https://github.com/coala/coala-bears.git && \
   cd coala-bears && \
+  sed -i 's/dockerfile_lint/dockerfilelint/' package.json bears/configfiles/DockerfileLintBear.py && \
   pip3 install -r requirements.txt && \
   pip3 install -r test-requirements.txt && \
   pip3 install -e . && \
