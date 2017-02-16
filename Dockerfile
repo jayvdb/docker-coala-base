@@ -4,7 +4,7 @@ MAINTAINER Fabian Neuschmidt fabian@neuschmidt.de
 ARG branch=master
 
 # Set the locale
-ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18
+ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18:/root/.cabal/bin
 
 # Create symlink for cache
 RUN mkdir -p /root/.local/share/coala && \
@@ -23,6 +23,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Package dependencies
   time zypper --no-gpg-checks --non-interactive install \
     bzr \
+    cabal-install \
     cppcheck \
     curl \
     expect \
@@ -30,10 +31,10 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     gcc-c++ \
     gcc-fortran \
     git \
+    ghc \
     go \
     gsl \
-    mercurial \
-    hlint \
+    happy \
     indent \
     java-1_8_0-openjdk-headless \
     julia \
@@ -55,6 +56,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     lua-devel \
     luarocks \
     m4 \
+    mercurial \
     nodejs \
     npm \
     patch \
@@ -76,7 +78,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     ruby \
     ruby-devel \
     ruby2.2-rubygem-bundler \
-    ShellCheck \
     subversion \
     sudo \
     tar \
@@ -210,7 +211,20 @@ RUN cd / && \
   time bundle install --system && rm -rf ~/.bundle && \
   # NPM dependencies
   time npm install && npm cache clean && \
+  # Cabal dependencies
+  echo 'split-objs: True' > cabal.config && \
+  cabal update && cabal install && \
+  rm -rf \
+    /root/.cabal/share/doc/ \
+    /root/.cabal/logs \
+    /root/.cabal/packages/ \
+    && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
+RUN find /root/.cabal
+
+RUN /root/.cabal/bin/ghc-mod modules
+
 
 RUN time pear install PHP_CodeSniffer && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
