@@ -21,6 +21,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Package dependencies
   zypper --no-gpg-checks --non-interactive install \
     bzr \
+    cabal-install \
     cppcheck \
     curl \
     expect \
@@ -28,10 +29,10 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     gcc-c++ \
     gcc-fortran \
     git \
+    ghc \
     go \
     gsl \
-    mercurial \
-    hlint \
+    happy \
     indent \
     java-1_8_0-openjdk-headless \
     julia \
@@ -46,6 +47,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     lua-devel \
     luarocks \
     m4 \
+    mercurial \
     nodejs \
     npm \
     patch \
@@ -127,7 +129,8 @@ RUN cd / && \
   # Ruby dependencies
   bundle install --system && \
   # NPM dependencies
-  npm install
+  npm install && \
+  cabal update && cabal install
 
 RUN pear install PHP_CodeSniffer
 
