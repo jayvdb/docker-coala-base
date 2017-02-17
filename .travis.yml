@@ -15,7 +15,7 @@ install:
   - sudo apt-get -y install docker-engine
   - docker --version
   - mkdir -p $HOME/.zypper-cache
-  - docker build -f Dockerfile -t coala-docker --volume=$HOME/.zypper-cache:/var/cache/zypp:z .
+  - docker build --volume=$HOME/.zypper-cache:/var/cache/zypp:z -f Dockerfile -t coala-docker .
   - docker images
 
 script:
