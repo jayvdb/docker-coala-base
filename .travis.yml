@@ -8,6 +8,7 @@ services:
   - docker
 
 install:
+  - docker --version
   - mkdir -p ~/.zypper-cache
   - docker build -f Dockerfile -t coala-docker -v ~/.zypper-cache:/var/cache/zypp:z .
   - docker images
