@@ -99,10 +99,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     texlive-kpathsea \
     wicked-service \
     xorg-x11-fonts \
-    xorg-x11-fonts-core \
-    && \
-  # Clear zypper cache
-  zypper clean -a
+    xorg-x11-fonts-core
 
 # Coala setup and python deps
 RUN pip3 install --upgrade pip

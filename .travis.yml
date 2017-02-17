@@ -1,10 +1,15 @@
 sudo: required
 
+cache:
+  directories:
+    - ~/.zypper-cache
+
 services:
   - docker
 
 install:
-  - docker build -f Dockerfile -t coala-docker .
+  - mkdir -p ~/.zypper-cache
+  - docker build -f Dockerfile -t coala-docker -v ~/.zypper-cache:/var/cache/zypp:z .
   - docker images
 
 script:
