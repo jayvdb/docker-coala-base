@@ -9,7 +9,10 @@ RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
 # Add packaged flawfinder
-RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
+RUN \
+  zypper addrepo http://download.opensuse.org/repositories/YaST:Head/openSUSE_Tumbleweed/YaST:Head.repo && \
+  zypper addrepo http://download.opensuse.org/repositories/home:darix:apps/openSUSE_Tumbleweed/home:darix:apps.repo && \
+  zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
   # Add repo for luarocks
   zypper addrepo -f \
     http://download.opensuse.org/repositories/devel:/languages:/lua/openSUSE_Factory/ \
@@ -63,7 +66,9 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     R-base \
     ruby \
     ruby-devel \
+    rubygem-json \
     ruby2.2-rubygem-bundler \
+    ruby2.2-rubygem-escape_utils \
     ShellCheck \
     subversion \
     sudo \
