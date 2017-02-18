@@ -106,6 +106,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Clear zypper cache
   zypper clean -a
 
+RUN ghc-mod modules
+
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
 
