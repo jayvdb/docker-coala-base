@@ -102,7 +102,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     xorg-x11-fonts-core \
     && \
   # Clear zypper cache
-  zypper clean -a
+  zypper clean -a && \
+  rm -rf /usr/share/doc/
 
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
