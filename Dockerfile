@@ -76,6 +76,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     aaa_base \
     dbus-1 \
     gio-branding-openSUSE \
+    glibc-locale \
     kmod \
     libasan3 \
     libthai-data \
@@ -111,8 +112,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   find /usr/share/doc && \
   rm -rf /usr/share/doc/ /usr/share/man/ /usr/share/info/ && \
   find /usr/lib64/python2.7/ -name 'test_*' -delete && \
-  find /usr/lib64/python3.5/ -name 'test_*' -delete && \
-  ls -d /usr/lib/locale/* | grep -v en_US | xargs rm -rf
+  find /usr/lib64/python3.5/ -name 'test_*' -delete
 
 RUN rpm -qa | xargs rpm -ql 2>/dev/null | xargs ls -ld 2>/dev/null | sort -rnk 5 | head -1000
 
