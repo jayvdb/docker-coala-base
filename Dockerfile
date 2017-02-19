@@ -106,10 +106,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     && \
   # Clear zypper cache
   zypper clean -a && \
-  rpm -qf /usr/lib/locale/zh_HK \
-  rm /var/log/zypper.log && \
   rm /usr/bin/perl5.24.0 && \
-  find /usr/share/doc && \
   rm -rf /usr/share/doc/ /usr/share/man/ /usr/share/info/ && \
   find /usr/lib64/python2.7/ -name 'test_*' -delete && \
   find /usr/lib64/python3.5/ -name 'test_*' -delete
