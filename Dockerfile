@@ -8,6 +8,8 @@ ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/
 RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
+RUN rpm -qa | xargs rpm -ql 2>/dev/null | xargs ls -ld 2>/dev/null | sort -rnk 5 | head -500
+
 # Add packaged flawfinder
 RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
   # Add repo for luarocks
@@ -103,12 +105,15 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     && \
   # Clear zypper cache
   zypper clean -a && \
+  rm /var/log/zypper.log && \
+  rm /usr/bin/perl5.24.0 && \
   find /usr/share/doc && \
   rm -rf /usr/share/doc/ /usr/share/man/ /usr/share/info/ && \
   find /usr/lib64/python2.7/ -name 'test_*' -delete && \
-  find /usr/lib64/python3.5/ -name 'test_*' -delete
+  find /usr/lib64/python3.5/ -name 'test_*' -delete && \
+  ls /usr/lib/locale/ | grep -v en_US | xargs rm -rf
 
-RUN rpm -qa | xargs rpm -ql 2>/dev/null | xargs ls -ld | sort -rnk 5 | head -1000
+RUN rpm -qa | xargs rpm -ql 2>/dev/null | xargs ls -ld 2>/dev/null | sort -rnk 5 | head -1000
 
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
