@@ -104,9 +104,11 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Clear zypper cache
   zypper clean -a && \
   find /usr/share/doc && \
-  rm -rf /usr/share/doc/
+  rm -rf /usr/share/doc/ /usr/share/man/ /usr/share/info/ && \
+  find /usr/lib64/python2.7/ -name 'test_*' -delete && \
+  find /usr/lib64/python3.5/ -name 'test_*' -delete
 
-RUN rpm -qa | xargs rpm -ql | xargs ls -ld | sort -nk 5
+RUN rpm -qa | xargs rpm -ql 2>/dev/null | xargs ls -ld | sort -rnk 5 | head -1000
 
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
