@@ -105,9 +105,15 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     xorg-x11-fonts-core \
     && \
   rm -rf \
+    /usr/share/alsa/ \
     /usr/share/doc/ \
+    /usr/share/emacs/ \
     /usr/share/man/ \
+    /usr/share/icons/ \
     /usr/share/info/ \
+    /usr/share/licenses/ \
+    /usr/share/wicked/ \
+    /usr/share/zoneinfo/ \
     && \
   # Clear zypper cache
   zypper clean -a
