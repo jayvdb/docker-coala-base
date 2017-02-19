@@ -72,9 +72,16 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     unzip && \
   rpm -e -f --nodeps -v \
     aaa_base \
+    cron \
+    cronie \
     dbus-1 \
+    fdupes \
+    fontconfig \
+    fonts-config \
     gio-branding-openSUSE \
+    glib2-tools \
     kbd \
+    iproute2 \
     kmod \
     libasan3 \
     libthai-data \
