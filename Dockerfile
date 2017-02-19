@@ -74,6 +74,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     aaa_base \
     dbus-1 \
     gio-branding-openSUSE \
+    glibc-locale \
     kmod \
     libasan3 \
     libthai-data \
