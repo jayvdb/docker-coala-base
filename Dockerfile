@@ -55,6 +55,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     perl-Perl-Critic \
     php \
     php7-pear \
+    # Needed for PHP CodeSniffer
+    php7-pear-Archive_Tar \
     php7-tokenizer \
     php7-xmlwriter \
     python3 \
@@ -96,7 +98,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     perl-Test-Pod-Coverage \
     perl-X11-Protocol \
     postfix \
-    php7-pear-Archive_Tar \
     php7-zlib \
     python-cssselect \
     python-curses \
