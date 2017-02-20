@@ -88,7 +88,14 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     iproute2 \
     kmod \
     libasan3 \
+    libdrm_amdgpu1 \
+    libdrm_intel1 \
+    libdrm_nouveau2 \
+    libdrm_radeon1 \
+    libnl-config \
     libthai-data \
+    libwayland-server0 \
+    libxslt-tools \
     lksctp-tools \
     logrotate \
     openssh \
