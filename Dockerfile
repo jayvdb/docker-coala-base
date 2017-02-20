@@ -49,7 +49,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     nodejs \
     npm \
     patch \
-    perl \
     perl-Perl-Critic \
     php \
     php7-pear \
@@ -85,11 +84,15 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     kmod \
     libasan3 \
     libthai-data \
+    linux-glibc-devel \
     lksctp-tools \
     logrotate \
     openssh \
     openslp \
     perl-Net-DBus \
+    perl-Test-Pod \
+    perl-Test-Pod-Coverage \
+    perl-X11-Protocol \
     postfix \
     python-cssselect \
     python-curses \
