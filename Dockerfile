@@ -105,15 +105,20 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     xorg-x11-fonts-core \
     && \
   find /usr/lib64/python2.7/ \
-    \( -name test -or -name tests -or -name 'test_*' -or \
-       -name idlelib -or -name lib2to3 \
-    \) -prune && \
+    \( -name test -o -name tests -o -name 'test_*' -o \
+       -name idlelib -o -name lib2to3 \
+    \) -prune -exec rm -rf '{}' '+' && \
   find /usr/lib64/python3.6/ \
-    \( -name test -or -name tests -or -name 'test_*' -or \
+    \( -name test -o -name tests -o -name 'test_*' -o \
        -name idlelib \
-    \) -prune && \
+    \) -prune -exec rm -rf '{}' '+' && \
   # Clear zypper cache
   zypper clean -a
+
+RUN find /usr/lib64/python2.7/ \
+    \( -name test -or -name tests -or -name 'test_*' -or \
+       -name idlelib -or -name lib2to3 \
+    \)
 
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
