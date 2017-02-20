@@ -96,14 +96,21 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     libthai-data \
     libwayland-server0 \
     libxslt-tools \
+    libXss1 \
     lksctp-tools \
     logrotate \
+    ncurses-utils \
     openssh \
     openslp \
+    perl-File-ShareDir \
     perl-Net-DBus \
+    perl-Pod-Coverage \
+    perl-PPIx-Utilities \
+    perl-Task-Weaken \
     perl-Test-Pod \
     perl-Test-Pod-Coverage \
     perl-X11-Protocol \
+    perl-XML-Twig \
     postfix \
     php7-zlib \
     python-cssselect \
@@ -130,9 +137,12 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     texlive-tetex-bin \
     texlive-texconfig \
     texlive-texconfig-bin \
+    texlive-texlive.infra \
+    texlive-updmap-map \
     util-linux-systemd \
     wicked \
     wicked-service \
+    xhost \
     xorg-x11-fonts \
     xorg-x11-fonts-core \
     && \
