@@ -2,7 +2,7 @@ FROM opensuse:tumbleweed
 MAINTAINER Fabian Neuschmidt fabian@neuschmidt.de
 
 # Set the locale
-ENV LANG=C LANGUAGE=C LC_ALL=C PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0
+ENV LANG=C LANGUAGE=C PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0
 
 # Create symlink for cache
 RUN mkdir -p /root/.local/share/coala && \
@@ -194,6 +194,8 @@ RUN curl -fsSL https://tailor.sh/install.sh | sed 's/read -r CONTINUE < \/dev\/t
 # # VHDL Bakalint Installation
 RUN curl -L 'http://downloads.sourceforge.net/project/fpgalibre/bakalint/0.4.0/bakalint-0.4.0.tar.gz' > /root/bl.tar.gz && \
   tar xf /root/bl.tar.gz -C /root/
+
+ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en
 
 # Entrypoint script
 ADD docker-coala.sh /usr/local/bin/
