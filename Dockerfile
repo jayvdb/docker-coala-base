@@ -124,7 +124,12 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     systemd \
     systemd-presets-branding-openSUSE \
     texlive-gsftopk \
+    texlive-gsftopk-bin \
     texlive-kpathsea \
+    texlive-kpathsea-bin \
+    texlive-tetex-bin \
+    texlive-texconfig \
+    texlive-texconfig-bin \
     util-linux-systemd \
     wicked \
     wicked-service \
