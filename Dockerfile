@@ -102,7 +102,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     ncurses-utils \
     openssh \
     openslp \
-    perl-File-ShareDir \
     perl-Net-DBus \
     perl-Pod-Coverage \
     perl-PPIx-Utilities \
