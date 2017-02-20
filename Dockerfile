@@ -104,7 +104,12 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     xorg-x11-fonts \
     xorg-x11-fonts-core \
     && \
-  rm -rf \
+  ls -al \
+    /usr/share/doc/ \
+    /usr/share/man/ \
+    /usr/share/info/ \
+    && \
+  du -s \
     /usr/share/doc/ \
     /usr/share/man/ \
     /usr/share/info/ \
