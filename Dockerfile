@@ -111,6 +111,10 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Clear zypper cache
   zypper clean -a
 
+RUN du -s /usr/share/locale/*
+
+RUN find /usr/share/locale/
+
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
 
