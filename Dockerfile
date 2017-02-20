@@ -101,12 +101,17 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     python-six \
     python-xml \
     R-core-doc \
+    rsync \
+    rsyslog \
+    sysconfig \
     sysconfig-netconfig \
+    syslog-service \
     systemd \
     systemd-presets-branding-openSUSE \
     texlive-gsftopk \
     texlive-kpathsea \
     util-linux-systemd \
+    wicked \
     wicked-service \
     xorg-x11-fonts \
     xorg-x11-fonts-core \
