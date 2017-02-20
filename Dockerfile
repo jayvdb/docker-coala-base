@@ -104,6 +104,9 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     xorg-x11-fonts \
     xorg-x11-fonts-core \
     && \
+  rm -rf \
+    /usr/lib64/python3.6/lib2to3 \
+    && \
   # Clear zypper cache
   zypper clean -a
 
