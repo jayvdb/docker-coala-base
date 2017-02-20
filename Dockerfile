@@ -74,7 +74,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     aaa_base \
     dbus-1 \
     gio-branding-openSUSE \
-    glibc-locale \
     kmod \
     libasan3 \
     libthai-data \
@@ -104,6 +103,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     && \
   # Clear zypper cache
   zypper clean -a
+
+RUN rpm -ql glibc-locale
 
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
