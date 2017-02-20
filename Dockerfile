@@ -106,11 +106,9 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     perl-Net-DBus \
     perl-Pod-Coverage \
     perl-PPIx-Utilities \
-    perl-Task-Weaken \
     perl-Test-Pod \
     perl-Test-Pod-Coverage \
     perl-X11-Protocol \
-    perl-XML-Twig \
     postfix \
     php7-zlib \
     python-cssselect \
