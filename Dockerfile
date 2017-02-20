@@ -42,6 +42,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     libopenssl-devel \
     libpcre2-8-0 \
     libxml2-tools \
+    linux-glibc-devel \  # needed for Ruby native extensions
     lua \
     lua-devel \
     luarocks \
@@ -84,7 +85,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     kmod \
     libasan3 \
     libthai-data \
-    linux-glibc-devel \
     lksctp-tools \
     logrotate \
     openssh \
@@ -94,6 +94,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     perl-Test-Pod-Coverage \
     perl-X11-Protocol \
     postfix \
+    php7-pear-Archive_Tar \
+    php7-zlib \
     python-cssselect \
     python-curses \
     python-javapackages \
