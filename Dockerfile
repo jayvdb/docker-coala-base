@@ -41,8 +41,10 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     libncurses5 \
     libopenssl-devel \
     libpcre2-8-0 \
+    # libxml2-tools provides xmllint
     libxml2-tools \
-    linux-glibc-devel \  # needed for Ruby native extensions
+    # linux-glibc-devel needed for Ruby native extensions
+    linux-glibc-devel \
     lua \
     lua-devel \
     luarocks \
