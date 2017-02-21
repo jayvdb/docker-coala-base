@@ -61,6 +61,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     python3-pip \
     python3-setuptools \
     R-base \
+    R-stringi \
     ruby \
     ruby-devel \
     ruby2.2-rubygem-bundler \
