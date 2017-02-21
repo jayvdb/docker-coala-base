@@ -106,12 +106,12 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     && \
   find /usr/lib64/python2.7/ \
     \( -name unittest -o -name test -o -name tests -o -name 'test_*' -o \
-       -name idlelib -o -name lib2to3 -o -name email -o -name wsgiref -o -name ensurepip -o -name pydoc_data -o \
+       -name idlelib -o -name lib2to3 -o -name email -o -name wsgiref -o -name ensurepip -o -name turtle.py -o -name pydoc_data -o \
        -name '*.pyc' -o -name '*.pyo' \
     \) -prune -exec rm -rf '{}' '+' && \
   find /usr/lib64/python3.6/ \
     \( -name test -o -name tests -o -name 'test_*' -o \
-       -name idlelib -o -name fixes -o -name _import_failed -o -name ensurepip -o -name __pycache__ \
+       -name idlelib -o -name fixes -o -name _import_failed -o -name wsgiref -o -name ensurepip -o -name turtle.py -o -name pydoc_data -o -name __pycache__ \
     \) -prune -exec rm -rf '{}' '+' && \
   # Clear zypper cache
   zypper clean -a
