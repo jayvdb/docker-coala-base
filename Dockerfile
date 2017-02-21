@@ -111,7 +111,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     \) -prune -exec rm -rf '{}' '+' && \
   find /usr/lib64/python3.6/ \
     \( -name test -o -name tests -o -name 'test_*' -o \
-       -name idlelib -o -name fixes -o -name _import_failed -o -name wsgiref -o -name ensurepip -o -name turtle.py -o -name pydoc_data -o -name __pycache__ -o -name mime \
+       -name idlelib -o -name fixes -o -name _import_failed -o -name wsgiref -o -name ensurepip -o -name turtle.py -o -name pydoc_data -o -name -o -name mime \
     \) -prune -exec rm -rf '{}' '+' && \
   # Clear zypper cache
   zypper clean -a
@@ -133,8 +133,11 @@ RUN cd / && \
   python3 -m nltk.downloader punkt maxent_treebank_pos_tagger averaged_perceptron_tagger && \
   find /usr/lib64/python3.6/ -name __pycache__ && \
   find /usr/lib64/python3.6/ \
-    \( -name test -o -name tests -o -name 'test_*' -o -name __pycache__ \) \
+    \( -name test -o -name tests -o -name 'test_*' \) \
     -prune -exec rm -rf '{}' '+' && \
+  find /usr/lib64/python3.6/site-packages \
+     -name __pycache__ \
+     -prune -exec rm -rf '{}' '+' && \
   # Remove Ruby directive from Gemfile as this image has 2.2.5
   sed -i '/^ruby/d' Gemfile && \
   # Ruby dependencies
