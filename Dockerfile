@@ -111,25 +111,13 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     \) -prune -exec rm -rf '{}' '+' && \
   find /usr/lib64/python3.6/ \
     \( -name test -o -name tests -o -name 'test_*' -o \
-       -name idlelib -o -name fixes -o -name _import_failed -o -name ensurepip \
+       -name idlelib -o -name fixes -o -name _import_failed -o -name ensurepip -o -name __pycache__ \
     \) -prune -exec rm -rf '{}' '+' && \
-  rm -rf \
-    /usr/lib64/python3.6/email/__pycache__ \
-    /usr/lib64/python3.6/email/mime/__pycache__ \
-    /usr/lib64/python3.6/xmlrpc/__pycache__ \
-    /usr/lib64/python3.6/wsgiref/__pycache__ \
-    # lib2to3 is only used by yapf
-    /usr/lib64/python3.6/lib2to3/__pycache__ \
-    /usr/lib64/python3.6/lib2to3/pgen2/__pycache__ \
-    && \
   # Clear zypper cache
   zypper clean -a
 
 RUN find /usr/lib64/python2.7/
 RUN find /usr/lib64/python3.6/
-
-# Coala setup and python deps
-RUN pip3 install --upgrade pip
 
 RUN cd / && \
   git clone https://github.com/coala/coala.git && \
@@ -143,6 +131,8 @@ RUN cd / && \
   cd coala-bears && \
   # NLTK data
   python3 -m nltk.downloader punkt maxent_treebank_pos_tagger averaged_perceptron_tagger && \
+  find /usr/lib64/python3.6/ -name __pycache__ && \
+  find /usr/lib64/python3.6/ -name __pycache__ -prune -exec rm -rf '{}' '+' && \
   # Remove Ruby directive from Gemfile as this image has 2.2.5
   sed -i '/^ruby/d' Gemfile && \
   # Ruby dependencies
