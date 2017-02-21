@@ -110,6 +110,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Clear zypper cache
   zypper clean -a
 
+RUN rpm -ql R-dichromat
+
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
 
