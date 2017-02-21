@@ -113,7 +113,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
 RUN rpm -ql R-dichromat
 
 # R setup
-RUN mkdir -p ~/.RLibrary && \
+RUN source /usr/lib64/R/etc/Renviron && \
+  mkdir -p ~/.RLibrary && \
   R -e ".libPaths()" && \
   echo '.libPaths( c( "~/.RLibrary", .libPaths()) )' >> ~/.Rprofile && \
   echo 'options(repos=structure(c(CRAN="http://cran.rstudio.com")))' >> ~/.Rprofile && \
