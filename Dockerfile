@@ -18,8 +18,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/devel:languages:nodejs.repo && \
   # Add repo for rubygem-bundler
   zypper addrepo http://download.opensuse.org/repositories/home:AtastaChloeD:ChiliProject/openSUSE_Factory/home:AtastaChloeD:ChiliProject.repo && \
-  # Add repo for R-stringi
-  zypper addrepo http://download.opensuse.org/repositories/devel:languages:R:released/openSUSE_Tumbleweed/devel:languages:R:released.repo && \
+  # Add repo for R-dichromat
+  zypper addrepo http://download.opensuse.org/repositories/devel:languages:R:released/openSUSE_Leap_42.2/devel:languages:R:released.repo && \
   # Package dependencies
   zypper --no-gpg-checks --non-interactive install \
     bzr \
