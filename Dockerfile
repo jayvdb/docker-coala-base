@@ -183,7 +183,7 @@ RUN curl -fsSL https://github.com/pmd/pmd/releases/download/pmd_releases/5.4.1/p
 
 # R setup
 RUN mkdir -p ~/.RLibrary && \
-  echo '.libPaths( c( "~/.RLibrary", .libPaths()) )' >> ~/.Rprofile && \
+  echo '.libPaths( c( "~/.RLibrary", "/usr/lib64/R/library" ) )' >> ~/.Rprofile && \
   echo 'options(repos=structure(c(CRAN="http://cran.rstudio.com")))' >> ~/.Rprofile && \
   R -e "install.packages(c('lintr', 'formatR'), dependencies=TRUE, verbose=FALSE)"
 
