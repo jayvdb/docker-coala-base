@@ -132,7 +132,9 @@ RUN cd / && \
   # NLTK data
   python3 -m nltk.downloader punkt maxent_treebank_pos_tagger averaged_perceptron_tagger && \
   find /usr/lib64/python3.6/ -name __pycache__ && \
-  find /usr/lib64/python3.6/ -name __pycache__ -prune -exec rm -rf '{}' '+' && \
+  find /usr/lib64/python3.6/ \
+    \( -name test -o -name tests -o -name 'test_*' -o -name __pycache__ \) \
+    -prune -exec rm -rf '{}' '+' && \
   # Remove Ruby directive from Gemfile as this image has 2.2.5
   sed -i '/^ruby/d' Gemfile && \
   # Ruby dependencies
