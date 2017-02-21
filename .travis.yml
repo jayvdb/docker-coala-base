@@ -18,7 +18,7 @@ script:
       rm bears/haskell/GhcModBear.py tests/haskell/GhcModBearTest.py;
       rm -r bears/verilog tests/verilog/;
       python3 -m pytest --cov --cov-fail-under=100;
-      find /usr/lib64/python3.6/ -name __pycache__
+      find /usr/lib64/python3.6/ -name __pycache__ | xargs ls
     "
   - /bin/sh -c "! docker run coala-docker"
   - docker run --user=$(id -u) --volume=$(pwd)/.ci/sample:/work --workdir=/work coala-docker
