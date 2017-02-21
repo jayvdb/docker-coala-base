@@ -117,8 +117,7 @@ RUN cd / && \
   time pip3 install --no-cache-dir \
     -e /coala \
     -e '/coala-bears[alldeps]' \
-    -e /coala-quickstart \
-    -r /coala/test-requirements.txt && \
+    -e /coala-quickstart && \
   cd coala-bears && \
   # NLTK data
   time python3 -m nltk.downloader punkt maxent_treebank_pos_tagger averaged_perceptron_tagger && \

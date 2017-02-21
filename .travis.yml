@@ -11,6 +11,7 @@ install:
 script:
   - >
     docker run -t -i coala-docker /bin/sh -c "
+      pip3 install -r /coala/test-requirements.txt;
       cd /coala; python3 -m pytest --cov --cov-fail-under=100;
       cd /coala-bears;
       rm bears/Constants.py;  # There are no tests covering this module
