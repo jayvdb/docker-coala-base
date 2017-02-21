@@ -105,13 +105,23 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     xorg-x11-fonts-core \
     && \
   find /usr/lib64/python2.7/ \
-    \( -name test -o -name tests -o -name 'test_*' -o \
-       -name idlelib -o -name lib2to3 \
+    \( -name unittest -o -name test -o -name tests -o -name 'test_*' -o \
+       -name idlelib -o -name lib2to3 -o -name email -o -name wsgiref -o -name ensurepip -o -name pydoc_data -o \
+       -name '*.pyc' -o -name '*.pyo' \
     \) -prune -exec rm -rf '{}' '+' && \
   find /usr/lib64/python3.6/ \
     \( -name test -o -name tests -o -name 'test_*' -o \
-       -name idlelib \
+       -name idlelib -o -name fixes -o -name _import_failed -o -name ensurepip \
     \) -prune -exec rm -rf '{}' '+' && \
+  rm -rf \
+    /usr/lib64/python3.6/email/__pycache__ \
+    /usr/lib64/python3.6/email/mime/__pycache__ \
+    /usr/lib64/python3.6/xmlrpc/__pycache__ \
+    /usr/lib64/python3.6/wsgiref/__pycache__ \
+    # lib2to3 is only used by yapf
+    /usr/lib64/python3.6/lib2to3/__pycache__ \
+    /usr/lib64/python3.6/lib2to3/pgen2/__pycache__ \
+    && \
   # Clear zypper cache
   zypper clean -a
 
