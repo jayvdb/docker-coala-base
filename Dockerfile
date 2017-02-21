@@ -111,9 +111,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     \) -prune -exec rm -rf '{}' '+' && \
   find /usr/lib64/python3.6/ \
     \( -name test -o -name tests -o -name 'test_*' -o \
-       -name idlelib -o -name fixes -o -name _import_failed -o -name wsgiref -o -name ensurepip -o -name turtle.py -o -name pydoc_data -o -name __pycache__ -o -name sqlite3 -o -name dbm -o -name xmlrpc -o -name mime \
+       -name idlelib -o -name fixes -o -name _import_failed -o -name wsgiref -o -name ensurepip -o -name turtle.py -o -name pydoc_data -o -name __pycache__ -o -name sqlite3 -o -name dbm -o -name mime \
     \) -prune -exec rm -rf '{}' '+' && \
-  sed -i '/xmlrpc/d' /usr/lib/python3.6/site-packages/pip/_vendor/six.py && \
   # Clear zypper cache
   zypper clean -a
 
