@@ -112,6 +112,15 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
 
 RUN rpm -ql R-dichromat
 
+# R setup
+RUN mkdir -p ~/.RLibrary && \
+  R -e ".libPaths()" && \
+  echo '.libPaths( c( "~/.RLibrary", .libPaths()) )' >> ~/.Rprofile && \
+  echo 'options(repos=structure(c(CRAN="http://cran.rstudio.com")))' >> ~/.Rprofile && \
+  R -e ".libPaths()" && \
+  R -e "install.packages(c('lintr', 'formatR'), dependencies=TRUE, verbose=FALSE)"
+
+
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
 
@@ -185,12 +194,6 @@ RUN luarocks install luacheck
 RUN curl -fsSL https://github.com/pmd/pmd/releases/download/pmd_releases/5.4.1/pmd-bin-5.4.1.zip -o /root/pmd.zip && \
   unzip /root/pmd.zip -d /root/ && \
   rm -rf /root/pmd.zip
-
-# R setup
-RUN mkdir -p ~/.RLibrary && \
-  echo '.libPaths( c( "~/.RLibrary", .libPaths()) )' >> ~/.Rprofile && \
-  echo 'options(repos=structure(c(CRAN="http://cran.rstudio.com")))' >> ~/.Rprofile && \
-  R -e "install.packages(c('lintr', 'formatR'), dependencies=TRUE, verbose=FALSE)"
 
 # Tailor (Swift) setup
 RUN curl -fsSL https://tailor.sh/install.sh | sed 's/read -r CONTINUE < \/dev\/tty/CONTINUE=y/' > install.sh && \
