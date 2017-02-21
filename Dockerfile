@@ -72,7 +72,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     sudo \
     tar \
     texlive-chktex \
-    texlive-fonts-extra \
     unzip && \
   rpm -e -f --nodeps -v \
     aaa_base \
