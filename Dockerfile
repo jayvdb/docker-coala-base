@@ -64,7 +64,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     python3-setuptools \
     R-base \
     R-dichromat \
-    rstudio \
     ruby \
     ruby-devel \
     ruby2.2-rubygem-bundler \
