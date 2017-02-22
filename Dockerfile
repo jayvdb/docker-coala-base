@@ -105,16 +105,13 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     xorg-x11-fonts-core \
     && \
   rm -rf \
-    /usr/lib64/R/library/*/po/* \
-    /usr/lib64/R/library/translations/*/LC_MESSAGES/*.[mp]o* \
-    /usr/share/locale/*/LC_MESSAGES/*.[mp]o* \
+    /usr/lib64/R/library/*/po \
+    /usr/lib64/R/library/translations/* \
+    # Leave only /usr/share/locale/locale.alias
+    /usr/share/locale/*/ \
     && \
   # Clear zypper cache
   time zypper clean -a
-
-RUN find /usr/lib64/R/library/translations/ -type f | xargs ls -l
-
-RUN find /usr/share/locale/ -type f | xargs ls -l
 
 # Coala setup and python deps
 RUN pip3 install --upgrade pip
