@@ -171,7 +171,7 @@ RUN source /etc/profile.d/go.sh && time go get -u \
 # ENV PATH=$PATH:/home/opam/infer-linux64-v0.9.0/infer/bin
 
 # Julia setup
-RUN time julia -e 'Pkg.add("Lint")'
+RUN time julia -e 'Pkg.add("Lint")' && rm -rf /root/.julia/v0.5/METADATA
 
 # Lua commands
 RUN time luarocks install luacheck
