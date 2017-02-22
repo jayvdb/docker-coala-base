@@ -148,8 +148,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   rm -rf \
     /usr/lib64/ruby/gems/2.2.0/gems/bundler-*/man/* \
     && \
-  # Clear zypper cache
-  time zypper clean -a
+  # Clear all caches
+  time rm -rf /var/cache/*
 
 # Coala setup and python deps
 RUN cd / && \
@@ -169,9 +169,13 @@ RUN cd / && \
   # Ruby dependencies
   time bundle install --system && rm -rf ~/.bundle && \
   # NPM dependencies
-  time npm install
+  time npm install && \
+  # Clear all caches
+  time rm -rf /var/cache/*
 
-RUN time pear install PHP_CodeSniffer
+RUN time pear install PHP_CodeSniffer && \
+  # Clear all caches
+  time rm -rf /var/cache/*
 
 # Dart Lint setup
 RUN curl -fsSL https://storage.googleapis.com/dart-archive/channels/stable/release/1.14.2/sdk/dartsdk-linux-x64-release.zip -o /root/dart-sdk.zip && \
@@ -184,7 +188,9 @@ RUN source /etc/profile.d/go.sh && time go get -u \
   golang.org/x/tools/cmd/goimports \
   sourcegraph.com/sqs/goreturns \
   golang.org/x/tools/cmd/gotype \
-  github.com/kisielk/errcheck
+  github.com/kisielk/errcheck && \
+  # Clear all caches
+  time rm -rf /var/cache/*
 
 # # Infer setup using opam
 # RUN useradd -ms /bin/bash opam && usermod -G wheel opam
@@ -213,10 +219,14 @@ RUN source /etc/profile.d/go.sh && time go get -u \
 # ENV PATH=$PATH:/home/opam/infer-linux64-v0.9.0/infer/bin
 
 # Julia setup
-RUN time julia -e 'Pkg.add("Lint")'
+RUN time julia -e 'Pkg.add("Lint")' && \
+  # Clear all caches
+  time rm -rf /var/cache/*
 
 # Lua commands
-RUN time luarocks install luacheck
+RUN time luarocks install luacheck && \
+  # Clear all caches
+  time rm -rf /var/cache/*
 
 # PMD setup
 RUN curl -fsSL https://github.com/pmd/pmd/releases/download/pmd_releases/5.4.1/pmd-bin-5.4.1.zip -o /root/pmd.zip && \
@@ -229,11 +239,15 @@ RUN mkdir -p ~/.RLibrary && \
   echo 'options(repos=structure(c(CRAN="http://cran.rstudio.com")))' >> ~/.Rprofile && \
   export ICUDT_DIR=/usr/share/icu/57.1/ && \
   time R -e "install.packages(c('lintr', 'formatR'), dependencies=TRUE, verbose=FALSE)" && \
-  unset ICUDT_DIR && export ICUDT_DIR
+  unset ICUDT_DIR && export ICUDT_DIR && \
+  # Clear all caches
+  time rm -rf /var/cache/*
 
 # Tailor (Swift) setup
 RUN curl -fsSL https://tailor.sh/install.sh | sed 's/read -r CONTINUE < \/dev\/tty/CONTINUE=y/' > install.sh && \
-  time /bin/bash install.sh
+  time /bin/bash install.sh && \
+  # Clear all caches
+  time rm -rf /var/cache/*
 
 # # VHDL Bakalint Installation
 RUN curl -L 'http://downloads.sourceforge.net/project/fpgalibre/bakalint/0.4.0/bakalint-0.4.0.tar.gz' > /root/bl.tar.gz && \
