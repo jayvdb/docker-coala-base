@@ -176,7 +176,7 @@ RUN zypper addrepo -f \
     luarocks \
     && \
   time luarocks install luacheck && \
-  time rpm -e -f --nodeps -v \
+  time zypper --non-interactive remove \
     lua-devel \
     luarocks \
     && \
