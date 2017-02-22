@@ -216,7 +216,8 @@ RUN source /etc/profile.d/go.sh && time go get -u \
 RUN time julia -e 'Pkg.add("Lint")'
 
 # Lua commands
-RUN time luarocks install luacheck
+RUN time luarocks install luacheck && \
+  rm -rf ~/.cache/luarocks
 
 # PMD setup
 RUN curl -fsSL https://github.com/pmd/pmd/releases/download/pmd_releases/5.4.1/pmd-bin-5.4.1.zip -o /root/pmd.zip && \
