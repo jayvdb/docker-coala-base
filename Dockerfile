@@ -104,7 +104,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     xorg-x11-fonts \
     xorg-x11-fonts-core \
     && \
-  rm \
+  rm -rf \
     /usr/lib64/R/library/*/po/* \
     /usr/lib64/R/library/translations/*/LC_MESSAGES/*.[mp]o* \
     /usr/share/locale/*/LC_MESSAGES/*.[mp]o* \
