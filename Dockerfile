@@ -16,8 +16,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     devel:languages:lua && \
   # Use Leap for nodejs
   zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/devel:languages:nodejs.repo && \
-  # Add repo for rubygem-bundler
-  zypper addrepo http://download.opensuse.org/repositories/home:AtastaChloeD:ChiliProject/openSUSE_Factory/home:AtastaChloeD:ChiliProject.repo && \
   # Package dependencies
   time zypper --no-gpg-checks --non-interactive install \
     bzr \
@@ -62,8 +60,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     python3-setuptools \
     R-base \
     ruby \
-    ruby-devel \
-    ruby2.2-rubygem-bundler \
     ShellCheck \
     subversion \
     sudo \
@@ -123,11 +119,26 @@ RUN cd / && \
   # NLTK data
   time python3 -m nltk.downloader punkt maxent_treebank_pos_tagger averaged_perceptron_tagger && \
   # Remove Ruby directive from Gemfile as this image has 2.2.5
-  sed -i '/^ruby/d' Gemfile && \
-  # Ruby dependencies
-  time bundle install --system && \
-  # NPM dependencies
-  time npm install
+  sed -i '/^ruby/d' Gemfile
+
+# Ruby dependencies
+# Add repo for rubygem-bundler
+RUN zypper addrepo -f \
+    http://download.opensuse.org/repositories/home:AtastaChloeD:ChiliProject/openSUSE_Factory/home:AtastaChloeD:ChiliProject.repo && \
+  time zypper --no-gpg-checks --non-interactive install \
+    ruby-devel \
+    ruby2.2-rubygem-bundler \
+    && \
+  time bundle install --gemfile=/coala-bears/Gemfile --system && rm -rf ~/.bundle && \
+  time zypper --non-interactive remove \
+    ruby-devel \
+    ruby2.2-rubygem-bundler \
+    && \
+  # Clear zypper cache
+  time zypper clean -a
+
+# NPM dependencies
+RUN cd /coala-bears && time npm install
 
 RUN time pear install PHP_CodeSniffer
 
