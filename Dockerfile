@@ -10,10 +10,6 @@ RUN mkdir -p /root/.local/share/coala && \
 
 # Add packaged flawfinder
 RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
-  # Add repo for luarocks
-  zypper addrepo -f \
-    http://download.opensuse.org/repositories/devel:/languages:/lua/openSUSE_Factory/ \
-    devel:languages:lua && \
   # Use Leap for nodejs
   zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/devel:languages:nodejs.repo && \
   # Add repo for rubygem-bundler
@@ -43,8 +39,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     libpcre2-8-0 \
     libxml2-tools \
     lua \
-    lua-devel \
-    luarocks \
     m4 \
     nodejs \
     npm \
@@ -174,7 +168,20 @@ RUN source /etc/profile.d/go.sh && time go get -u \
 RUN time julia -e 'Pkg.add("Lint")'
 
 # Lua commands
-RUN time luarocks install luacheck
+RUN zypper addrepo -f \
+    http://download.opensuse.org/repositories/devel:/languages:/lua/openSUSE_Factory/ \
+    devel:languages:lua && \
+  time zypper --no-gpg-checks --non-interactive install \
+    lua-devel \
+    luarocks \
+    && \
+  time luarocks install luacheck && \
+  time rpm -e -f --nodeps -v \
+    lua-devel \
+    luarocks \
+    && \
+  # Clear zypper cache
+  time zypper clean -a
 
 # PMD setup
 RUN curl -fsSL https://github.com/pmd/pmd/releases/download/pmd_releases/5.4.1/pmd-bin-5.4.1.zip -o /root/pmd.zip && \
