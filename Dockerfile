@@ -61,6 +61,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     php7-pear-Archive_Tar \
     php7-tokenizer \
     php7-xmlwriter \
+    # Used by bzr, mecurial, hgext, and flawfinder
+    python \
     python3 \
     python3-dbm \
     python3-gobject \
@@ -112,15 +114,9 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     perl-X11-Protocol \
     postfix \
     php7-zlib \
-    python-cssselect \
     python-curses \
-    python-javapackages \
-    python-lxml \
-    python-Pygments \
-    python-pyxb \
     python-setuptools \
     python-six \
-    python-xml \
     R-core-doc \
     rsync \
     rsyslog \
@@ -146,7 +142,24 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     xorg-x11-fonts-core \
     && \
   rm -rf \
+    /usr/lib64/python2.7/email \
+    /usr/lib64/python2.7/ensurepip \
+    /usr/lib64/python2.7/idlelib \
+    /usr/lib64/python2.7/lib2to3 \
+    /usr/lib64/python2.7/pydoc_data \
+    /usr/lib64/python2.7/unittest \
+    /usr/lib64/python2.7/test \
+    /usr/lib64/python2.7/turtle.py \
+    /usr/lib64/python2.7/wsgiref \
+    /usr/lib64/python2.7/site-packages/bzrlib/ \
+    /usr/lib64/python2.7/site-packages/hgext/ \
+    /usr/lib64/python2.7/site-packages/mercurial \
     /usr/lib64/ruby/gems/2.2.0/gems/bundler-*/man/* \
+    && \
+  find /usr/lib64/python2.7/ \
+    \( -name test -o -name tests -o -name 'test_*' -o \
+       -name '*.pyc' -o -name '*.pyo' \
+    \) -prune -exec rm -rf '{}' '+' \
     && \
   # Clear zypper cache
   time zypper clean -a
