@@ -107,8 +107,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   rm -rf \
     /usr/lib64/R/library/*/po \
     /usr/lib64/R/library/translations/* \
-    # Leave only /usr/share/locale/locale.alias
     /usr/share/locale/*/ \
+    /usr/share/locale/locale.alias \
     && \
   # Clear zypper cache
   time zypper clean -a
