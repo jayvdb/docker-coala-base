@@ -107,6 +107,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   rm -rf \
     /usr/lib64/ruby/gems/2.2.0/gems/bundler-*/man/* \
     && \
+  ls -d /usr/lib64/ruby/gems/2.2.0/gems/*/man/ && \
   # Clear zypper cache
   time zypper clean -a
 
