@@ -115,7 +115,9 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     postfix \
     php7-zlib \
     python-cssselect \
+    python-curses \
     python-javapackages \
+    python-lxml \
     python-Pygments \
     python-pyxb \
     python-setuptools \
