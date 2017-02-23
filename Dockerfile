@@ -114,6 +114,12 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     perl-X11-Protocol \
     postfix \
     php7-zlib \
+    python-cssselect \
+    python-javapackages \
+    python-Pygments \
+    python-pyxb \
+    python-setuptools \
+    python-six \
     R-core-doc \
     rsync \
     rsyslog \
