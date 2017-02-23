@@ -160,6 +160,14 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     \( -name 'doc' -o -name 'info' -o -name 'man' -o -name 'tests' -name 'test' \) \
     -prune -exec rm -rf '{}' '+' \
     && \
+  find /usr/lib/ -type d -not -path '*/go/*' -a \
+    \( -name 'doc' -o -name 'info' -o -name 'man' -o -name 'tests' -name 'test' \) \
+    -prune -exec rm -rf '{}' '+' \
+    && \
+  find /usr/lib64/ -type d -not -path '*/go/*' -a \
+    \( -name 'doc' -o -name 'info' -o -name 'man' -o -name 'tests' -name 'test' \) \
+    -prune -exec rm -rf '{}' '+' \
+    && \
   # Clear zypper cache
   time zypper clean -a
 
