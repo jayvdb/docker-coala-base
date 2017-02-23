@@ -181,7 +181,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Clear zypper cache
   time zypper clean -a && \
   cd /tmp && \
-  svn co https://github.com/githubtraining/hellogitworld.git \
+  svn co https://github.com/githubtraining/hellogitworld.git && \
   bzr branch lp:govcstestbzrrepo && \
   hg clone http://www.selenic.com/repo/hello
 
