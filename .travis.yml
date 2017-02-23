@@ -11,7 +11,6 @@ install:
 script:
   - >
     docker run -t -i coala-docker /bin/sh -c "
-      set -e -x
       cd /coala; python3 -m pytest --cov --cov-fail-under=100;
       cd /coala-bears;
       rm bears/Constants.py;  # There are no tests covering this module
@@ -20,6 +19,7 @@ script:
       rm bears/haskell/GhcModBear.py tests/haskell/GhcModBearTest.py;
       rm -r bears/verilog tests/verilog/;
       python3 -m pytest --cov --cov-fail-under=100;
+      set -e -x;
       cd /tmp;
       svn co https://github.com/githubtraining/hellogitworld.git;
       hg clone http://www.selenic.com/repo/hello;
