@@ -178,11 +178,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     \) -prune -exec rm -rf '{}' '+' \
     && \
   # Clear zypper cache
-  time zypper clean -a && \
-  cd /tmp && \
-  svn co https://github.com/githubtraining/hellogitworld.git && \
-  bzr branch lp:govcstestbzrrepo && \
-  hg clone http://www.selenic.com/repo/hello
+  time zypper clean -a
 
 # Coala setup and python deps
 RUN cd / && \
