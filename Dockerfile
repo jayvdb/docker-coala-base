@@ -145,6 +145,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     xorg-x11-fonts-core \
     && \
   rm -rf \
+    /usr/lib64/python2.7/email \
     /usr/lib64/python2.7/ensurepip \
     /usr/lib64/python2.7/idlelib \
     /usr/lib64/python2.7/lib2to3 \
@@ -152,6 +153,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     /usr/lib64/python2.7/unittest \
     /usr/lib64/python2.7/test \
     /usr/lib64/python2.7/turtle.py \
+    /usr/lib64/python2.7/wsgiref \
     /usr/lib64/ruby/gems/2.2.0/gems/bundler-*/man/* \
     && \
   find /usr/lib64/python2.7/ \
@@ -165,6 +167,10 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
 RUN cd /tmp && \
   bzr branch lp:govcstestbzrrepo && \
   hg clone http://www.selenic.com/repo/hello
+
+RUN rpm -ql mercurial
+RUN rpm -ql bzr
+RUN rpm -ql subversion
 
 # Coala setup and python deps
 RUN cd / && \
