@@ -162,7 +162,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     /usr/lib64/python2.7/wsgiref \
     /usr/lib64/python2.7/site-packages/bzrlib/doc/ \
     /usr/lib64/python2.7/site-packages/bzrlib/export/ \
-    /usr/lib64/python2.7/site-packages/bzrlib/help_topics/ \
+    /usr/lib64/python2.7/site-packages/bzrlib/help_topics/en/ \
     /usr/lib64/python2.7/site-packages/hgext/convert/ \
     /usr/lib64/python2.7/site-packages/mercurial/help/ \
     /usr/lib64/python2.7/site-packages/mercurial/hgweb/ \
