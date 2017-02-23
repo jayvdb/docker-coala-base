@@ -180,9 +180,8 @@ RUN cd / && \
 RUN time pear install PHP_CodeSniffer
 
 # Dart Lint setup
-RUN curl -fsSL https://storage.googleapis.com/dart-archive/channels/stable/release/1.14.2/sdk/dartsdk-linux-x64-release.zip -o /root/dart-sdk.zip && \
-  unzip -n /root/dart-sdk.zip -d ~/ && \
-  rm -rf /root/dart-sdk.zip
+RUN curl -fsSL https://storage.googleapis.com/dart-archive/channels/stable/release/1.14.2/sdk/dartsdk-linux-x64-release.zip -o /tmp/dart-sdk.zip && \
+  unzip -n /tmp/dart-sdk.zip -d ~/
 
 # GO setup
 RUN source /etc/profile.d/go.sh && time go get -u \
@@ -232,9 +231,8 @@ RUN time julia -e 'Pkg.add("Lint")' && \
 RUN time luarocks install luacheck
 
 # PMD setup
-RUN curl -fsSL https://github.com/pmd/pmd/releases/download/pmd_releases/5.4.1/pmd-bin-5.4.1.zip -o /root/pmd.zip && \
-  unzip /root/pmd.zip -d /root/ && \
-  rm -rf /root/pmd.zip
+RUN curl -fsSL https://github.com/pmd/pmd/releases/download/pmd_releases/5.4.1/pmd-bin-5.4.1.zip -o /tmp/pmd.zip && \
+  unzip /tmp/pmd.zip -d /root/
 
 # R setup
 RUN mkdir -p ~/.RLibrary && \
@@ -258,12 +256,12 @@ RUN mkdir -p ~/.RLibrary && \
   unset ICUDT_DIR && export ICUDT_DIR
 
 # Tailor (Swift) setup
-RUN curl -fsSL https://tailor.sh/install.sh | sed 's/read -r CONTINUE < \/dev\/tty/CONTINUE=y/' > install.sh && \
-  time /bin/bash install.sh
+RUN curl -fsSL https://tailor.sh/install.sh | sed 's/read -r CONTINUE < \/dev\/tty/CONTINUE=y/' > /tmp/install.sh && \
+  time /bin/bash /tmp/install.sh
 
 # # VHDL Bakalint Installation
-RUN curl -L 'http://downloads.sourceforge.net/project/fpgalibre/bakalint/0.4.0/bakalint-0.4.0.tar.gz' > /root/bl.tar.gz && \
-  tar xf /root/bl.tar.gz -C /root/
+RUN curl -L 'http://downloads.sourceforge.net/project/fpgalibre/bakalint/0.4.0/bakalint-0.4.0.tar.gz' > /tmp/bl.tar.gz && \
+  tar xf /tmp/bl.tar.gz -C /root/
 
 # Entrypoint script
 ADD docker-coala.sh /usr/local/bin/
