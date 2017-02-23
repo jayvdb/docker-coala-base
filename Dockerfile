@@ -158,6 +158,10 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Clear zypper cache
   time zypper clean -a
 
+RUN cd /tmp && \
+  bzr branch lp:govcstestbzrrepo && \
+  hg clone http://www.selenic.com/repo/hello
+
 # Coala setup and python deps
 RUN cd / && \
   git clone https://github.com/coala/coala.git && \
