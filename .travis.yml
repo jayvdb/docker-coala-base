@@ -22,8 +22,8 @@ script:
       set -e -x;
       cd /tmp;
       svn co https://github.com/githubtraining/hellogitworld.git;
-      hg clone http://www.selenic.com/repo/hello;
       bzr branch lp:govcstestbzrrepo;
+      hg clone http://www.selenic.com/repo/hello;
     "
   - /bin/sh -c "! docker run coala-docker"
   - docker run --user=$(id -u) --volume=$(pwd)/.ci/sample:/work --workdir=/work coala-docker
