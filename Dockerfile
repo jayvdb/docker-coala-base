@@ -148,15 +148,30 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     xorg-x11-fonts-core \
     && \
   rm -rf \
-    /usr/lib64/python2.7/ensurepip \
-    /usr/lib64/python2.7/idlelib \
-    /usr/lib64/python2.7/lib2to3 \
-    /usr/lib64/python2.7/pydoc_data \
-    /usr/lib64/python2.7/unittest \
-    /usr/lib64/python2.7/test \
+    /usr/lib64/python2.7/doctest.py \
+    /usr/lib64/python2.7/ensurepip/ \
+    /usr/lib64/python2.7/idlelib/ \
+    /usr/lib64/python2.7/imaplib.py \
+    /usr/lib64/python2.7/lib2to3/ \
+    /usr/lib64/python2.7/pdb.py \
+    /usr/lib64/python2.7/pydoc.py \
+    /usr/lib64/python2.7/pydoc_data/ \
+    /usr/lib64/python2.7/unittest/ \
+    /usr/lib64/python2.7/test/ \
     /usr/lib64/python2.7/turtle.py \
     /usr/lib64/python2.7/wsgiref \
+    /usr/lib64/python2.7/site-packages/bzrlib/doc/ \
+    /usr/lib64/python2.7/site-packages/bzrlib/export/ \
+    /usr/lib64/python2.7/site-packages/bzrlib/help_topics/ \
+    /usr/lib64/python2.7/site-packages/hgext/convert/ \
+    /usr/lib64/python2.7/site-packages/mercurial/help/ \
+    /usr/lib64/python2.7/site-packages/mercurial/hgweb/ \
+    /usr/lib64/python2.7/site-packages/mercurial/templates/ \
     /usr/lib64/ruby/gems/2.2.0/gems/bundler-*/man/* \
+    /usr/lib64/libsvnjavahl-* \
+    /usr/lib64/svn-javahl \
+    /usr/share/emacs/ \
+    /usr/share/xemacs/ \
     && \
   find /usr/lib64/python2.7/ \
     \( -name test -o -name tests -o -name 'test_*' -o \
@@ -164,15 +179,11 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     \) -prune -exec rm -rf '{}' '+' \
     && \
   # Clear zypper cache
-  time zypper clean -a
-
-RUN cd /tmp && \
+  time zypper clean -a && \
+  cd /tmp && \
+  svn co https://github.com/githubtraining/hellogitworld.git \
   bzr branch lp:govcstestbzrrepo && \
   hg clone http://www.selenic.com/repo/hello
-
-RUN rpm -ql mercurial
-RUN rpm -ql bzr
-RUN rpm -ql subversion
 
 # Coala setup and python deps
 RUN cd / && \
