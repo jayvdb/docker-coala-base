@@ -153,6 +153,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     /usr/lib64/R/library/*/demo/* \
     /usr/lib64/R/library/*/man/* \
     /usr/lib64/R/library/*/NEWS \
+    /usr/share/emacs \
+    /usr/share/xemacs \
     && \
   find /usr/share/ -type d \
     \( -name 'doc' -o -name 'info' -o -name 'man' -o -name 'tests' -name 'test' \) \
