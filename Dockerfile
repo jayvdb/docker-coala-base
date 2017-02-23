@@ -156,7 +156,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     /usr/share/emacs \
     /usr/share/xemacs \
     && \
-  find /usr/share/ -type d \
+  find /usr/share/ -type d -not -path '*/go/*' -a \
     \( -name 'doc' -o -name 'info' -o -name 'man' -o -name 'tests' -name 'test' \) \
     -prune -exec rm -rf '{}' '+' \
     && \
