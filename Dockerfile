@@ -171,6 +171,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Clear zypper cache
   time zypper clean -a
 
+RUN ls /usr/share/php7/PEAR/doc
+
 # Coala setup and python deps
 RUN cd / && \
   git clone https://github.com/coala/coala.git && \
