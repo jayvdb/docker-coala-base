@@ -153,7 +153,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     /usr/lib64/python2.7/idlelib/ \
     /usr/lib64/python2.7/imaplib.py \
     /usr/lib64/python2.7/lib2to3/ \
-    /usr/lib64/python2.7/pdb.py \
     /usr/lib64/python2.7/pydoc.py \
     /usr/lib64/python2.7/pydoc_data/ \
     /usr/lib64/python2.7/unittest/ \
