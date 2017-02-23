@@ -5,7 +5,7 @@ services:
   - docker
 
 install:
-  - docker build -f Dockerfile -t coala-docker .
+  - docker build -f Dockerfile --build-arg branch=release/0.10 -t coala-docker .
   - docker images
 
 script:
