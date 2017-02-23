@@ -191,7 +191,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
-RUN find /usr/lib/php/
+RUN rpm -ql php
+RUN rpm -ql php7-pear
 
 # Coala setup and python deps
 RUN cd / && \
