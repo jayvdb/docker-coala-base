@@ -145,6 +145,10 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     xorg-x11-fonts-core \
     && \
   rm -rf \
+    /usr/lib64/python2.7/ensurepip \
+    /usr/lib64/python2.7/idlelib \
+    /usr/lib64/python2.7/lib2to3 \
+    /usr/lib64/python2.7/pydoc_data \
     /usr/lib64/python2.7/unittest \
     /usr/lib64/python2.7/test \
     /usr/lib64/python2.7/turtle.py \
