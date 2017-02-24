@@ -4,7 +4,7 @@ MAINTAINER Fabian Neuschmidt fabian@neuschmidt.de
 ARG branch=master
 
 # Set the locale
-ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/root/bakalint-0.4.0
+ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en PATH=$PATH:/usr/local/bin:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/root/bakalint-0.4.0
 
 # Create symlink for cache
 RUN mkdir -p /root/.local/share/coala && \
@@ -209,6 +209,10 @@ RUN cd / && \
   time bundle install --system && rm -rf ~/.bundle && \
   # NPM dependencies
   time npm install --global && npm cache clean
+
+RUN find /usr/local/lib/coala-bears
+
+RUN find /usr/local/bin
 
 RUN time pear install PHP_CodeSniffer
 
