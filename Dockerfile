@@ -29,7 +29,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     flawfinder \
     gcc-c++ \
     gcc-fortran \
-    ghc \
     ghc-cabal-helper \
     ghc-mod \
     git \
@@ -191,9 +190,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Clear zypper cache
   time zypper clean -a
 
-RUN rpm -ql ghc
-RUN rpm -ql ghc-cabal-helper
-RUN rpm -ql ghc-mod
+RUN rpm -ql ghc-cabal-helper | xargs ls -ald
+RUN rpm -ql ghc-mod | xargs ls -ald
 
 # Coala setup and python deps
 RUN cd / && \
