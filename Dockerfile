@@ -212,6 +212,14 @@ RUN cd / && \
   time bundle install --system && rm -rf ~/.bundle && \
   # NPM dependencies
   time yarn install && yarn cache clean && \
+  find /coala-bears/node_modules -d \
+    \( \
+      -name 'test' -o -name 'scripts' -o -name 'example' -o \
+      -name 'doc' -o -name 'docs' \
+    \) -a -not -path '*/lib/*' \
+    -prune -exec rm -rf '{}' '+' && \
+  find /coala-bears/node_modules -d -name 'bin' -mindepth 3 \
+    -prune -exec rm -rf '{}' '+' && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 RUN time pear install PHP_CodeSniffer && \
