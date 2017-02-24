@@ -191,6 +191,10 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Clear zypper cache
   time zypper clean -a
 
+RUN rpm -ql ghc
+RUN rpm -ql ghc-cabal-helper
+RUN rpm -ql ghc-mod
+
 # Coala setup and python deps
 RUN cd / && \
   git clone --depth 1 --branch=$branch https://github.com/coala/coala.git && \
