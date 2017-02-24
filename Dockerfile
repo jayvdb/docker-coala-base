@@ -152,6 +152,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     xorg-x11-fonts-core \
     && \
   rm -rf \
+    /usr/bin/ghc-modi \
     /usr/lib64/python2.7/doctest.py \
     /usr/lib64/python2.7/ensurepip/ \
     /usr/lib64/python2.7/idlelib/ \
@@ -180,6 +181,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     /usr/lib64/libsvnjavahl-* \
     /usr/lib64/svn-javahl \
     /usr/share/emacs/ \
+    /usr/share/ghc-mod-5.6.0.0/elisp \
     /usr/share/xemacs/ \
     && \
   find /usr/lib64/python2.7/ \
@@ -189,9 +191,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     && \
   # Clear zypper cache
   time zypper clean -a
-
-RUN rpm -ql ghc-cabal-helper | xargs ls -ald
-RUN rpm -ql ghc-mod | xargs ls -ald
 
 # Coala setup and python deps
 RUN cd / && \
