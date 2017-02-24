@@ -210,9 +210,7 @@ RUN cd / && \
   # NPM dependencies
   time npm install --global && npm cache clean
 
-RUN find /usr/local/lib/coala-bears
-
-RUN find /usr/local/bin
+RUN find /usr/local/
 
 RUN time pear install PHP_CodeSniffer
 
