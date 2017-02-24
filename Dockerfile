@@ -192,6 +192,9 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Clear zypper cache
   time zypper clean -a
 
+RUN echo 'main :: IO()' > foo.hs
+RUN ghc-mod -b .  check foo.hs
+
 # Coala setup and python deps
 RUN cd / && \
   git clone --depth 1 --branch=$branch https://github.com/coala/coala.git && \
