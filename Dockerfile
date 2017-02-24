@@ -29,7 +29,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     flawfinder \
     gcc-c++ \
     gcc-fortran \
-    ghc \
+    ghc-base \
+    ghc-base-devel \
     ghc-cabal-helper \
     ghc-mod \
     git \
