@@ -103,7 +103,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     ghc-deepseq \
     ghc-directory \
     ghc-filepath \
-    ghc-ghc \
+    # ghc-ghc \
     ghc-ghc-boot \
     ghc-ghc-boot-th \
     ghc-ghci \
@@ -223,6 +223,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
 RUN cat /usr/lib64/ghc-8.0.1/settings
 
 RUN echo 'main :: IO()' > foo.hs
+RUN echo 'main = putStrLn "Hello World!"' >> foo.hs
 RUN ghc-mod -b .  check foo.hs
 
 # Coala setup and python deps
