@@ -18,6 +18,7 @@ RUN zypper --no-gpg-checks --non-interactive install \
   patch \
   sudo \
   tar \
+  unzip \
   which
 
 # Infer setup using opam
