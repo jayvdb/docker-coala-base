@@ -217,6 +217,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Clear zypper cache
   time zypper clean -a
 
+RUN cat /usr/lib64/ghc-8.0.1/settings
+
 RUN echo 'main :: IO()' > foo.hs
 RUN ghc-mod -b .  check foo.hs
 
@@ -239,8 +241,6 @@ RUN cd / && \
   time bundle install --system && rm -rf ~/.bundle && \
   # NPM dependencies
   time npm install && npm cache clean
-
-RUN cat /usr/lib64/ghc-8.0.1/settings
 
 RUN time pear install PHP_CodeSniffer
 
