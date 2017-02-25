@@ -11,8 +11,13 @@ ENV LANG=en_US.UTF-8 \
     NODE_PATH=/coala-bears/node_modules
 
 RUN zypper --no-gpg-checks --non-interactive install \
+  gcc \
   curl \
+  m4 \
+  make \
+  patch \
   sudo \
+  tar \
   which
 
 # Infer setup using opam
