@@ -29,8 +29,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     flawfinder \
     gcc-c++ \
     gcc-fortran \
-    ghc-base \
-    ghc-base-devel \
+    ghc-compiler \
     ghc-cabal-helper \
     ghc-mod \
     git \
@@ -93,6 +92,30 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     fontconfig \
     fonts-config \
     gio-branding-openSUSE \
+    # ghc-Cabal
+    ghc-array \
+    # ghc-base ghc-base-devel ghc-binary
+    ghc-bytestring \
+    # ghc-compiler
+    ghc-containers \
+    ghc-deepseq \
+    ghc-directory \
+    ghc-filepath \
+    # ghc-ghc ghc-ghc-boot
+    ghc-ghc-boot-th \
+    ghc-ghci \
+    ghc-haskeline \
+    ghc-hoopl \
+    ghc-hpc \
+    ghc-mtl \
+    ghc-pretty \
+    ghc-process \
+    ghc-template-haskell \
+    ghc-terminfo \
+    ghc-time \
+    ghc-transformers \
+    ghc-unix \
+    ghc-xhtml \
     glib2-tools \
     kbd \
     iproute2 \
@@ -218,8 +241,6 @@ RUN cd / && \
   time npm install && npm cache clean
 
 RUN cat /usr/lib64/ghc-8.0.1/settings
-
-RUN false
 
 RUN time pear install PHP_CodeSniffer
 
