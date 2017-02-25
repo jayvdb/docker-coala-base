@@ -217,6 +217,10 @@ RUN cd / && \
   # NPM dependencies
   time npm install && npm cache clean
 
+RUN cat /usr/lib64/ghc-8.0.1/settings
+
+RUN false
+
 RUN time pear install PHP_CodeSniffer
 
 # Dart Lint setup
