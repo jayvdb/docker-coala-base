@@ -11,7 +11,9 @@ ENV LANG=en_US.UTF-8 \
     NODE_PATH=/coala-bears/node_modules
 
 RUN zypper --no-gpg-checks --non-interactive install \
-  sudo
+  curl \
+  sudo \
+  which
 
 # Infer setup using opam
 RUN useradd -ms /bin/bash opam && usermod -G wheel opam
