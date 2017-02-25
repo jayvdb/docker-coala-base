@@ -8,6 +8,7 @@ ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/
 
 RUN zypper --no-gpg-checks --non-interactive install \
   gcc \
+  git \
   curl \
   m4 \
   make \
