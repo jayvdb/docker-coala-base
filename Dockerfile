@@ -7,7 +7,9 @@ ARG branch=master
 ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0
 
 RUN zypper --no-gpg-checks --non-interactive install \
-  sudo
+  curl \
+  sudo \
+  which
 
 # Infer setup using opam
 RUN useradd -ms /bin/bash opam && usermod -G wheel opam
