@@ -94,14 +94,17 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     gio-branding-openSUSE \
     # ghc-Cabal
     ghc-array \
-    # ghc-base ghc-base-devel ghc-binary
+    # ghc-base \
+    ghc-base-devel
+    ghc-binary \
     ghc-bytestring \
     # ghc-compiler
     ghc-containers \
     ghc-deepseq \
     ghc-directory \
     ghc-filepath \
-    # ghc-ghc ghc-ghc-boot
+    ghc-ghc \
+    ghc-ghc-boot \
     ghc-ghc-boot-th \
     ghc-ghci \
     ghc-haskeline \
