@@ -103,7 +103,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     ghc-deepseq \
     ghc-directory \
     ghc-filepath \
-    # ghc-ghc \
+    ghc-ghc \
     ghc-ghc-boot \
     ghc-ghc-boot-th \
     ghc-ghci \
