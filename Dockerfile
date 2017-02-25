@@ -23,8 +23,7 @@ RUN useradd -ms /bin/bash opam && usermod -G wheel opam
 RUN echo "opam ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers
 # necessary because there is a sudo bug in the base image
 RUN sed -i '51 s/^/#/' /etc/security/limits.conf
-USER opam
-WORKDIR /home/opam
+WORKDIR /root
 ADD https://raw.github.com/ocaml/opam/master/shell/opam_installer.sh opam_installer.sh
 RUN sudo sh opam_installer.sh /usr/local/bin
 RUN yes | /usr/local/bin/opam init --comp 4.02.1
@@ -40,9 +39,8 @@ WORKDIR /home/opam/infer-linux64-v0.9.0
 RUN opam pin add -y --no-action infer . && \
   opam install --deps-only --yes infer && \
   ./build-infer.sh java
-USER root
 WORKDIR /
-ENV PATH=$PATH:/home/opam/infer-linux64-v0.9.0/infer/bin
+ENV PATH=$PATH:/root/infer-linux64-v0.9.0/infer/bin
 
 infer --help
 
