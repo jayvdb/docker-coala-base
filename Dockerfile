@@ -12,6 +12,7 @@ ENV LANG=en_US.UTF-8 \
 
 RUN zypper --no-gpg-checks --non-interactive install \
   gcc \
+  git \
   curl \
   m4 \
   make \
