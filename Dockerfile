@@ -10,6 +10,34 @@ ENV LANG=en_US.UTF-8 \
     PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18 \
     NODE_PATH=/coala-bears/node_modules
 
+# Infer setup using opam
+RUN useradd -ms /bin/bash opam && usermod -G wheel opam
+RUN echo "opam ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers
+# necessary because there is a sudo bug in the base image
+RUN sed -i '51 s/^/#/' /etc/security/limits.conf
+USER opam
+WORKDIR /home/opam
+ADD https://raw.github.com/ocaml/opam/master/shell/opam_installer.sh opam_installer.sh
+RUN sudo sh opam_installer.sh /usr/local/bin
+RUN yes | /usr/local/bin/opam init --comp 4.02.1
+RUN opam switch 4.02.3 && \
+  eval `opam config env` && \
+  opam update && \
+  opam pin add -y merlin 'https://github.com/the-lambda-church/merlin.git#reason-0.0.1' && \
+  opam pin add -y merlin_extend 'https://github.com/let-def/merlin-extend.git#reason-0.0.1' && \
+  opam pin add -y reason 'https://github.com/facebook/reason.git#0.0.6'
+ADD https://github.com/facebook/infer/releases/download/v0.9.0/infer-linux64-v0.9.0.tar.xz infer-linux64-v0.9.0.tar.xz
+RUN sudo tar xf infer-linux64-v0.9.0.tar.xz
+WORKDIR /home/opam/infer-linux64-v0.9.0
+RUN opam pin add -y --no-action infer . && \
+  opam install --deps-only --yes infer && \
+  ./build-infer.sh java
+USER root
+WORKDIR /
+ENV PATH=$PATH:/home/opam/infer-linux64-v0.9.0/infer/bin
+
+infer --help
+
 # Create symlink for cache
 RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
@@ -235,32 +263,6 @@ RUN source /etc/profile.d/go.sh && time go get -u \
   github.com/BurntSushi/toml/cmd/tomlv \
   github.com/kisielk/errcheck && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
-
-# # Infer setup using opam
-# RUN useradd -ms /bin/bash opam && usermod -G wheel opam
-# RUN echo "opam ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers
-# # necessary because there is a sudo bug in the base image
-# RUN sed -i '51 s/^/#/' /etc/security/limits.conf
-# USER opam
-# WORKDIR /home/opam
-# ADD https://raw.github.com/ocaml/opam/master/shell/opam_installer.sh opam_installer.sh
-# RUN sudo sh opam_installer.sh /usr/local/bin
-# RUN yes | /usr/local/bin/opam init --comp 4.02.1
-# RUN opam switch 4.02.3 && \
-#   eval `opam config env` && \
-#   opam update && \
-#   opam pin add -y merlin 'https://github.com/the-lambda-church/merlin.git#reason-0.0.1' && \
-#   opam pin add -y merlin_extend 'https://github.com/let-def/merlin-extend.git#reason-0.0.1' && \
-#   opam pin add -y reason 'https://github.com/facebook/reason.git#0.0.6'
-# ADD https://github.com/facebook/infer/releases/download/v0.9.0/infer-linux64-v0.9.0.tar.xz infer-linux64-v0.9.0.tar.xz
-# RUN sudo tar xf infer-linux64-v0.9.0.tar.xz
-# WORKDIR /home/opam/infer-linux64-v0.9.0
-# RUN opam pin add -y --no-action infer . && \
-#   opam install --deps-only --yes infer && \
-#   ./build-infer.sh java
-# USER root
-# WORKDIR /
-# ENV PATH=$PATH:/home/opam/infer-linux64-v0.9.0/infer/bin
 
 # Julia setup
 RUN time julia -e 'Pkg.add("Lint")' && \
