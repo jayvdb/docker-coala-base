@@ -10,6 +10,9 @@ ENV LANG=en_US.UTF-8 \
     PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18 \
     NODE_PATH=/coala-bears/node_modules
 
+RUN zypper --no-gpg-checks --non-interactive install \
+  sudo
+
 # Infer setup using opam
 RUN useradd -ms /bin/bash opam && usermod -G wheel opam
 RUN echo "opam ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers
