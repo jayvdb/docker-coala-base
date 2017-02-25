@@ -104,7 +104,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     ghc-directory \
     ghc-filepath \
     # ghc-ghc \
-    ghc-ghc-boot \
+    # ghc-ghc-boot \
     ghc-ghc-boot-th \
     ghc-ghci \
     ghc-haskeline \
