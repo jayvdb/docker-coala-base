@@ -95,7 +95,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     # ghc-Cabal
     ghc-array \
     # ghc-base \
-    ghc-base-devel \
+    # ghc-base-devel \
     ghc-binary \
     ghc-bytestring \
     # ghc-compiler
