@@ -210,6 +210,8 @@ RUN cd / && \
   # NPM dependencies
   time npm install && npm dedupe && npm cache clean
 
+RUN find /coala-bears/node_modules
+
 RUN time pear install PHP_CodeSniffer
 
 # Dart Lint setup
