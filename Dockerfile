@@ -37,12 +37,8 @@ RUN zypper --no-gpg-checks --non-interactive install \
   zlib-devel
 
 #  --comp 4.03.0
-RUN yes | opam init
-RUN eval `opam config env` && \
-  opam update && \
-  opam pin add -y merlin 'https://github.com/the-lambda-church/merlin.git#reason-0.0.1' && \
-  opam pin add -y merlin_extend 'https://github.com/let-def/merlin-extend.git#reason-0.0.1' && \
-  opam pin add -y reason 'https://github.com/facebook/reason.git#0.0.6'
+RUN opam init --y
+RUN eval `opam config env` && opam update
 ADD https://github.com/facebook/infer/releases/download/v0.9.0/infer-linux64-v0.9.0.tar.xz infer-linux64-v0.9.0.tar.xz
 RUN sudo tar xf infer-linux64-v0.9.0.tar.xz
 WORKDIR /root/infer-linux64-v0.9.0
