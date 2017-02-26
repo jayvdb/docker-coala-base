@@ -17,6 +17,7 @@ RUN zypper --no-gpg-checks --non-interactive install \
   curl \
   gcc \
   git \
+  java-1_8_0-openjdk-devel \
   m4 \
   make \
   ocaml-camlp4 \
