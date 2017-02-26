@@ -208,7 +208,7 @@ RUN cd / && \
   # Ruby dependencies
   time bundle install --system && rm -rf ~/.bundle && \
   # NPM dependencies
-  time npm install && npm dedupe && npm cache clean
+  time npm install && time npm dedupe && time npm cache clean
 
 RUN find /coala-bears/node_modules
 
