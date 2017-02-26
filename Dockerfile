@@ -12,6 +12,8 @@ ENV LANG=en_US.UTF-8 \
 
 RUN zypper addrepo http://download.opensuse.org/repositories/devel:languages:ocaml/openSUSE_Tumbleweed/devel:languages:ocaml.repo
 
+RUN zypper addrepo http://download.opensuse.org/repositories/home:NaCl:ocaml/openSUSE_Tumbleweed/home:NaCl:ocaml.repo
+
 RUN zypper --no-gpg-checks --non-interactive install \
   autoconf \
   curl \
