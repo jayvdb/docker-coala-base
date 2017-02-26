@@ -18,6 +18,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     devel:languages:lua && \
   # Use Leap for nodejs
   zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/devel:languages:nodejs.repo && \
+  zypper addrepo https://dl.yarnpkg.com/rpm/yarn.repo && \
   # Add repo for rubygem-bundler
   zypper addrepo http://download.opensuse.org/repositories/home:AtastaChloeD:ChiliProject/openSUSE_Factory/home:AtastaChloeD:ChiliProject.repo && \
   # Package dependencies
@@ -79,7 +80,9 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     sudo \
     tar \
     texlive-chktex \
-    unzip && \
+    unzip \
+    yarn \
+    && \
   time rpm -e -f --nodeps -v \
     aaa_base \
     cron \
@@ -193,7 +196,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
 # Coala setup and python deps
 RUN cd / && \
   git clone --depth 1 --branch=$branch https://github.com/coala/coala.git && \
-  git clone --depth 1 --branch=$branch https://github.com/coala/coala-bears.git && \
+  git clone --depth 1 --branch=add-yarn https://github.com/jayvdb/coala-bears.git && \
   git clone --depth 1 https://github.com/coala/coala-quickstart.git && \
   time pip3 install --no-cache-dir \
     -e /coala \
@@ -208,7 +211,7 @@ RUN cd / && \
   # Ruby dependencies
   time bundle install --system && rm -rf ~/.bundle && \
   # NPM dependencies
-  time npm install && npm cache clean
+  time yarn install && npm cache clean
 
 RUN time pear install PHP_CodeSniffer
 
