@@ -19,7 +19,7 @@ RUN zypper --no-gpg-checks --non-interactive install \
   curl \
   ocaml-camlp4 \
   gcc \
-  gdbm \
+  gdbm3 \
   git \
   m4 \
   make \
