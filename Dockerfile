@@ -92,7 +92,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     fontconfig \
     fonts-config \
     gio-branding-openSUSE \
-    # ghc-Cabal
+    ghc-Cabal \
     ghc-array \
     # ghc-base \
     # ghc-base-devel \
