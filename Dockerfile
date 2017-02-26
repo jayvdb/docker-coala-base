@@ -218,6 +218,8 @@ RUN cd / && \
   find /coala-bears/node_modules -d -name 'bin' -mindepth 3 \
     -prune -exec rm -rf '{}' '+'
 
+RUN find /coala-bears/node_modules
+
 RUN time pear install PHP_CodeSniffer
 
 # Dart Lint setup
