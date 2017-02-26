@@ -35,9 +35,9 @@ RUN zypper --no-gpg-checks --non-interactive install \
   which \
   zlib-devel
 
-RUN yes | opam init --comp 4.02.1
-RUN opam switch 4.02.3 && \
-  eval `opam config env` && \
+#  --comp 4.03.0
+RUN yes | opam init
+RUN eval `opam config env` && \
   opam update && \
   opam pin add -y merlin 'https://github.com/the-lambda-church/merlin.git#reason-0.0.1' && \
   opam pin add -y merlin_extend 'https://github.com/let-def/merlin-extend.git#reason-0.0.1' && \
