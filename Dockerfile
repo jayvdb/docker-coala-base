@@ -20,6 +20,7 @@ RUN zypper --no-gpg-checks --non-interactive install \
   java-1_8_0-openjdk-devel \
   m4 \
   make \
+  nano \
   ocaml-camlp4 \
   ocaml-camlzip \
   ocaml-cppo \
