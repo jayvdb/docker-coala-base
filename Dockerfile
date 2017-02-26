@@ -12,11 +12,25 @@ ENV LANG=en_US.UTF-8 \
 
 RUN zypper --no-gpg-checks --non-interactive install \
   autoconf \
+  curl \
+  camlp4 \
   gcc \
   git \
-  curl \
   m4 \
   make \
+  ocaml-camlzip \
+  ocaml-cppo \
+  ocaml-extlib \
+  ocaml-lambda-term \
+  ocaml-lwt \
+  ocaml-menhir \
+  ocaml-ounit \
+  ocaml-re \
+  ocaml-react \
+  ocaml-utop \
+  ocaml-yojson \
+  ocaml-zed \
+  opam \
   patch \
   sudo \
   tar \
@@ -24,15 +38,7 @@ RUN zypper --no-gpg-checks --non-interactive install \
   which \
   zlib-devel
 
-# Infer setup using opam
-RUN useradd -ms /bin/bash opam && usermod -G wheel opam
-RUN echo "opam ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers
-# necessary because there is a sudo bug in the base image
-RUN sed -i '51 s/^/#/' /etc/security/limits.conf
-WORKDIR /root
-ADD https://raw.github.com/ocaml/opam/master/shell/opam_installer.sh opam_installer.sh
-RUN sudo sh opam_installer.sh /usr/local/bin
-RUN yes | /usr/local/bin/opam init --comp 4.02.1
+RUN yes | opam init --comp 4.02.1
 RUN opam switch 4.02.3 && \
   eval `opam config env` && \
   opam update && \
