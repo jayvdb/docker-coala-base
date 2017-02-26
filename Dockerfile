@@ -225,6 +225,8 @@ RUN cat /usr/lib64/ghc-8.0.1/settings
 RUN echo 'main :: IO()' > foo.hs
 RUN echo 'main = putStrLn "Hello World!"' >> foo.hs
 RUN ghc-mod -b .  check foo.hs
+RUN find ~/.ghc
+RUN find /usr/lib64/ghc-8.0.1
 
 # Coala setup and python deps
 RUN cd / && \
