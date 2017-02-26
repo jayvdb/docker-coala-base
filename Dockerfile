@@ -188,10 +188,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     \) -prune -exec rm -rf '{}' '+' \
     && \
   # Clear zypper cache
-  time zypper clean -a
-
-# Coala setup and python deps
-RUN cd / && \
+  time zypper clean -a && \
+  cd / && \
   git clone --depth 1 --branch=$branch https://github.com/coala/coala.git && \
   git clone --depth 1 --branch=$branch https://github.com/coala/coala-bears.git && \
   git clone --depth 1 https://github.com/coala/coala-quickstart.git && \
@@ -208,69 +206,30 @@ RUN cd / && \
   # Ruby dependencies
   time bundle install --system && rm -rf ~/.bundle && \
   # NPM dependencies
-  time npm install && npm cache clean
-
-RUN time pear install PHP_CodeSniffer
-
-# Dart Lint setup
-RUN curl -fsSL https://storage.googleapis.com/dart-archive/channels/stable/release/1.14.2/sdk/dartsdk-linux-x64-release.zip -o /root/dart-sdk.zip && \
+  time npm install && npm cache clean && \
+  time pear install PHP_CodeSniffer && \
+curl -fsSL https://storage.googleapis.com/dart-archive/channels/stable/release/1.14.2/sdk/dartsdk-linux-x64-release.zip -o /root/dart-sdk.zip && \
   unzip -n /root/dart-sdk.zip -d ~/ && \
-  rm -rf /root/dart-sdk.zip
-
-# GO setup
-RUN source /etc/profile.d/go.sh && time go get -u \
+  rm -rf /root/dart-sdk.zip && \
+  source /etc/profile.d/go.sh && time go get -u \
   github.com/golang/lint/golint \
   golang.org/x/tools/cmd/goimports \
   sourcegraph.com/sqs/goreturns \
   golang.org/x/tools/cmd/gotype \
-  github.com/kisielk/errcheck
-
-# # Infer setup using opam
-# RUN useradd -ms /bin/bash opam && usermod -G wheel opam
-# RUN echo "opam ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers
-# # necessary because there is a sudo bug in the base image
-# RUN sed -i '51 s/^/#/' /etc/security/limits.conf
-# USER opam
-# WORKDIR /home/opam
-# ADD https://raw.github.com/ocaml/opam/master/shell/opam_installer.sh opam_installer.sh
-# RUN sudo sh opam_installer.sh /usr/local/bin
-# RUN yes | /usr/local/bin/opam init --comp 4.02.1
-# RUN opam switch 4.02.3 && \
-#   eval `opam config env` && \
-#   opam update && \
-#   opam pin add -y merlin 'https://github.com/the-lambda-church/merlin.git#reason-0.0.1' && \
-#   opam pin add -y merlin_extend 'https://github.com/let-def/merlin-extend.git#reason-0.0.1' && \
-#   opam pin add -y reason 'https://github.com/facebook/reason.git#0.0.6'
-# ADD https://github.com/facebook/infer/releases/download/v0.9.0/infer-linux64-v0.9.0.tar.xz infer-linux64-v0.9.0.tar.xz
-# RUN sudo tar xf infer-linux64-v0.9.0.tar.xz
-# WORKDIR /home/opam/infer-linux64-v0.9.0
-# RUN opam pin add -y --no-action infer . && \
-#   opam install --deps-only --yes infer && \
-#   ./build-infer.sh java
-# USER root
-# WORKDIR /
-# ENV PATH=$PATH:/home/opam/infer-linux64-v0.9.0/infer/bin
-
-# Julia setup
-RUN time julia -e 'Pkg.add("Lint")' && \
+  github.com/kisielk/errcheck && \
+  time julia -e 'Pkg.add("Lint")' && \
   rm -rf \
     ~/.julia/.cache \
     ~/.julia/v0.5/.cache \
     ~/.julia/v0.5/METADATA \
     ~/.julia/v0.5/*/.git \
     ~/.julia/v0.5/*/test \
-    ~/.julia/v0.5/*/docs
-
-# Lua commands
-RUN time luarocks install luacheck
-
-# PMD setup
-RUN curl -fsSL https://github.com/pmd/pmd/releases/download/pmd_releases/5.4.1/pmd-bin-5.4.1.zip -o /root/pmd.zip && \
+    ~/.julia/v0.5/*/docs && \
+  time luarocks install luacheck && \
+  curl -fsSL https://github.com/pmd/pmd/releases/download/pmd_releases/5.4.1/pmd-bin-5.4.1.zip -o /root/pmd.zip && \
   unzip /root/pmd.zip -d /root/ && \
-  rm -rf /root/pmd.zip
-
-# R setup
-RUN mkdir -p ~/.RLibrary && \
+  rm -rf /root/pmd.zip && \
+  mkdir -p ~/.RLibrary && \
   echo '.libPaths( c( "~/.RLibrary", .libPaths()) )' >> ~/.Rprofile && \
   echo 'options(repos=structure(c(CRAN="http://cran.rstudio.com")))' >> ~/.Rprofile && \
   export ICUDT_DIR=/usr/share/icu/57.1/ && \
@@ -288,14 +247,10 @@ RUN mkdir -p ~/.RLibrary && \
     ~/.RLibrary/*/NEWS \
     ~/.RLibrary/Rcpp/unitTests/ \
     && \
-  unset ICUDT_DIR && export ICUDT_DIR
-
-# Tailor (Swift) setup
-RUN curl -fsSL https://tailor.sh/install.sh | sed 's/read -r CONTINUE < \/dev\/tty/CONTINUE=y/' > install.sh && \
-  time /bin/bash install.sh
-
-# # VHDL Bakalint Installation
-RUN curl -L 'http://downloads.sourceforge.net/project/fpgalibre/bakalint/0.4.0/bakalint-0.4.0.tar.gz' > /root/bl.tar.gz && \
+  unset ICUDT_DIR && export ICUDT_DIR && \
+  curl -fsSL https://tailor.sh/install.sh | sed 's/read -r CONTINUE < \/dev\/tty/CONTINUE=y/' > install.sh && \
+  time /bin/bash install.sh && \
+  curl -L 'http://downloads.sourceforge.net/project/fpgalibre/bakalint/0.4.0/bakalint-0.4.0.tar.gz' > /root/bl.tar.gz && \
   tar xf /root/bl.tar.gz -C /root/ && \
   rm -rf /root/bl.tar.gz
 
