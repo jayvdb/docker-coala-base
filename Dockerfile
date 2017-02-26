@@ -12,29 +12,21 @@ ENV LANG=en_US.UTF-8 \
 
 RUN zypper addrepo http://download.opensuse.org/repositories/devel:languages:ocaml/openSUSE_Tumbleweed/devel:languages:ocaml.repo
 
-RUN zypper addrepo http://download.opensuse.org/repositories/home:NaCl:ocaml/openSUSE_Tumbleweed/home:NaCl:ocaml.repo
-
 RUN zypper --no-gpg-checks --non-interactive install \
   autoconf \
   curl \
-  ocaml-camlp4 \
   gcc \
-  gdbm3 \
   git \
   m4 \
   make \
+  ocaml-camlp4 \
   ocaml-camlzip \
   ocaml-cppo \
   ocaml-extlib \
-  ocaml-lambda-term \
-  ocaml-lwt \
   ocaml-menhir \
   ocaml-ounit \
   ocaml-re \
-  ocaml-react \
-  ocaml-utop \
   ocaml-yojson \
-  ocaml-zed \
   opam \
   patch \
   sudo \
