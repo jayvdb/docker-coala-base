@@ -190,10 +190,14 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Clear zypper cache
   time zypper clean -a
 
+RUN curl -fsSL https://nightly.yarnpkg.com/yarn-0.22.0_20170225.0858-1.noarch.rpm -o /tmp/yarn.noarch.rpm && \
+  rpm -i --force /tmp/yarn.noarch.rpm && \
+  rm /tmp/yarn.noarch.rpm
+
 # Coala setup and python deps
 RUN cd / && \
   git clone --depth 1 --branch=$branch https://github.com/coala/coala.git && \
-  git clone --depth 1 --branch=$branch https://github.com/coala/coala-bears.git && \
+  git clone --depth 1 --branch=add-yarn https://github.com/jayvdb/coala-bears.git && \
   git clone --depth 1 https://github.com/coala/coala-quickstart.git && \
   time pip3 install --no-cache-dir \
     -e /coala \
@@ -208,7 +212,7 @@ RUN cd / && \
   # Ruby dependencies
   time bundle install --system && rm -rf ~/.bundle && \
   # NPM dependencies
-  time npm install && npm cache clean
+  time yarn install && npm cache clean
 
 RUN time pear install PHP_CodeSniffer
 
