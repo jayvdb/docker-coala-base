@@ -165,6 +165,16 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     /usr/lib64/python2.7/site-packages/mercurial/help/ \
     /usr/lib64/python2.7/site-packages/mercurial/hgweb/ \
     /usr/lib64/python2.7/site-packages/mercurial/templates/ \
+    /usr/lib64/python3.6/_import_failed \
+    /usr/lib64/python3.6/email/mime/ \
+    /usr/lib64/python3.6/ensurepip/ \
+    /usr/lib64/python3.6/idlelib/ \
+    /usr/lib64/python3.6/imaplib.py \
+    /usr/lib64/python3.6/lib2to3/fixes\ \
+    /usr/lib64/python3.6/pydoc_data/ \
+    /usr/lib64/python3.6/test/ \
+    /usr/lib64/python3.6/turtle.py \
+    /usr/lib64/python3.6/wsgiref \
     /usr/lib64/ruby/gems/2.2.0/gems/bundler-*/man/* \
     /usr/lib64/R/library/translations/*/LC_MESSAGES/*.[mp]o* \
     /usr/lib64/R/library/*/po/* \
@@ -184,9 +194,16 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
        -name '*.pyc' -o -name '*.pyo' \
     \) -prune -exec rm -rf '{}' '+' \
     && \
+  find /usr/lib64/python3.6/ \
+    \( -name 'test' -o -name 'tests' -o -name 'test_*' -o \
+       -name '__pycache__' \
+    \) -prune -exec rm -rf '{}' '+' \
+    && \
   # Clear zypper cache
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
+RUN find /usr/lib64/python3.6/
 
 # Coala setup and python deps
 RUN cd / && \
