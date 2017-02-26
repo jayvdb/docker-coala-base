@@ -19,8 +19,8 @@ RUN zypper --no-gpg-checks --non-interactive install \
   curl \
   ocaml-camlp4 \
   gcc \
+  gdbm \
   git \
-  libgdbm3 \
   m4 \
   make \
   ocaml-camlzip \
