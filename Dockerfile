@@ -39,7 +39,7 @@ RUN opam switch 4.02.3 && \
   opam pin add -y reason 'https://github.com/facebook/reason.git#0.0.6'
 ADD https://github.com/facebook/infer/releases/download/v0.9.0/infer-linux64-v0.9.0.tar.xz infer-linux64-v0.9.0.tar.xz
 RUN sudo tar xf infer-linux64-v0.9.0.tar.xz
-WORKDIR /home/opam/infer-linux64-v0.9.0
+WORKDIR /root/infer-linux64-v0.9.0
 RUN opam pin add -y --no-action infer .
 RUN opam install --deps-only --yes infer
 RUN bash -e -x ./build-infer.sh java
