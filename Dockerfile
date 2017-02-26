@@ -17,7 +17,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:NaCl:ocaml/ope
 RUN zypper --no-gpg-checks --non-interactive install \
   autoconf \
   curl \
-  camlp4 \
+  ocaml-camlp4 \
   gcc \
   git \
   m4 \
