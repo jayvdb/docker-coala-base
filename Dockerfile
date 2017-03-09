@@ -199,6 +199,7 @@ RUN cd / && \
     -e '/coala-bears[alldeps]' \
     -e /coala-quickstart \
     -r /coala/test-requirements.txt && \
+  pip freeze && \
   cd coala-bears && \
   # NLTK data
   time python3 -m nltk.downloader punkt maxent_treebank_pos_tagger averaged_perceptron_tagger && \

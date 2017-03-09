@@ -17,6 +17,7 @@ script:
     docker run -t -i coala-docker /bin/sh -c "
       set -e -x
       export OS_NAME=posix;
+      pip freeze;
       cd /coala; python3 -m pytest;
       cd /coala-bears;
       rm bears/Constants.py;  # There are no tests covering this module
