@@ -8,7 +8,7 @@ services:
 # the default.
 
 install:
-  - export COALA_BRANCH=$(python guess_branch.py "$TRAVIS_BRANCH") && echo $COALA_BRANCH
+  - export COALA_BRANCH=$(python guess_branch.py "$TRAVIS_BRANCH") && test -n "$COALA_BRANCH" && echo $COALA_BRANCH
   - docker build -f Dockerfile --build-arg branch=$COALA_BRANCH -t coala-docker .
   - docker images
 

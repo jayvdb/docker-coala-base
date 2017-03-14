@@ -10,8 +10,14 @@ def guess_coala_branch_name(docker_branch_name):
                   docker_branch_name)
     if m:
         release_number = m.group(1)
-        float(release_number)
-        return 'release/' + release_number
+        release_numbers = release_number.split('.')
+        assert len(release_numbers) >= 2
+        if len(release_numbers) == 2:
+            float(release_number)
+            return 'release/' + release_number
+        else:
+            [int(x) for x in release_numbers]
+            return release_number
 
     return 'master'
 
@@ -21,7 +27,7 @@ def main():
     assert args
     assert len(args) == 1
     docker_branch_name = args[0]
-    if 'COALA_BRANCH' in os.environ:
+    if 'COALA_BRANCH' in os.environ and os.environ['COALA_BRANCH']:
         print(os.environ['COALA_BRANCH'])
     else:
         print(guess_coala_branch_name(docker_branch_name))
