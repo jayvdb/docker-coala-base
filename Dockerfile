@@ -68,7 +68,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     # Used by bzr, mecurial, hgext, and flawfinder
     python \
     python3 \
-    python3-dbm \
     python3-pip \
     python3-setuptools \
     R-base \
