@@ -214,6 +214,8 @@ RUN cd / && \
   time yarn install && yarn cache clean && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
+RUN find /coala-bears/node_modules
+
 RUN time pear install PHP_CodeSniffer && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
