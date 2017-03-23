@@ -8,6 +8,8 @@ ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/
 
 RUN echo 'rpm.install.excludedocs = yes' >> /etc/zypp/zypp.conf
 
+RUN cat /etc/zypp/zypp.conf
+
 # Create symlink for cache
 RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
@@ -23,7 +25,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Add repo for rubygem-bundler
   zypper addrepo http://download.opensuse.org/repositories/home:AtastaChloeD:ChiliProject/openSUSE_Factory/home:AtastaChloeD:ChiliProject.repo && \
   # Package dependencies
-  time zypper --no-gpg-checks --non-interactive install \
+  time zypper -vv --color --no-gpg-checks --non-interactive install --details --download-in-advance \
     bzr \
     cppcheck \
     curl \
