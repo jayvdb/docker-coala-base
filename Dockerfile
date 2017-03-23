@@ -52,6 +52,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     # linux-glibc-devel needed for Ruby native extensions
     linux-glibc-devel \
     lua \
+    lua-filesystem \
     luarocks \
     m4 \
     nodejs \
