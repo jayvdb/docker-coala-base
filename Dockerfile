@@ -39,7 +39,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     julia \
     libcholmod-3_0_6 \
     libclang3_8 \
-    libcurl-devel \
     # icu needed by R stringi
     libicu-devel \
     libncurses5 \
