@@ -11,7 +11,8 @@ RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
 # Add packaged flawfinder
-RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
+RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ illuusio_t && \
+  zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Leap_42.2/ illuusio_l && \
   # Add repo for luarocks
   zypper addrepo -f \
     http://download.opensuse.org/repositories/devel:/languages:/lua/openSUSE_Factory/ \
@@ -63,11 +64,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     patch \
     perl-Perl-Critic \
     php \
-    php7-pear \
-    # Needed for PHP CodeSniffer
-    php7-pear-Archive_Tar \
-    php7-tokenizer \
-    php7-xmlwriter \
+    php7-pear-php_codesniffer \
     # Used by bzr, mecurial, hgext, and flawfinder
     python \
     python3 \
@@ -117,6 +114,9 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     perl-Test-Pod-Coverage \
     perl-X11-Protocol \
     postfix \
+    php7-pear \
+    php7-pear-Archive_Tar \
+    php7-bz2 \
     php7-zlib \
     python-cssselect \
     python-curses \
@@ -210,9 +210,6 @@ RUN cd / && \
   time bundle install --system && rm -rf ~/.bundle && \
   # NPM dependencies
   time npm install && npm cache clean && \
-  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
-
-RUN time pear install PHP_CodeSniffer && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # Dart Lint setup
