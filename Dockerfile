@@ -167,7 +167,17 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     /usr/lib64/python2.7/site-packages/mercurial/help/ \
     /usr/lib64/python2.7/site-packages/mercurial/hgweb/ \
     /usr/lib64/python2.7/site-packages/mercurial/templates/ \
-    /usr/lib64/ruby/gems/2.2.0/gems/bundler-*/man/* \
+    && \
+  find /usr/lib64/python2.7/ \
+    \( -name 'test' -o -name 'tests' -o -name 'test_*' -o \
+       -name '*.pyc' -o -name '*.pyo' \
+    \) -prune -exec rm -rf '{}' '+' \
+    && \
+  # Clear zypper cache
+  time zypper clean -a && \
+  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
+RUN ls /usr/lib64/ruby/gems/2.2.0/gems/bundler-*/man/* \
     /usr/lib64/R/library/translations/*/LC_MESSAGES/*.[mp]o* \
     /usr/lib64/R/library/*/po/* \
     /usr/lib64/R/library/*/doc/* \
@@ -180,15 +190,25 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     /usr/share/emacs/ \
     /usr/share/xemacs/ \
     /usr/share/locale/*/LC_MESSAGES/*.[mp]o* \
-    && \
-  find /usr/lib64/python2.7/ \
-    \( -name 'test' -o -name 'tests' -o -name 'test_*' -o \
-       -name '*.pyc' -o -name '*.pyo' \
-    \) -prune -exec rm -rf '{}' '+' \
-    && \
-  # Clear zypper cache
-  time zypper clean -a && \
-  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+    /usr/share/doc \
+    /usr/share/info \
+    /usr/share/man \
+    /usr/share/julia/base/docs \
+    /usr/share/php7/PEAR/doc \
+    /usr/share/texmf/doc \
+    || true
+
+RUN du -s \
+    /usr/lib64/svn-javahl \
+    /usr/share/emacs/ \
+    /usr/share/xemacs/ \
+    /usr/share/doc \
+    /usr/share/info \
+    /usr/share/man \
+    /usr/share/julia/base/docs \
+    /usr/share/php7/PEAR/doc \
+    /usr/share/texmf/doc \
+    || true
 
 # Coala setup and python deps
 RUN cd / && \
