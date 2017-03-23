@@ -188,6 +188,10 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
+RUN ls /usr/lib64/R/library/*/man/*
+
+RUN false
+
 # Coala setup and python deps
 RUN cd / && \
   git clone --depth 1 --branch=$branch https://github.com/coala/coala.git && \
