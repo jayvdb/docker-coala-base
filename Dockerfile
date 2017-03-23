@@ -31,7 +31,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     gcc-fortran \
     git \
     go \
-    gsl \
     mercurial \
     hlint \
     indent \
