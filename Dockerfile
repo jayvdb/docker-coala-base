@@ -89,8 +89,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     fdupes \
     fontconfig \
     fonts-config \
-    gio-branding-openSUSE \
-    glib2-tools \
     kbd \
     iproute2 \
     kmod \
