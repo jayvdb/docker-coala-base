@@ -182,11 +182,21 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     /usr/share/xemacs/ \
     /usr/share/locale/*/LC_MESSAGES/*.[mp]o* \
     && \
+  find /usr/share/ \
+    \( -name 'doc' -o -name 'docs' -o -name 'Doc' -o \
+       -name 'man' -o -name 'info' \
+    \) \
+    && \
+  find /usr/share/ \
+    \( -name 'doc' -o -name 'docs' -o -name 'Doc' -o \
+       -name 'man' -o -name 'info' \
+    \) -prune -exec rm -rf '{}' '+' \
+    && \
   find /usr/lib64/python2.7/ \
     \( -name 'test' -o -name 'tests' -o -name 'test_*' -o \
        -name '*.pyc' -o -name '*.pyo' \
-    \) -prune -exec rm -rf '{}' '+' \
-    && \
+    \) -a -not -path '*/go/*/doc' \
+    -prune -exec rm -rf '{}' '+' && \
   # Clear zypper cache
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
