@@ -191,8 +191,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
-RUN rpm -ql php7-pear
-
 # Coala setup and python deps
 RUN cd / && \
   git clone --depth 1 --branch=$branch https://github.com/coala/coala.git && \
@@ -216,6 +214,8 @@ RUN cd / && \
 
 RUN time pear install PHP_CodeSniffer && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
+RUN find /usr/share/php7/
 
 # Dart Lint setup
 RUN curl -fsSL https://storage.googleapis.com/dart-archive/channels/stable/release/1.14.2/sdk/dartsdk-linux-x64-release.zip -o /tmp/dart-sdk.zip && \
