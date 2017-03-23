@@ -42,7 +42,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     libcurl-devel \
     # icu needed by R stringi
     libicu-devel \
-    libncurses5 \
     libopenssl-devel \
     libpcre2-8-0 \
     # libxml2-tools provides xmllint
