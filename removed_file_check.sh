@@ -1,0 +1,5 @@
+echo "Checking for unnecessary files.."
+test "$(ls -A /tmp || true)"
+test "$(ls -A /var/log || true)"
+test "$(ls -A /var/adm || true)"
+echo "Finished unnecessary file check"

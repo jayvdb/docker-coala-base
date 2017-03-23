@@ -186,6 +186,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     && \
   # Clear zypper cache
   time zypper clean -a && \
+  rm -rf /var/log/* && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # Coala setup and python deps
