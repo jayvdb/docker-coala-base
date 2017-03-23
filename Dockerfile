@@ -178,9 +178,15 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     /usr/lib64/R/library/*/NEWS \
     /usr/lib64/libsvnjavahl-* \
     /usr/lib64/svn-javahl \
+    /usr/share/doc \
+    /usr/share/info \
+    /usr/share/man \
     /usr/share/emacs/ \
     /usr/share/xemacs/ \
     /usr/share/locale/*/LC_MESSAGES/*.[mp]o* \
+    /usr/share/julia/base/docs \
+    /usr/share/php7/PEAR/doc \
+    /usr/share/texmf/doc \
     && \
   find /usr/lib64/python2.7/ \
     \( -name 'test' -o -name 'tests' -o -name 'test_*' -o \
