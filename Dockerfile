@@ -12,10 +12,12 @@ RUN mkdir -p /root/.local/share/coala && \
 
 # Add packaged flawfinder
 RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
+  # Add repo for lua-luafilesystem
+  zypper addrepo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Tumbleweed/devel:languages:lua.repo && \
   # Add repo for luarocks
-  zypper addrepo -f \
-    http://download.opensuse.org/repositories/devel:/languages:/lua/openSUSE_Factory/ \
-    devel:languages:lua && \
+  # zypper addrepo -f \
+  #  http://download.opensuse.org/repositories/devel:/languages:/lua/openSUSE_Factory/ \
+  #  devel:languages:lua && \
   # Use Leap for nodejs
   zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/devel:languages:nodejs.repo && \
   # Add repo for rubygem-bundler
@@ -52,7 +54,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     # linux-glibc-devel needed for Ruby native extensions
     linux-glibc-devel \
     lua \
-    lua-devel \
+    lua-luafilesystem \
     luarocks \
     m4 \
     nodejs \
@@ -269,7 +271,7 @@ RUN time julia -e 'Pkg.add("Lint")' && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # Lua commands
-RUN time luarocks install luacheck && \
+RUN time luarocks install --deps-mode=none luacheck && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # PMD setup
