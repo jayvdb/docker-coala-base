@@ -183,7 +183,6 @@ RUN ls /usr/lib64/ruby/gems/2.2.0/gems/bundler-*/man/* \
     /usr/lib64/R/library/*/doc/* \
     /usr/lib64/R/library/*/help/* \
     /usr/lib64/R/library/*/demo/* \
-    /usr/lib64/R/library/*/man/* \
     /usr/lib64/R/library/*/NEWS \
     /usr/lib64/libsvnjavahl-* \
     /usr/lib64/svn-javahl \
