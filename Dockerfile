@@ -44,7 +44,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     libicu-devel \
     libncurses5 \
     libopenssl-devel \
-    libpcre2-8-0 \
     # libxml2-tools provides xmllint
     libxml2-tools \
     # needed for licensecheck
