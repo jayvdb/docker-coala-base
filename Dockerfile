@@ -217,7 +217,10 @@ RUN time pear install PHP_CodeSniffer && \
 
 # Dart Lint setup
 RUN curl -fsSL https://storage.googleapis.com/dart-archive/channels/stable/release/1.14.2/sdk/dartsdk-linux-x64-release.zip -o /tmp/dart-sdk.zip && \
-  unzip -n /tmp/dart-sdk.zip -d ~/ && \
+  unzip -n /tmp/dart-sdk.zip -d ~/ -x \
+    '*/dartdoc/*' \
+    '*/front_end/test/*' \
+    && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 RUN curl -fsSL https://github.com/avh4/elm-format/releases/download/0.5.2-alpha/elm-format-0.17-0.5.2-alpha-linux-x64.tgz -o /tmp/elm-format.tgz && \
