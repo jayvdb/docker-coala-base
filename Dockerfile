@@ -21,7 +21,9 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
   # Add repo for rubygem-bundler
   zypper addrepo http://download.opensuse.org/repositories/home:AtastaChloeD:ChiliProject/openSUSE_Factory/home:AtastaChloeD:ChiliProject.repo && \
   # Package dependencies
-  time zypper --no-gpg-checks --non-interactive install \
+  time zypper --no-gpg-checks --non-interactive \
+    --plus-repo http://download.opensuse.org/repositories/devel:libraries:c_c++/openSUSE_Factory/ \
+      install \
     bzr \
     cppcheck \
     curl \
@@ -40,6 +42,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     libcholmod-3_0_6 \
     libclang3_8 \
     libcurl-devel \
+    # needed by Julia
+    libgit2 \
     # icu needed by R stringi
     libicu-devel \
     libncurses5 \
