@@ -10,6 +10,8 @@ ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/
 RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
+RUN grep 'rpm.install.excludedocs = yes' /etc/zypp/zypp.conf
+
 # Add packaged flawfinder
 RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
   # Add repo for luarocks
