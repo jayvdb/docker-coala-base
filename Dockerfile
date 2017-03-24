@@ -6,8 +6,8 @@ ARG branch=master
 # Set the locale
 ENV LANG=en_US.UTF-8 \
     LANGUAGE=en_US:en \
-    PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18 \
-    NODE_PATH=/coala-bears/node_modules
+    PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/root/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18 \
+    NODE_PATH=/root/node_modules
 
 # Create symlink for cache
 RUN mkdir -p /root/.local/share/coala && \
@@ -210,15 +210,23 @@ RUN cd / && \
     -e '/coala-bears[alldeps]' \
     -e /coala-quickstart \
     -r /coala/test-requirements.txt && \
-  cd coala-bears && \
-  # NLTK data
-  time python3 -m nltk.downloader punkt maxent_treebank_pos_tagger averaged_perceptron_tagger && \
   # Remove Ruby directive from Gemfile as this image has 2.2.5
+  cd coala-bears && \
   sed -i '/^ruby/d' Gemfile && \
-  # Ruby dependencies
-  time bundle install --system && rm -rf ~/.bundle && \
-  # NPM dependencies
-  time npm install && npm cache clean && \
+  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
+# NLTK data
+RUN time python3 -m nltk.downloader punkt maxent_treebank_pos_tagger averaged_perceptron_tagger && \
+  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
+# Ruby dependencies
+RUN cd /tmp && \
+  time bundle install --system --gemfile=/coala-bears/Gemfile && rm -rf ~/.bundle && \
+  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
+# NPM dependencies
+RUN cd /root && \
+  time npm install /coala-bears && npm cache clean && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 RUN time pear install PHP_CodeSniffer && \
