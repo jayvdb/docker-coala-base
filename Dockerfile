@@ -269,6 +269,9 @@ RUN zypper --no-gpg-checks --non-interactive --plus-repo http://download.opensus
     && \
   time luarocks install --deps-mode=none luacheck && \
   zypper --non-interactive remove luarocks && \
+  rm -rf \
+    /usr/share/locale/*/LC_MESSAGES/*.[mp]o* \
+    && \
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
