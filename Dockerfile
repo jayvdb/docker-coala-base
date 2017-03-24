@@ -1,4 +1,4 @@
-FROM opensuse:tumbleweed
+FROM opensuse:leap
 MAINTAINER Fabian Neuschmidt fabian@neuschmidt.de
 
 ARG branch=master
@@ -14,18 +14,21 @@ ENV LANG=en_US.UTF-8 \
 RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
-# Add packaged flawfinder
-RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
+RUN \
   # Use Leap for nodejs
   zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/devel:languages:nodejs.repo && \
   # Remove unnecessary repos to avoid refreshes
-  zypper removerepo 'NON-OSS' && \
+  zypper removerepo 'NON-OSS' 'Update Non-Oss' && \
   # Package dependencies
   time zypper --no-gpg-checks --non-interactive \
       # science contains latest Julia
-      --plus-repo http://download.opensuse.org/repositories/science/openSUSE_Tumbleweed/ \
+      --plus-repo http://download.opensuse.org/repositories/science/openSUSE_Leap_42.2/ \
       # luarocks
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Tumbleweed/ \
+      --plus-repo http://download.opensuse.org/repositories/home:malkavi/openSUSE_Leap_42.2/ \
+      # flawfinder
+      --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Leap_42.2 \
+      # clang
+      --plus-repo http://download.opensuse.org/repositories/devel:tools:compiler/openSUSE_Leap_42.2/ \
       install \
     bzr \
     cppcheck \
@@ -55,8 +58,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     devscripts \
     # linux-glibc-devel needed for Ruby native extensions
     linux-glibc-devel \
-    lua \
-    lua-devel \
+    lua51 \
+    lua51-devel \
     luarocks \
     m4 \
     nodejs \
@@ -83,7 +86,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     R-base \
     ruby \
     ruby-devel \
-    ruby2.2-rubygem-bundler \
+    ruby2.1-rubygem-bundler \
     ShellCheck \
     subversion \
     tar \
@@ -93,14 +96,14 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     aaa_base \
     cron \
     cronie \
-    dbus-1 \
     fdupes \
     fontconfig \
     fonts-config \
-    kbd \
     iproute2 \
-    kmod \
-    libasan3 \
+    libdrm_amdgpu1 \
+    libdrm_intel1 \
+    libdrm_nouveau2 \
+    libdrm_radeon1 \
     libICE6 \
     libnl-config \
     libthai-data \
@@ -121,16 +124,11 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     openslp \
     perl-File-ShareDir \
     perl-Net-DBus \
-    perl-Pod-Coverage \
-    perl-Test-Pod \
-    perl-Test-Pod-Coverage \
     perl-X11-Protocol \
     postfix \
     php7-zlib \
     python-curses \
-    python-javapackages \
-    python-pyxb \
-    python-rpm-macros \
+    python-Pygments \
     python-xml \
     R-core-doc \
     rsync \
@@ -139,15 +137,13 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     sysconfig-netconfig \
     syslog-service \
     systemd \
-    texlive-gsftopk \
-    texlive-gsftopk-bin \
+    systemd-presets-branding-openSUSE \
     texlive-kpathsea \
     texlive-kpathsea-bin \
     texlive-tetex-bin \
     texlive-texconfig \
     texlive-texconfig-bin \
     texlive-texlive.infra \
-    texlive-updmap-map \
     util-linux-systemd \
     wicked \
     wicked-service \
@@ -272,6 +268,7 @@ RUN source /etc/profile.d/go.sh && time go get -u \
 # ENV PATH=$PATH:/home/opam/infer-linux64-v0.9.0/infer/bin
 
 # Julia setup
+# https://github.com/coala/docker-coala-base/issues/144
 RUN time julia -e 'Pkg.add("Lint")' && \
   rm -rf \
     ~/.julia/.cache \
