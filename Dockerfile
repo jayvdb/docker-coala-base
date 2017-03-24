@@ -114,6 +114,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     perl-Test-Pod-Coverage \
     perl-X11-Protocol \
     postfix \
+    php7-bz2 \
     php7-zlib \
     python-cssselect \
     python-curses \
