@@ -77,7 +77,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     ruby2.2-rubygem-bundler \
     ShellCheck \
     subversion \
-    sudo \
     tar \
     texlive-chktex \
     unzip && \
