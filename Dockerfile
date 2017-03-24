@@ -18,8 +18,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     devel:languages:lua && \
   # Use Leap for nodejs
   zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/devel:languages:nodejs.repo && \
-  # Add repo for rubygem-bundler
-  zypper addrepo http://download.opensuse.org/repositories/home:AtastaChloeD:ChiliProject/openSUSE_Factory/home:AtastaChloeD:ChiliProject.repo && \
   # Package dependencies
   time zypper --no-gpg-checks --non-interactive install \
     bzr \
@@ -49,8 +47,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     libxml2-tools \
     # needed for licensecheck
     devscripts \
-    # linux-glibc-devel needed for Ruby native extensions
-    linux-glibc-devel \
     lua \
     lua-devel \
     luarocks \
@@ -73,8 +69,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     python3-pip \
     R-base \
     ruby \
-    ruby-devel \
-    ruby2.2-rubygem-bundler \
     ShellCheck \
     subversion \
     sudo \
@@ -203,12 +197,27 @@ RUN cd / && \
   sed -i '/^ruby/d' Gemfile && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
+# Ruby dependencies
+RUN zypper --no-gpg-checks --non-interactive --plus-repo http://download.opensuse.org/repositories/home:AtastaChloeD:ChiliProject/openSUSE_Factory/ install \
+    # linux-glibc-devel needed for Ruby native extensions
+    linux-glibc-devel \
+    # patch is used by Ruby gem pg_query
+    patch \
+    ruby-devel \
+    ruby2.2-rubygem-bundler \
+    && \
+  time bundle install --system --gemfile=/coala-bears/Gemfile && rm -rf ~/.bundle && \
+  zypper --non-interactive remove \
+    linux-glibc-devel \
+    patch \
+    ruby-devel \
+    ruby2.2-rubygem-bundler \
+    && \
+  time zypper clean -a && \
+   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
 # NLTK data
 RUN time python3 -m nltk.downloader punkt maxent_treebank_pos_tagger averaged_perceptron_tagger && \
-  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
-
-# Ruby dependencies
-RUN time bundle install --system --gemfile=/coala-bears/Gemfile && rm -rf ~/.bundle && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # NPM dependencies
