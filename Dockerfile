@@ -198,15 +198,21 @@ RUN cd / && \
     -e '/coala-bears[alldeps]' \
     -e /coala-quickstart \
     -r /coala/test-requirements.txt && \
-  cd coala-bears && \
-  # NLTK data
-  time python3 -m nltk.downloader punkt maxent_treebank_pos_tagger averaged_perceptron_tagger && \
   # Remove Ruby directive from Gemfile as this image has 2.2.5
+  cd coala-bears && \
   sed -i '/^ruby/d' Gemfile && \
-  # Ruby dependencies
-  time bundle install --system && rm -rf ~/.bundle && \
-  # NPM dependencies
-  time npm install && npm cache clean && \
+  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
+# NLTK data
+RUN time python3 -m nltk.downloader punkt maxent_treebank_pos_tagger averaged_perceptron_tagger && \
+  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
+# Ruby dependencies
+RUN time bundle install --system --gemfile=/coala-bears/Gemfile && rm -rf ~/.bundle && \
+  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
+# NPM dependencies
+RUN time npm install /coala-bears && npm cache clean && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 RUN time pear install PHP_CodeSniffer && \
