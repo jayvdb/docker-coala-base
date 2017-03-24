@@ -121,6 +121,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     python-lxml \
     python-Pygments \
     python-pyxb \
+    python-rpm-macros \
     python-xml \
     R-core-doc \
     rsync \
