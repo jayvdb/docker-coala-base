@@ -22,7 +22,7 @@ RUN \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' 'Update Non-Oss' && \
   # Package dependencies
-  time zypper --no-gpg-checks --non-interactive \
+  time zypper -vv --color --no-gpg-checks --non-interactive \
       # nodejs 7
       --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/ \
       # science contains latest Julia
@@ -45,7 +45,7 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Leap_42.2/ \
       # astyle
       --plus-repo http://download.opensuse.org/repositories/devel:tools/openSUSE_Leap_42.2/ \
-      install --replacefiles \
+      install --replacefiles --details --download-in-advance \
     astyle \
     bzr \
     cppcheck \
