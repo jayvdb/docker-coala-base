@@ -22,7 +22,7 @@ RUN \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' && \
   # Package dependencies
-  time zypper --no-gpg-checks --non-interactive \
+  time zypper -vv --color --no-gpg-checks --non-interactive \
       # nodejs 7
       --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Tumbleweed/ \
       # science contains latest Julia
@@ -35,7 +35,7 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
       # astyle
       --plus-repo http://download.opensuse.org/repositories/devel:tools/openSUSE_Tumbleweed/ \
-      install --replacefiles \
+      install --replacefiles --details --download-in-advance \
     astyle \
     bzr \
     cppcheck \
