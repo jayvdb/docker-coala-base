@@ -232,6 +232,12 @@ RUN cd /coala-bears && \
   time npm install /coala-bears && npm cache clean && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
+RUN cd /root && \
+  time npm install /coala-bears && npm cache clean && \
+  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
+RUN diff -ur /coala-bears/node_modules /root/node_modules
+
 RUN time pear install PHP_CodeSniffer && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
