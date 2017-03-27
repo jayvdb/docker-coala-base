@@ -39,8 +39,7 @@ RUN \
     hlint \
     indent \
     java-1_8_0-openjdk-headless \
-    # julia \
-    libcholmod-3_0_6 \
+    julia \
     libclang3_8 \
     # libcurl-devel needed by R httr
     libcurl-devel \
@@ -229,7 +228,7 @@ RUN source /etc/profile.d/go.sh && time go get -u \
   golang.org/x/tools/cmd/goimports \
   sourcegraph.com/sqs/goreturns \
   # See https://github.com/coala/docker-coala-base/issues/144
-  # github.com/jayvdb/gotype \
+  github.com/jayvdb/gotype \
   github.com/kisielk/errcheck && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
@@ -261,15 +260,15 @@ RUN source /etc/profile.d/go.sh && time go get -u \
 
 # Julia setup
 # https://github.com/coala/docker-coala-base/issues/144
-# RUN time julia -e 'Pkg.add("Lint")' && \
-#  rm -rf \
-#    ~/.julia/.cache \
-#    ~/.julia/v0.5/.cache \
-#    ~/.julia/v0.5/METADATA \
-#    ~/.julia/v0.5/*/.git \
-#    ~/.julia/v0.5/*/test \
-#    ~/.julia/v0.5/*/docs && \
-#  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+RUN time julia -e 'Pkg.add("Lint")' && \
+  rm -rf \
+    ~/.julia/.cache \
+    ~/.julia/v0.5/.cache \
+    ~/.julia/v0.5/METADATA \
+    ~/.julia/v0.5/*/.git \
+    ~/.julia/v0.5/*/test \
+    ~/.julia/v0.5/*/docs && \
+  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # Lua commands
 RUN time luarocks install luacheck && \
