@@ -25,6 +25,8 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Leap_42.2 \
       # clang
       --plus-repo http://download.opensuse.org/repositories/devel:tools:compiler/openSUSE_Leap_42.2/ \
+      # R
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:R:released/openSUSE_Leap_42.2/ \
       install \
     bzr \
     cppcheck \
@@ -76,6 +78,12 @@ RUN \
     python3-dbm \
     python3-pip \
     R-base \
+    R-formatR \
+    # lintr deps
+    R-httr \
+    R-jsonlite \
+    R-knitr \
+    R-rstudioapi \
     ruby \
     ruby-devel \
     ruby2.1-rubygem-bundler \
