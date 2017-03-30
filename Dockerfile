@@ -11,7 +11,8 @@ RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
 # Add packaged flawfinder
-RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
+RUN set -e -x && \
+  zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
   # Use Leap for nodejs
   zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/devel:languages:nodejs.repo && \
   # Add repo for rubygem-bundler
@@ -159,6 +160,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     xorg-x11-fonts \
     xorg-x11-fonts-core \
     && \
+  rpm -qa && \
   rm -rf \
     /usr/lib64/python2.7/doctest.py \
     /usr/lib64/python2.7/ensurepip/ \
