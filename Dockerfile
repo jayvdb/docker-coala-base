@@ -288,8 +288,7 @@ RUN curl -fsSL https://github.com/pmd/pmd/releases/download/pmd_releases/5.4.1/p
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # R setup
-RUN mkdir -p ~/.RLibrary && \
-  echo '.libPaths( c( "~/.RLibrary", .libPaths()) )' >> ~/.Rprofile && \
+RUN \
   echo 'options(repos=structure(c(CRAN="http://cran.rstudio.com")))' >> ~/.Rprofile && \
   export ICUDT_DIR=/usr/share/icu/57.1/ && \
   time R -e "install.packages(c('lintr', 'formatR'), dependencies=TRUE, verbose=FALSE)" && \
