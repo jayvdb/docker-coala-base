@@ -4,7 +4,7 @@ MAINTAINER Fabian Neuschmidt fabian@neuschmidt.de
 ARG branch=master
 
 # Set the locale
-ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18
+ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/root/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18
 
 # Create symlink for cache
 RUN mkdir -p /root/.local/share/coala && \
@@ -227,7 +227,7 @@ RUN cd /tmp && \
   time bundle install --system --gemfile=/coala-bears/Gemfile && rm -rf ~/.bundle && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
-RUN cd /root && cp /coala-bears/package.json . && \
+RUN mkdir /root/coala-bears && cd /root/coala-bears && cp /coala-bears/package.json . && \
   time npm install && npm cache clean && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
