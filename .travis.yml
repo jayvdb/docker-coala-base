@@ -33,7 +33,8 @@ script:
   - /bin/sh -c "! docker run coala-docker"
   - docker run --volume=$(pwd)/.ci/sample:/work --workdir=/work coala-docker
   - ls -la ./.ci/sample/.coafile
-  - sudo echo -e "[fail]\nbears = NoCommentsBear\nfile = **.py" >> ./.ci/sample/.coafile
+  - sudo chown $USER ./.ci/sample/.coafile
+  - echo -e "[fail]\nbears = NoCommentsBear\nfile = **.py" >> ./.ci/sample/.coafile
   - /bin/sh -c "! docker run --volume=$(pwd)/.ci/sample:/work --volume=$(pwd)/.ci/bears:/additional_bears --workdir=/work coala-docker"
 notifications:
   email: false
