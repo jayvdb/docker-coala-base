@@ -6,7 +6,7 @@ ARG branch=master
 # Set the locale
 ENV LANG=en_US.UTF-8 \
     LANGUAGE=en_US:en \
-    PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18 \
+    PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/.composer/vendor/bin/:/root/bakalint-0.4.0:/root/elm-format-0.18 \
     NODE_PATH=/coala-bears/node_modules
 
 # Create symlink for cache
@@ -64,6 +64,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     patch \
     perl-Perl-Critic \
     php \
+    php-composer \
     php7-pear \
     # Needed for PHP CodeSniffer
     php7-pear-Archive_Tar \
@@ -217,6 +218,12 @@ RUN cd / && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 RUN time pear install PHP_CodeSniffer && \
+  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
+RUN time composer --working-dir=$HOME/.composer/ global require \
+    --no-interaction --no-autoloader --prefer-dist \
+    phpmd/phpmd \
+    && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # Dart Lint setup
