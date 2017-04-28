@@ -224,7 +224,7 @@ RUN time pear install PHP_CodeSniffer && \
 
 RUN mkdir /root/.composer/ && \
   time composer --working-dir=/root/.composer/ global require \
-    --no-interaction --no-autoloader --prefer-dist \
+    --no-interaction --prefer-dist \
     phpmd/phpmd \
     && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
