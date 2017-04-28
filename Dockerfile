@@ -70,7 +70,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     php7-pear-Archive_Tar \
     php7-tokenizer \
     php7-xmlwriter \
-    # Needed for PHPMD
+    # Needed for composer
     php7-iconv \
     # Used by bzr, mecurial, hgext, and flawfinder
     python \
@@ -222,7 +222,7 @@ RUN cd / && \
 RUN time pear install PHP_CodeSniffer && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
-RUN mkdir /root/.composer/ &&
+RUN mkdir /root/.composer/ && \
   time composer --working-dir=/root/.composer/ global require \
     --no-interaction --no-autoloader --prefer-dist \
     phpmd/phpmd \
