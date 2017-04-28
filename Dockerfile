@@ -63,13 +63,13 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     # patch is used by Ruby gem pg_query
     patch \
     perl-Perl-Critic \
-    php \
+    php5 \
     php-composer \
-    php7-pear \
+    php5-pear \
     # Needed for PHP CodeSniffer
-    php7-pear-Archive_Tar \
-    php7-tokenizer \
-    php7-xmlwriter \
+    php5-pear-Archive_Tar \
+    php5-tokenizer \
+    php5-xmlwriter \
     # Used by bzr, mecurial, hgext, and flawfinder
     python \
     python3 \
