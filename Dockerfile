@@ -70,6 +70,8 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     php7-pear-Archive_Tar \
     php7-tokenizer \
     php7-xmlwriter \
+    # Needed for PHPMD
+    php7-iconv \
     # Used by bzr, mecurial, hgext, and flawfinder
     python \
     python3 \
