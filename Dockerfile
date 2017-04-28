@@ -64,6 +64,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     patch \
     perl-Perl-Critic \
     php \
+    phpmd \
     php7-pear \
     # Needed for PHP CodeSniffer
     php7-pear-Archive_Tar \
