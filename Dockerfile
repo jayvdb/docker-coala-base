@@ -58,12 +58,12 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     lua-devel \
     luarocks \
     m4 \
-    nodejs \
-    npm \
+    nodejs7 \
+    npm7 \
     # patch is used by Ruby gem pg_query
     patch \
     perl-Perl-Critic \
-    php \
+    php7 \
     phpmd \
     php7-pear \
     # Needed for PHP CodeSniffer
