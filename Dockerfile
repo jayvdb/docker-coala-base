@@ -52,7 +52,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     # libxml2-tools provides xmllint
     libxml2-tools \
     # needed for licensecheck
-    devscripts \
+    # devscripts \
     # linux-glibc-devel needed for Ruby native extensions
     linux-glibc-devel \
     lua \
@@ -85,7 +85,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     ruby-devel \
     ruby2.2-rubygem-bundler \
     ShellCheck \
-    subversion \
+    # subversion \
     tar \
     texlive-chktex \
     unzip && \
