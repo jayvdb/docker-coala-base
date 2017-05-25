@@ -27,7 +27,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
       # luarocks
       --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Tumbleweed/ \
       install \
-    bzr \
+    # bzr \
     cppcheck \
     curl \
     expect \
@@ -36,7 +36,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     gcc-fortran \
     git \
     go \
-    mercurial \
+    # mercurial \
     hlint \
     indent \
     java-1_8_0-openjdk-headless \
@@ -74,7 +74,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     php7-tokenizer \
     php7-xmlwriter \
     # Used by bzr, mecurial, hgext, and flawfinder
-    python \
+    # python \
     python3 \
     # Needed for proselint
     python3-dbm \
