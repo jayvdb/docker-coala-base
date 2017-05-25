@@ -64,15 +64,15 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     # patch is used by Ruby gem pg_query
     patch \
     perl-Perl-Critic \
-    php \
-    php7-pear \
+    # php \
+    # php7-pear \
     # Needed for PHPMD
-    php7-dom \
-    php7-imagick \
+    # php7-dom \
+    # php7-imagick \
     # Needed for PHP CodeSniffer
-    php7-pear-Archive_Tar \
-    php7-tokenizer \
-    php7-xmlwriter \
+    # php7-pear-Archive_Tar \
+    # php7-tokenizer \
+    # php7-xmlwriter \
     # Used by bzr, mecurial, hgext, and flawfinder
     # python \
     # python3 \
