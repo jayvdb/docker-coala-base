@@ -31,7 +31,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     cppcheck \
     curl \
     expect \
-    flawfinder \
+    # flawfinder \
     gcc-c++ \
     gcc-fortran \
     git \
@@ -75,11 +75,11 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     php7-xmlwriter \
     # Used by bzr, mecurial, hgext, and flawfinder
     # python \
-    python3 \
+    # python3 \
     # Needed for proselint
-    python3-dbm \
-    python3-pip \
-    python3-devel \
+    # python3-dbm \
+    # python3-pip \
+    # python3-devel \
     R-base \
     ruby \
     ruby-devel \
