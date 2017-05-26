@@ -310,7 +310,7 @@ RUN mkdir -p ~/.RLibrary && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # Tailor (Swift) setup
-RUN curl -fsSLk https://tailor.sh/install.sh | sed 's/read -r CONTINUE < \/dev\/tty/CONTINUE=y/' > install.sh && \
+RUN curl -fsSLk --tlsv1 https://tailor.sh/install.sh | sed 's/read -r CONTINUE < \/dev\/tty/CONTINUE=y/' > install.sh && \
   time /bin/bash install.sh && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
