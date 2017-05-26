@@ -71,7 +71,7 @@ RUN \
     php7-pear \
     # Needed for PHPMD
     php7-dom \
-    php7-imagick \
+    # php7-imagick \
     # Needed for PHP CodeSniffer
     php7-pear-Archive_Tar \
     php7-tokenizer \
