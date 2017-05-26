@@ -117,7 +117,6 @@ RUN \
     libXrender1 \
     libxslt-tools \
     libXss1 libXt6 \
-    lksctp-tools \
     logrotate \
     ncurses-utils \
     openssh \
