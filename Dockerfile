@@ -27,6 +27,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
       # luarocks
       --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Tumbleweed/ \
       install \
+      --force \
     bzr \
     cppcheck \
     curl \
