@@ -27,16 +27,16 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
       # luarocks
       --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Tumbleweed/ \
       install \
-    # bzr \
+    bzr \
     cppcheck \
     curl \
     expect \
-    # flawfinder \
+    flawfinder \
     gcc-c++ \
     gcc-fortran \
     git \
     go \
-    # mercurial \
+    mercurial \
     hlint \
     indent \
     java-1_8_0-openjdk-headless \
@@ -52,7 +52,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     # libxml2-tools provides xmllint
     libxml2-tools \
     # needed for licensecheck
-    # devscripts \
+    devscripts \
     # linux-glibc-devel needed for Ruby native extensions
     linux-glibc-devel \
     lua \
@@ -64,28 +64,28 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     # patch is used by Ruby gem pg_query
     patch \
     perl-Perl-Critic \
-    # php \
-    # php7-pear \
+    php \
+    php7-pear \
     # Needed for PHPMD
-    # php7-dom \
-    # php7-imagick \
+    php7-dom \
+    php7-imagick \
     # Needed for PHP CodeSniffer
-    # php7-pear-Archive_Tar \
-    # php7-tokenizer \
-    # php7-xmlwriter \
+    php7-pear-Archive_Tar \
+    php7-tokenizer \
+    php7-xmlwriter \
     # Used by bzr, mecurial, hgext, and flawfinder
-    # python \
-    # python3 \
+    python \
+    python3 \
     # Needed for proselint
-    # python3-dbm \
-    # python3-pip \
-    # python3-devel \
+    python3-dbm \
+    python3-pip \
+    python3-devel \
     R-base \
     ruby \
     ruby-devel \
     ruby2.2-rubygem-bundler \
     ShellCheck \
-    # subversion \
+    subversion \
     tar \
     texlive-chktex \
     unzip && \
