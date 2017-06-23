@@ -42,6 +42,7 @@ script:
       coala --non-interactive --no-config --bears MarkdownBear --files foo.md;
     "
   - /bin/sh -c "! docker run coala-docker"
+  - docker run coala-docker coala --show-bears
   - docker run --volume=$(pwd)/.ci/sample:/work --workdir=/work coala-docker
   - ls -la ./.ci/sample/.coafile
   - sudo chown $USER ./.ci/sample/.coafile
