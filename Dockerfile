@@ -17,7 +17,6 @@ RUN mkdir -p /root/.local/share/coala && \
 
 RUN \
   zypper addlock \
-    libgcc_s1 \
     libgcrypt20 \
     libncurses6 \
     libstdc++6 \
