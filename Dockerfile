@@ -17,6 +17,7 @@ RUN mkdir -p /root/.local/share/coala && \
 
 RUN \
   zypper addlock \
+    gio-branding-openSUSE \
     postfix \
     && \
   # Remove unnecessary repos to avoid refreshes
@@ -102,6 +103,7 @@ RUN \
     fdupes \
     fontconfig \
     fonts-config \
+    gdk-pixbuf-query-loaders \
     kbd \
     kmod \
     libICE6 \
