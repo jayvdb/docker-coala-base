@@ -20,10 +20,7 @@ RUN \
     libgcc_s1 \
     libgcrypt20 \
     libncurses6 \
-    libopenssl1_0_0 \
     libstdc++6 \
-    openssl \
-    openssl-1_0_0 \
     postfix \
     && \
   # Remove unnecessary repos to avoid refreshes
