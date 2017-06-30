@@ -55,7 +55,6 @@ RUN \
     libxml2-devel \
     # libxml2-tools provides xmllint
     libxml2-tools \
-    libxslt-devel \
     # needed for licensecheck
     devscripts \
     # linux-glibc-devel needed for Ruby native extensions
