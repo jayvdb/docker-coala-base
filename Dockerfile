@@ -112,15 +112,16 @@ RUN \
     libdrm_radeon1 \
     libICE6 \
     libthai-data \
+    libxslt-tools \
     libxcb1 libxcb-render0 libxcb-shm0 \
-    libX11-6 libX11-data \
+    libX11-6 libX11-data libX11-xcb1 \
     libXau6 \
     libXext6 \
     libXft2 \
     libXmu6 \
     libXmuu1 \
     libXrender1 \
-    libXss1 libXt6 \
+    libXss1 libXt6 libXxf86vm1 \
     logrotate \
     ncurses-utils \
     openssh \
