@@ -22,6 +22,8 @@ RUN \
   zypper removerepo 'NON-OSS' 'Update Non-Oss' && \
   # Package dependencies
   time zypper --no-gpg-checks --non-interactive \
+      # For go 1.8, especially gotype
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:go/openSUSE_Leap_42.2/ \
       # For nodejs6
       --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/ \
       # science contains latest Julia
