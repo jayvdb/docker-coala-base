@@ -17,6 +17,7 @@ RUN mkdir -p /root/.local/share/coala && \
 
 RUN \
   zypper addlock \
+    exim \
     postfix \
     && \
   # Remove unnecessary repos to avoid refreshes
@@ -116,7 +117,6 @@ RUN \
     libXrender1 \
     libXss1 libXt6 \
     lksctp-tools \
-    logrotate \
     ncurses-utils \
     openssh \
     openslp \
