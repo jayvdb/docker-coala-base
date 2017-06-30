@@ -29,6 +29,12 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Tumbleweed/ \
       # flawfinder
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
+      # Python 3 packages
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:python3/openSUSE_Tumbleweed/ \
+      # Python 3 freezeGun
+      --plus-repo http://download.opensuse.org/repositories/Cloud:OpenStack:Master/openSUSE_Tumbleweed/ \
+      # bandit
+      --plus-repo http://download.opensuse.org/repositories/home:geewass:python3/openSUSE_Tumbleweed/ \
       install \
     bzr \
     cppcheck \
@@ -85,7 +91,43 @@ RUN \
     python3-dbm \
     python3-pip \
     python3-devel \
+    # Core requirements
+    python3-colorlog \
+    python3-termcolor \
+    # Test requirements
+    python3-coverage \
+    python3-freezegun \
+    python3-pytest \
+    python3-pytest-cov \
+    python3-pytest-mock \
+    python3-pytest-timeout \
+    python3-pytest-xdist \
+    python3-requests-mock \
+    python3-wheel \
+    # Bear dependencies
+    python3-autoflake \
+    python3-autopep8 \
+    python3-bandit \
+    python3-cppclean \
+    python3-cpplint \
+    python3-eradicate \
+    python3-isort \
+    python3-jupyter_nbformat \
+    python3-lxml \
+    python3-munkres3 \
+    python3-nltk \
+    python3-polib \
+    python3-proselint \
+    python3-pycodestyle \
+    python3-pydocstyle \
+    python3-pyflakes \
+    python3-pylint \
+    python3-PyYAML \
+    python3-scspell3k \
+    python3-yamllint \
+    python3-yapf \
     R-base \
+    rstcheck \
     ruby \
     ruby-devel \
     ruby2.2-rubygem-bundler \
