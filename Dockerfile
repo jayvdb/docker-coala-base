@@ -305,7 +305,9 @@ RUN mkdir -p ~/.RLibrary && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # Tailor (Swift) setup
-RUN curl -fsSL https://tailor.sh/install.sh | sed 's/read -r CONTINUE < \/dev\/tty/CONTINUE=y/' > install.sh
+RUN curl -fsSL -o install.orig https://raw.githubusercontent.com/sleekbyte/tailor/master/script/install.sh
+
+RUN sed 's/read -r CONTINUE < \/dev\/tty/CONTINUE=y/' install.orig > install.sh
 
 RUN \
   time /bin/bash install.sh && \
