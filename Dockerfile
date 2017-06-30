@@ -1,4 +1,4 @@
-FROM opensuse:tumbleweed
+FROM opensuse:leap
 MAINTAINER Fabian Neuschmidt fabian@neuschmidt.de
 
 ARG branch=master
@@ -14,21 +14,26 @@ ENV LANG=en_US.UTF-8 \
 RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
-
 RUN \
   zypper addlock \
     postfix \
     && \
   # Remove unnecessary repos to avoid refreshes
-  zypper removerepo 'NON-OSS' && \
+  zypper removerepo 'NON-OSS' 'Update Non-Oss' && \
   # Package dependencies
   time zypper --no-gpg-checks --non-interactive \
       # nodejs 7
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Tumbleweed/ \
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/ \
       # science contains latest Julia
-      --plus-repo http://download.opensuse.org/repositories/science/openSUSE_Tumbleweed/ \
+      --plus-repo http://download.opensuse.org/repositories/science/openSUSE_Leap_42.2/ \
       # luarocks
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Factory/ \
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Leap_42.2/ \
+      # For go 1.8, especially gotype
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:go/openSUSE_Leap_42.2/ \
+      # clang
+      --plus-repo http://download.opensuse.org/repositories/devel:tools:compiler/openSUSE_Leap_42.2/ \
+      # php7-imagemagick
+      --plus-repo http://download.opensuse.org/repositories/home:flacco:rtk:php7/openSUSE_Leap_42.2/ \
       # flawfinder
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
       install --replacefiles \
@@ -62,10 +67,9 @@ RUN \
     devscripts \
     # linux-glibc-devel needed for Ruby native extensions
     linux-glibc-devel \
-    liblua5_3-5 \
-    lua53 \
-    lua53-devel \
-    lua53-luarocks \
+    lua52 \
+    lua52-devel \
+    lua52-luarocks \
     m4 \
     nodejs7 \
     npm7 \
@@ -91,7 +95,7 @@ RUN \
     R-base \
     ruby \
     ruby-devel \
-    ruby2.2-rubygem-bundler \
+    ruby2.1-rubygem-bundler \
     ShellCheck \
     subversion \
     tar \
@@ -101,12 +105,13 @@ RUN \
     aaa_base \
     cron \
     cronie \
-    dbus-1 \
     fdupes \
     fontconfig \
     fonts-config \
-    kbd \
-    kmod \
+    libdrm_amdgpu1 \
+    libdrm_intel1 \
+    libdrm_nouveau2 \
+    libdrm_radeon1 \
     libICE6 \
     libthai-data \
     libxcb1 libxcb-render0 libxcb-shm0 \
@@ -118,33 +123,27 @@ RUN \
     libXmuu1 \
     libXrender1 \
     libXss1 libXt6 \
-    lksctp-tools \
     logrotate \
     ncurses-utils \
     openssh \
     openslp \
     perl-File-ShareDir \
     perl-Net-DBus \
-    perl-Pod-Coverage \
-    perl-Test-Pod \
-    perl-Test-Pod-Coverage \
     perl-X11-Protocol \
     php7-zlib \
     python-curses \
-    python-rpm-macros \
+    python-Pygments \
     python-xml \
     R-core-doc \
     rsync \
     systemd \
-    texlive-gsftopk \
-    texlive-gsftopk-bin \
+    systemd-presets-branding-openSUSE \
     texlive-kpathsea \
     texlive-kpathsea-bin \
     texlive-tetex-bin \
     texlive-texconfig \
     texlive-texconfig-bin \
     texlive-texlive.infra \
-    texlive-updmap-map \
     xhost \
     xorg-x11-fonts \
     xorg-x11-fonts-core \
