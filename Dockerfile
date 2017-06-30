@@ -16,9 +16,6 @@ RUN mkdir -p /root/.local/share/coala && \
 
 
 RUN \
-  zypper addlock \
-    postfix \
-    && \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' && \
   # Package dependencies
@@ -29,7 +26,7 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Tumbleweed/ \
       # flawfinder
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
-      install \
+      install --no-recommends \
     bzr \
     cppcheck \
     curl \
