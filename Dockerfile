@@ -103,9 +103,12 @@ RUN \
     aaa_base \
     cron \
     cronie \
+    exim \
     fdupes \
     fontconfig \
     fonts-config \
+    gdk-pixbuf-query-loaders \
+    gio-branding-openSUSE \
     libdrm_amdgpu1 \
     libdrm_intel1 \
     libdrm_nouveau2 \
@@ -117,6 +120,7 @@ RUN \
     libX11-6 libX11-data libX11-xcb1 \
     libXau6 \
     libXext6 \
+    libXfixes3 \
     libXft2 \
     libXmu6 \
     libXmuu1 \
