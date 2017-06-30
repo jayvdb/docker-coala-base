@@ -18,6 +18,7 @@ RUN mkdir -p /root/.local/share/coala && \
 RUN \
   zypper addlock \
     postfix \
+    texlive-updmap-map \
     && \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' && \
