@@ -16,6 +16,9 @@ RUN mkdir -p /root/.local/share/coala && \
 
 
 RUN \
+  zypper addlock \
+    postfix \
+    && \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' && \
   # Package dependencies
