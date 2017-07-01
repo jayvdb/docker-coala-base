@@ -84,6 +84,8 @@ RUN \
     python3-dbm \
     python3-pip \
     python3-devel \
+    # Needed for apertium-lint
+    python3-lxml \
     R-base \
     ruby \
     ruby-devel \
