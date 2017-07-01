@@ -14,6 +14,9 @@ ENV LANG=en_US.UTF-8 \
 RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
+RUN cat /etc/zypp/zypp.conf
+
+RUN exit 1
 
 RUN \
   # Remove unnecessary repos to avoid refreshes
