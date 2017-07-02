@@ -27,7 +27,7 @@ RUN zypper --no-gpg-checks --non-interactive install \
   zlib-devel
 
 # Infer setup using opam
-RUN useradd -ms /bin/bash opam && usermod -G wheel opam
+RUN useradd -ms /bin/bash opam
 RUN echo "opam ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers
 # necessary because there is a sudo bug in the base image
 RUN sed -i '51 s/^/#/' /etc/security/limits.conf
