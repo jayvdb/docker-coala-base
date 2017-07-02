@@ -11,7 +11,9 @@ ENV LANG=en_US.UTF-8 \
     PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18 \
     NODE_PATH=/coala-bears/node_modules
 
-RUN zypper --no-gpg-checks --non-interactive install \
+RUN zypper --no-gpg-checks --non-interactive \
+    --plus-repo http://download.opensuse.org/repositories/devel:languages:ocaml/openSUSE_Tumbleweed \
+    install \
   autoconf \
   gcc \
   git \
@@ -24,7 +26,8 @@ RUN zypper --no-gpg-checks --non-interactive install \
   tar \
   unzip \
   which \
-  zlib-devel
+  zlib-devel \
+  opam
 
 # Infer setup using opam
 RUN useradd -ms /bin/bash opam
@@ -32,9 +35,7 @@ RUN echo "opam ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers
 # necessary because there is a sudo bug in the base image
 RUN sed -i '51 s/^/#/' /etc/security/limits.conf
 WORKDIR /root
-ADD https://raw.github.com/ocaml/opam/master/shell/opam_installer.sh opam_installer.sh
-RUN sudo sh opam_installer.sh /usr/local/bin
-RUN yes | /usr/local/bin/opam init --comp 4.02.1
+RUN yes | opam init --comp 4.02.1
 RUN opam switch 4.02.3 && \
   eval `opam config env` && \
   opam update && \
