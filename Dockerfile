@@ -14,7 +14,7 @@ ENV LANG=en_US.UTF-8 \
 RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
-RUN zypper --no-gpg-checks --non-interactive install coreutils curl git ruby which
+RUN zypper --no-gpg-checks --non-interactive install coreutils curl gcc git ruby which
 
 # Create a fake `id` to bypass brew no root rule
 # https://gitlab.com/gitlab-org/gitlab-ce/issues/26553
