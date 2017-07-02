@@ -7,13 +7,23 @@ RUN echo branch=$branch
 # Set the locale
 ENV LANG=en_US.UTF-8 \
     LANGUAGE=en_US:en \
-    PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18 \
+    PATH=/root/.linuxbrew/bin:$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18 \
     NODE_PATH=/coala-bears/node_modules
 
 # Create symlink for cache
 RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
+RUN zypper --no-gpg-checks --non-interactive install coreutils curl git ruby which
+
+# Create a fake `id` to bypass brew no root rule
+# https://gitlab.com/gitlab-org/gitlab-ce/issues/26553
+RUN \
+  git clone https://github.com/Linuxbrew/brew.git $HOME/.linuxbrew && \
+  printf '#!/bin/sh\necho 1' > $HOME/.linuxbrew/bin/id && \
+  chmod a+x $HOME/.linuxbrew/bin/id
+
+RUN brew tap staticfloat/julia
 
 RUN \
   zypper addlock \
@@ -32,6 +42,8 @@ RUN \
       install \
     bzr \
     cppcheck \
+    # provides sha256sum for linuxbrew
+    coreutils \
     curl \
     expect \
     flawfinder \
@@ -93,7 +105,9 @@ RUN \
     subversion \
     tar \
     texlive-chktex \
-    unzip && \
+    unzip \
+    which \
+      && \
   time rpm -e -f --nodeps -v \
     aaa_base \
     cron \
@@ -188,6 +202,8 @@ RUN \
   # Clear zypper cache
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
+RUN brew install infer
 
 # Coala setup and python deps
 RUN cd / && \
