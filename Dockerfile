@@ -107,6 +107,7 @@ RUN \
     texlive-chktex \
     unzip \
     which \
+    patchelf xz autoconf  automake  libtool bzip2 pkg-config ncurses \
       && \
   time rpm -e -f --nodeps -v \
     aaa_base \
