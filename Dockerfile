@@ -25,7 +25,7 @@ RUN \
 
 RUN \
   brew install \
-    infer
+    opam
 
 
 RUN \
