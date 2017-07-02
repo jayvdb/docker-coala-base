@@ -12,7 +12,7 @@ env:
     - IMAGE_NAME=coala-docker
 
 install:
-  - hooks/build
+  - travis_wait hooks/build
 
 script:
   - docker images

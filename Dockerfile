@@ -23,7 +23,10 @@ RUN \
   printf '#!/bin/sh\necho 1' > $HOME/.linuxbrew/bin/id && \
   chmod a+x $HOME/.linuxbrew/bin/id
 
-RUN brew tap staticfloat/julia
+RUN \
+  brew install \
+    infer
+
 
 RUN \
   zypper addlock \
@@ -107,7 +110,6 @@ RUN \
     texlive-chktex \
     unzip \
     which \
-    patchelf xz autoconf  automake  libtool bzip2 pkg-config ncurses \
       && \
   time rpm -e -f --nodeps -v \
     aaa_base \
@@ -203,8 +205,6 @@ RUN \
   # Clear zypper cache
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
-
-RUN brew install infer
 
 # Coala setup and python deps
 RUN cd / && \
