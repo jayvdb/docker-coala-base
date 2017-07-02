@@ -49,7 +49,7 @@ RUN bash -e -x ./build-infer.sh java
 WORKDIR /
 ENV PATH=$PATH:/root/infer-linux64-v0.9.0/infer/bin
 
-infer --help
+RUN infer --help
 
 # Create symlink for cache
 RUN mkdir -p /root/.local/share/coala && \
