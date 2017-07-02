@@ -40,14 +40,14 @@ RUN zypper --no-gpg-checks --non-interactive install \
 #  --comp 4.03.0
 RUN opam init --y
 RUN eval `opam config env` && opam update
-ADD https://github.com/facebook/infer/releases/download/v0.12.0/infer-linux64-v0.12.0.tar.xz infer-linux64-v0.12.0.tar.xz
-RUN sudo tar xf infer-linux64-v0.12.0.tar.xz
-WORKDIR /root/infer-linux64-v0.12.0
+ADD https://github.com/facebook/infer/releases/download/v0.10.0/infer-linux64-v0.10.0.tar.xz infer-linux64-v0.10.0.tar.xz
+RUN sudo tar xf infer-linux64-v0.10.0.tar.xz
+WORKDIR /root/infer-linux64-v0.10.0
 RUN opam pin add -y --no-action infer .
 RUN opam install --deps-only --yes infer
 RUN bash -e -x ./build-infer.sh java
 WORKDIR /
-ENV PATH=$PATH:/root/infer-linux64-v0.12.0/infer/bin
+ENV PATH=$PATH:/root/infer-linux64-v0.10.0/infer/bin
 
 RUN infer --help
 
