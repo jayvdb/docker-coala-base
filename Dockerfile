@@ -28,6 +28,8 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Tumbleweed/ \
       # flawfinder
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
+      # infer
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:ocaml/openSUSE_Tumbleweed \
       install \
     autoconf \
     bzr \
@@ -68,6 +70,7 @@ RUN \
     make \
     nodejs6 \
     npm6 \
+    opam \
     # patch is used by Ruby gem pg_query
     patch \
     perl-Perl-Critic \
