@@ -7,13 +7,12 @@ RUN echo branch=$branch
 # Set the locale
 ENV LANG=en_US.UTF-8 \
     LANGUAGE=en_US:en \
-    PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18 \
+    PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18:/root/infer/infer/bin \
     NODE_PATH=/coala-bears/node_modules
 
 # Create symlink for cache
 RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
-
 
 RUN \
   zypper addlock \
@@ -30,11 +29,13 @@ RUN \
       # flawfinder
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
       install \
+    autoconf \
     bzr \
     cppcheck \
     curl \
     expect \
     flawfinder \
+    gcc \
     gcc-c++ \
     gcc-fortran \
     git \
@@ -42,7 +43,7 @@ RUN \
     mercurial \
     hlint \
     indent \
-    java-1_8_0-openjdk-headless \
+    java-1_8_0-openjdk-devel \
     julia \
     libclang3_8 \
     # libcurl-devel needed by R httr
@@ -64,6 +65,7 @@ RUN \
     lua-devel \
     luarocks \
     m4 \
+    make \
     nodejs6 \
     npm6 \
     # patch is used by Ruby gem pg_query
@@ -91,9 +93,13 @@ RUN \
     ruby2.2-rubygem-bundler \
     ShellCheck \
     subversion \
+    sudo \
     tar \
     texlive-chktex \
-    unzip && \
+    unzip \
+    which \
+    zlib-devel \
+      && \
   time rpm -e -f --nodeps -v \
     aaa_base \
     cron \
@@ -188,6 +194,11 @@ RUN \
   # Clear zypper cache
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+
+RUN cd /root && \
+  git clone https://github.com/facebook/infer.git && \
+  cd infer && \
+  ./build-infer.sh java
 
 # Coala setup and python deps
 RUN cd / && \
