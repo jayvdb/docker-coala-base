@@ -27,7 +27,7 @@ RUN zypper --no-gpg-checks --non-interactive \
   unzip \
   which \
   zlib-devel \
-  opam
+  opam ocaml
 
 # Infer setup using opam
 RUN useradd -ms /bin/bash opam
