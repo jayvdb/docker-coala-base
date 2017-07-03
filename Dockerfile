@@ -14,6 +14,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/devel:languages:oca
 
 RUN zypper --no-gpg-checks --non-interactive install \
   autoconf \
+  automake \
   curl \
   gcc \
   git \
