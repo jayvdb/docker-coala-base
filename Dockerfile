@@ -28,6 +28,7 @@ RUN zypper --no-gpg-checks --non-interactive install \
   ocaml-camlzip \
   ocaml-cppo \
   ocaml-extlib \
+  ocaml-findlib \
   ocaml-menhir \
   ocaml-ounit \
   ocaml-re \
