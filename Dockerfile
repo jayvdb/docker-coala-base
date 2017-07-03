@@ -44,7 +44,6 @@ RUN eval `opam config env` && opam update
 ADD https://github.com/facebook/infer/archive/v0.10.0.tar.gz infer-v0.10.0.tar.gz
 RUN sudo tar xf infer-v0.10.0.tar.gz
 WORKDIR /root/infer
-RUN bash -e -x ./autogen.sh
 RUN ./configure --disable-c-analyzers
 RUN make all
 RUN make install
