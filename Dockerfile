@@ -23,6 +23,7 @@ RUN zypper --no-gpg-checks --non-interactive install \
   make \
   nano \
   ocaml \
+  ocaml-ocamlbuild \
   ocaml-camlp4 \
   ocaml-camlzip \
   ocaml-cppo \
