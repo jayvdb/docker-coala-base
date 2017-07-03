@@ -43,9 +43,8 @@ RUN eval `opam config env` && opam update
 ADD https://github.com/facebook/infer/releases/download/v0.10.0/infer-linux64-v0.10.0.tar.xz infer-linux64-v0.10.0.tar.xz
 RUN sudo tar xf infer-linux64-v0.10.0.tar.xz
 WORKDIR /root/infer-linux64-v0.10.0
-RUN opam -v pin add -y --no-action infer .
-RUN opam install --deps-only --yes infer
-RUN bash -e -x ./build-infer.sh java
+RUN bash -e -x ./build-infer.sh
+RUN make install
 WORKDIR /
 ENV PATH=$PATH:/root/infer-linux64-v0.10.0/infer/bin
 
