@@ -15,6 +15,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/devel:languages:oca
 RUN zypper --no-gpg-checks --non-interactive \
   --plus-repo http://download.opensuse.org/repositories/home:hugomg/openSUSE_Tumbleweed/ \
     install \
+  aspcud \
   autoconf \
   automake \
   curl \
