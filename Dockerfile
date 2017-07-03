@@ -11,9 +11,10 @@ ENV LANG=en_US.UTF-8 \
     NODE_PATH=/coala-bears/node_modules
 
 RUN zypper addrepo http://download.opensuse.org/repositories/devel:languages:ocaml/openSUSE_Tumbleweed/devel:languages:ocaml.repo
-RUN zypper addrepo http://download.opensuse.org/repositories/home:hugomg/openSUSE_Tumbleweed
 
-RUN zypper --no-gpg-checks --non-interactive install \
+RUN zypper --no-gpg-checks --non-interactive \
+  --plus-repo http://download.opensuse.org/repositories/home:hugomg/openSUSE_Tumbleweed/ \
+    install \
   autoconf \
   automake \
   curl \
@@ -80,6 +81,7 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
       install \
     bzr \
+    aspcud \
     cppcheck \
     curl \
     expect \
