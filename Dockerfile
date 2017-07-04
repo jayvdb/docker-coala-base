@@ -19,8 +19,10 @@ RUN \
   zypper addlock \
     exim \
     gio-branding-openSUSE \
+    gio-branding-upstream \
     postfix \
     systemd-presets-branding-CAASP \
+    systemd-presets-branding-openSUSE \
     && \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' && \
