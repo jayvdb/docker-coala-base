@@ -120,7 +120,6 @@ RUN \
     libXrender1 \
     libXss1 libXt6 \
     lksctp-tools \
-    logrotate \
     ncurses-utils \
     openssh \
     openslp \
