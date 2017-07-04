@@ -21,7 +21,6 @@ RUN \
     gio-branding-openSUSE \
     gio-branding-upstream \
     postfix \
-    systemd-presets-branding-CAASP \
     systemd-presets-branding-openSUSE \
     && \
   # Remove unnecessary repos to avoid refreshes
@@ -54,6 +53,7 @@ RUN \
     libcurl-devel \
     # icu needed by R stringi
     libicu-devel \
+    # Needed for lintr
     libopenssl-devel \
     # pcre needed by Julia runtime
     libpcre2-8-0 \
