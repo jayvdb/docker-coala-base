@@ -64,24 +64,26 @@ RUN mkdir .ssh && \
 sudo -u opam sh -c "opam install -y depext travis-opam"
 
 #  --comp 4.03.0
-WORKDIR /root
 # RUN opam init --verbose --y
 # RUN opam switch create system
 # RUN opam switch system
 # RUN opam upgrade
 # RUN eval `opam config env` && opam update
-RUN opam install atdgen
+RUN opam install -y atdgen
 ADD https://github.com/facebook/infer/archive/v0.10.0.tar.gz infer-v0.10.0.tar.gz
 RUN sudo tar xf infer-v0.10.0.tar.gz
-WORKDIR /root/infer-0.10.0/
+WORKDIR /opam/infer-0.10.0/
 # RUN opam pin add --yes --no-action infer .
 # RUN install --deps-only infer
 RUN ./autogen.sh
 RUN ./configure --disable-c-analyzers
 RUN make all
 RUN make install
-WORKDIR /
-ENV PATH=$PATH:/root/infer-linux64-v0.10.0/infer/bin
+
+WORKDIR /root
+USER root
+
+ENV PATH=$PATH:/opam/infer-linux64-v0.10.0/infer/bin
 
 RUN infer --help
 
