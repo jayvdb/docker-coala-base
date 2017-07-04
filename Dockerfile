@@ -47,6 +47,7 @@ RUN zypper --no-gpg-checks --non-interactive \
 #  --comp 4.03.0
 WORKDIR /root
 # RUN opam init --verbose --y
+RUN opam switch create system
 RUN opam switch system
 RUN opam upgrade
 RUN opam install atdgen
