@@ -69,7 +69,7 @@ sudo -u opam sh -c "opam install -y depext travis-opam"
 # RUN opam switch system
 # RUN opam upgrade
 # RUN eval `opam config env` && opam update
-RUN opam install -y atdgen
+RUN opam install -y atdgen.1.6.0
 RUN curl -fsSL https://github.com/facebook/infer/archive/v0.10.0.tar.gz -o infer-v0.10.0.tar.gz
 RUN tar xf infer-v0.10.0.tar.gz
 WORKDIR /home/opam/infer-0.10.0/
