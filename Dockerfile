@@ -33,6 +33,7 @@ RUN zypper --no-gpg-checks --non-interactive \
   ocaml-extlib \
   ocaml-findlib \
   ocaml-menhir \
+  ocaml-native-compilers \
   ocaml-ounit \
   ocaml-re \
   ocaml-yojson \
@@ -47,8 +48,8 @@ RUN zypper --no-gpg-checks --non-interactive \
 #  --comp 4.03.0
 WORKDIR /root
 # RUN opam init --verbose --y
-RUN opam switch create system
-RUN opam switch system
+# RUN opam switch create system
+# RUN opam switch system
 RUN opam upgrade
 RUN opam install atdgen
 RUN eval `opam config env` && opam update
