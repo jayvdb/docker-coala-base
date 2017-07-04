@@ -46,7 +46,7 @@ RUN zypper --no-gpg-checks --non-interactive \
   zlib-devel
 
 RUN git clone -b 1.2 git://github.com/ocaml/opam /tmp/opam && \
-  sh -c "cd /tmp/opam && make cold && make prefix=\"/usr\" install && echo Not installing OPAM2 wrappers && rm -rf /tmp/opam" && \
+  sh -c "cd /tmp/opam && ./configure && make lib-ext && make && make prefix=\"/usr\" install && echo Not installing OPAM2 wrappers && rm -rf /tmp/opam" && \
   curl -o /usr/bin/aspcud 'https://raw.githubusercontent.com/avsm/opam-solver-proxy/38133c7f82bae3f1aa9f7505901f26d9fb0ed1ee/aspcud.docker' && \
   chmod 755 /usr/bin/aspcud && \
   useradd  -d /home/opam -m opam && \
@@ -60,7 +60,7 @@ RUN mkdir .ssh && \
   git config --global user.email "docker@example.com" && \
   git config --global user.name "Docker CI" && \
   sudo -u opam sh -c "git clone -b master git://github.com/ocaml/opam-repository" && \
-  sudo -u opam sh -c "opam init -a -y --comp 4.04.2 /home/opam/opam-repository" && \
+  sudo -u opam sh -c "opam init -a -y --comp 4.03.0 /home/opam/opam-repository" && \
 sudo -u opam sh -c "opam install -y depext travis-opam"
 
 #  --comp 4.03.0
@@ -71,13 +71,14 @@ sudo -u opam sh -c "opam install -y depext travis-opam"
 # RUN eval `opam config env` && opam update
 RUN opam install -y atdgen
 ADD https://github.com/facebook/infer/archive/v0.10.0.tar.gz infer-v0.10.0.tar.gz
-RUN sudo tar xf infer-v0.10.0.tar.gz
+RUN tar xf infer-v0.10.0.tar.gz
 WORKDIR /home/opam/infer-0.10.0/
 # RUN opam pin add --yes --no-action infer .
 # RUN install --deps-only infer
 RUN ./autogen.sh
 RUN ./configure --disable-c-analyzers
 RUN make all
+USER root
 RUN make install
 
 WORKDIR /root
