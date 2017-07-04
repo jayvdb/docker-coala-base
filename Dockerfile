@@ -49,7 +49,6 @@ RUN \
     libcurl-devel \
     # icu needed by R stringi
     libicu-devel \
-    libopenssl-devel \
     # pcre needed by Julia runtime
     libpcre2-8-0 \
     libxml2-devel \
