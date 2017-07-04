@@ -50,9 +50,8 @@ WORKDIR /root
 # RUN opam init --verbose --y
 # RUN opam switch create system
 # RUN opam switch system
-RUN opam upgrade
-RUN opam install atdgen
 RUN eval `opam config env` && opam update
+RUN opam install atdgen
 ADD https://github.com/facebook/infer/archive/v0.10.0.tar.gz infer-v0.10.0.tar.gz
 RUN sudo tar xf infer-v0.10.0.tar.gz
 WORKDIR /root/infer-0.10.0/
