@@ -72,7 +72,7 @@ sudo -u opam sh -c "opam install -y depext travis-opam"
 RUN opam install -y atdgen
 ADD https://github.com/facebook/infer/archive/v0.10.0.tar.gz infer-v0.10.0.tar.gz
 RUN sudo tar xf infer-v0.10.0.tar.gz
-WORKDIR /opam/infer-0.10.0/
+WORKDIR /home/opam/infer-0.10.0/
 # RUN opam pin add --yes --no-action infer .
 # RUN install --deps-only infer
 RUN ./autogen.sh
