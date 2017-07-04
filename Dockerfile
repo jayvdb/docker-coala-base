@@ -105,15 +105,16 @@ RUN \
     python3-requests-mock \
     python3-wheel \
     # Bear dependencies
+    python3-ansicolor \
     python3-autoflake \
     python3-autopep8 \
     python3-bandit \
     python3-cppclean \
     python3-cpplint \
+    python3-docopt \
     python3-eradicate \
     python3-isort \
     python3-jupyter_nbformat \
-    python3-lxml \
     python3-munkres3 \
     python3-nltk \
     python3-polib \
@@ -123,7 +124,9 @@ RUN \
     python3-pyflakes \
     python3-pylint \
     python3-PyYAML \
+    python3-sarge \
     python3-scspell3k \
+    python3-template-remover \
     python3-yamllint \
     python3-yapf \
     R-base \
