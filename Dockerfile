@@ -46,7 +46,7 @@ RUN zypper --no-gpg-checks --non-interactive \
 
 #  --comp 4.03.0
 WORKDIR /root
-RUN opam init --verbose --y
+# RUN opam init --verbose --y
 RUN eval `opam config env` && opam update
 ADD https://github.com/facebook/infer/archive/v0.10.0.tar.gz infer-v0.10.0.tar.gz
 RUN sudo tar xf infer-v0.10.0.tar.gz
