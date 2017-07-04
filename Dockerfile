@@ -47,11 +47,14 @@ RUN zypper --no-gpg-checks --non-interactive \
 #  --comp 4.03.0
 WORKDIR /root
 # RUN opam init --verbose --y
+RUN opam upgrade
+RUN opam install atdgen
 RUN eval `opam config env` && opam update
 ADD https://github.com/facebook/infer/archive/v0.10.0.tar.gz infer-v0.10.0.tar.gz
 RUN sudo tar xf infer-v0.10.0.tar.gz
 WORKDIR /root/infer-0.10.0/
-RUN ls
+# RUN opam pin add --yes --no-action infer .
+# RUN install --deps-only infer
 RUN ./autogen.sh
 RUN ./configure --disable-c-analyzers
 RUN make all
