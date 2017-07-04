@@ -26,18 +26,6 @@ RUN zypper --no-gpg-checks --non-interactive \
   m4 \
   make \
   nano \
-  ocaml \
-  ocaml-ocamlbuild \
-  ocaml-camlp4 \
-  ocaml-camlzip \
-  ocaml-cppo \
-  ocaml-extlib \
-  ocaml-findlib \
-  ocaml-menhir \
-  ocaml-ounit \
-  ocaml-re \
-  ocaml-yojson \
-  opam \
   patch \
   sudo \
   tar \
@@ -61,7 +49,7 @@ RUN mkdir .ssh && \
   git config --global user.name "Docker CI" && \
   sudo -u opam sh -c "git clone -b master git://github.com/ocaml/opam-repository" && \
   sudo -u opam sh -c "opam init -a -y --comp 4.02.0 /home/opam/opam-repository" && \
-sudo -u opam sh -c "opam install -y depext travis-opam"
+  sudo -u opam sh -c "opam install -y depext travis-opam"
 
 #  --comp 4.03.0
 # RUN opam init --verbose --y
@@ -69,7 +57,8 @@ sudo -u opam sh -c "opam install -y depext travis-opam"
 # RUN opam switch system
 # RUN opam upgrade
 # RUN eval `opam config env` && opam update
-RUN opam install -y atdgen.1.6.0
+RUN sudo -u opam sh -c "eval `opam config env` && opam update"
+RUN sudo -u opam sh -c "RUN opam install -y atdgen.1.6.0"
 RUN curl -fsSL https://github.com/facebook/infer/archive/v0.10.0.tar.gz -o infer-v0.10.0.tar.gz
 RUN tar xf infer-v0.10.0.tar.gz
 WORKDIR /home/opam/infer-0.10.0/
