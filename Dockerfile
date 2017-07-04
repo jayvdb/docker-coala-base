@@ -107,6 +107,8 @@ RUN \
     gdk-pixbuf-query-loaders \
     kbd \
     kmod \
+    less \
+    libgdk_pixbuf-2_0-0 \
     libICE6 \
     libthai-data \
     libxcb1 libxcb-render0 libxcb-shm0 \
