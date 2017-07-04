@@ -33,7 +33,6 @@ RUN zypper --no-gpg-checks --non-interactive \
   ocaml-extlib \
   ocaml-findlib \
   ocaml-menhir \
-  ocaml-native-compilers \
   ocaml-ounit \
   ocaml-re \
   ocaml-yojson \
