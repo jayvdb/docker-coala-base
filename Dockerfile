@@ -17,9 +17,10 @@ RUN mkdir -p /root/.local/share/coala && \
 
 RUN \
   zypper addlock \
+    exim \
     gio-branding-openSUSE \
     postfix \
-    systemd-presets-branding-openSUSE \
+    systemd-presets-branding-CAASP \
     && \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' && \
