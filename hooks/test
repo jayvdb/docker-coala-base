@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e -x
+
+docker run -i --volume=$(pwd)/tests:/work $IMAGE_NAME /bin/sh -c "
+  set -e -x;
+  /work/pytest.sh;
+  /work/vcs.sh;
+  /work/opensuse.sh;
+"
+
+# Verify MarkdownBear works outside of coala-bears directory.
+# See https://github.com/coala/coala-bears/issues/1235
+docker run -i $IMAGE_NAME /bin/sh -c "
+  set -e -x;
+  cd /tmp;
+  echo foo > foo.md;
+  coala --non-interactive --no-config --bears MarkdownBear --files foo.md;
+"

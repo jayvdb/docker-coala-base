@@ -16,13 +16,7 @@ install:
 
 script:
   - docker images
-  - >
-    docker run -t -i --volume=$(pwd)/tests:/work coala-docker /bin/sh -c "
-      set -e -x;
-      /work/pytest.sh;
-      /work/vcs.sh;
-      /work/opensuse.sh;
-    "
+  - hooks/test
   # Verify MarkdownBear works outside of coala-bears directory.
   # See https://github.com/coala/coala-bears/issues/1235
   - >
