@@ -71,8 +71,7 @@ RUN \
     lua-devel \
     luarocks \
     m4 \
-    nodejs6 \
-    nodejs6-devel \
+    nodejs8 \
     # patch is used by Ruby gem pg_query
     patch \
     perl-Perl-Critic \
