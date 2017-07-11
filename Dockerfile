@@ -23,10 +23,10 @@ RUN \
   zypper removerepo 'NON-OSS' && \
   # Package dependencies
   time zypper --no-gpg-checks --non-interactive \
+      # node8
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Tumbleweed/ \
       # science contains latest Julia
       --plus-repo http://download.opensuse.org/repositories/science/openSUSE_Tumbleweed/ \
-      # luarocks
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Tumbleweed/ \
       # flawfinder
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
       install \
@@ -62,10 +62,8 @@ RUN \
     linux-glibc-devel \
     lua \
     lua-devel \
-    luarocks \
     m4 \
-    nodejs6 \
-    npm6 \
+    nodejs8 \
     # patch is used by Ruby gem pg_query
     patch \
     perl-Perl-Critic \
