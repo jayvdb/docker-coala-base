@@ -74,7 +74,6 @@ RUN \
     nodejs-common \
     nodejs6 \
     nodejs6-devel \
-    npm \
     # patch is used by Ruby gem pg_query
     patch \
     perl-Perl-Critic \
