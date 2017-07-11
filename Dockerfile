@@ -71,7 +71,9 @@ RUN \
     lua-devel \
     luarocks \
     m4 \
+    nodejs-common \
     nodejs6 \
+    nodejs6-devel \
     npm6 \
     # patch is used by Ruby gem pg_query
     patch \
