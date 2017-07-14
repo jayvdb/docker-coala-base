@@ -17,6 +17,7 @@ RUN mkdir -p /root/.local/share/coala && \
 
 RUN \
   zypper addlock \
+    kmod \
     postfix \
     && \
   # Remove unnecessary repos to avoid refreshes
