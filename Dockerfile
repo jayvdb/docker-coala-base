@@ -40,7 +40,7 @@ RUN \
     gcc-c++ \
     gcc-fortran \
     git \
-    go \
+    go1.7 \
     mercurial \
     hlint \
     indent \
@@ -88,8 +88,8 @@ RUN \
     python3-pip \
     python3-devel \
     R-base \
-    ruby \
-    ruby-devel \
+    ruby2.2 \
+    ruby2.2-devel \
     ruby2.2-rubygem-bundler \
     ShellCheck \
     subversion \
