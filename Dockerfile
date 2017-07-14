@@ -7,6 +7,15 @@ RUN echo branch=$branch
 # Set the locale
 ENV LANG=en_US.UTF-8 \
     LANGUAGE=en_US:en \
+    SUSE_DOWNLOAD_BASE=http://download.opensuse.org/repositories \
+    SUSE_DOWNLOAD_SUFFIX=openSUSE_Tumbleweed \
+    SUSE_REPOS=" \
+      devel:languages:nodejs \
+      devel:languages:ruby \
+      science \
+      home:illuusio \
+      devel:tools \
+    " \
     PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18 \
     NODE_PATH=/coala-bears/node_modules
 
@@ -22,19 +31,16 @@ RUN \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' && \
   # Package dependencies
+  function plus_repos { \
+    for repo in $* ; do \
+      echo --plus-repo $SUSE_DOWNLOAD_BASE/$repo/$SUSE_DOWNLOAD_SUFFIX; \
+    done \
+  } && \
+  # Package dependencies
   time zypper --no-gpg-checks --non-interactive \
-      # nodejs 7
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Tumbleweed/ \
-      # science contains latest Julia
-      --plus-repo http://download.opensuse.org/repositories/science/openSUSE_Tumbleweed/ \
+      $(plus_repos $SUSE_REPOS) \
       # luarocks
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Factory/ \
-      # ruby 2.2
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:ruby/openSUSE_Tumbleweed/ \
-      # flawfinder
-      --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
-      # astyle
-      --plus-repo http://download.opensuse.org/repositories/devel:tools/openSUSE_Tumbleweed/ \
+      --plus-repo $SUSE_DOWNLOAD_BASE/devel:languages:lua/openSUSE_Factory/ \
       install --replacefiles \
     astyle \
     bzr \
