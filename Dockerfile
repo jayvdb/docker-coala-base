@@ -19,6 +19,7 @@ RUN \
   zypper addlock \
     kmod \
     postfix \
+    systemd \
     && \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' && \
@@ -32,7 +33,7 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Factory/ \
       # flawfinder
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
-      install \
+      install --force \
     bzr \
     cppcheck \
     curl \
