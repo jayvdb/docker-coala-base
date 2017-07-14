@@ -62,9 +62,9 @@ RUN \
     devscripts \
     # linux-glibc-devel needed for Ruby native extensions
     linux-glibc-devel \
-    lua \
-    lua-devel \
-    luarocks \
+    lua53 \
+    lua53-devel \
+    lua53-luarocks \
     m4 \
     nodejs7 \
     npm7 \
