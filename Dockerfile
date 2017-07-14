@@ -21,6 +21,7 @@ RUN \
     && \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' && \
+  echo 'solver.allowVendorChange = true' >> /etc/zypp/zypp.conf && \
   # Package dependencies
   time zypper --no-gpg-checks --non-interactive \
       # nodejs 7
