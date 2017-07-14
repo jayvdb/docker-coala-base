@@ -79,7 +79,7 @@ RUN \
     php7-tokenizer \
     php7-xmlwriter \
     # Used by bzr, mecurial, hgext, and flawfinder
-    python \
+    python-base \
     python3 \
     # Needed for proselint
     python3-dbm \
@@ -128,7 +128,9 @@ RUN \
     perl-X11-Protocol \
     php7-zlib \
     python-curses \
+    python2-Pygments \
     python-rpm-macros \
+    python2-setuptools \
     python-xml \
     R-core-doc \
     rsync \
