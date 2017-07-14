@@ -46,6 +46,9 @@ RUN \
     indent \
     java-1_8_0-openjdk-headless \
     julia \
+    # kmod-compat needs to be explicitly mentioned to workaround
+    # https://github.com/coala/docker-coala-base/issues/210
+    kmod-compat \
     libclang3_8 \
     # libcurl-devel needed by R httr
     libcurl-devel \
