@@ -197,7 +197,11 @@ RUN \
 
 RUN find /usr/share/lua/5.3
 
-RUN luacheck /usr/share/lua/5.3/luacheck.lua
+RUN rpm -ql lua53-luarocks
+
+RUN cat `which luarocks`
+
+RUN luacheck /usr/share/lua/5.3/luarocks/cfg.lua
 
 RUN exit
 
