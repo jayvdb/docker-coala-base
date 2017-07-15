@@ -188,6 +188,11 @@ RUN \
        -name '*.pyc' -o -name '*.pyo' \
     \) -prune -exec rm -rf '{}' '+' \
     && \
+  find /etc \
+    \( -name '*.rpmnew' -o -name '*.rpmsave' \) \
+    -exec rm -rf '{}' '+' \
+    && \
+  find /usr/share -name '*.rpmsave' -exec rm -rf '{}' '+' && \
   # Clear zypper cache
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
