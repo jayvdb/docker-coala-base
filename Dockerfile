@@ -29,6 +29,8 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/science/openSUSE_Tumbleweed/ \
       # luarocks
       --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Factory/ \
+      # luarocks
+      --plus-repo http://download.opensuse.org/repositories/home:jayvdb/openSUSE_Factory_images/ \
       # flawfinder
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
       install --replacefiles \
@@ -64,8 +66,7 @@ RUN \
     linux-glibc-devel \
     liblua5_3-5 \
     lua53 \
-    lua53-devel \
-    lua53-luarocks \
+    lua53-luacheck \
     m4 \
     nodejs7 \
     npm7 \
@@ -274,10 +275,6 @@ RUN time julia -e 'Pkg.add("Lint")' && \
     ~/.julia/v0.5/*/.git \
     ~/.julia/v0.5/*/test \
     ~/.julia/v0.5/*/docs && \
-  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
-
-# Lua commands
-RUN time luarocks install luacheck && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # PMD setup
