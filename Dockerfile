@@ -32,6 +32,8 @@ RUN \
       # flawfinder
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
       install --replacefiles \
+    # Used to remove .rpmnew/.rpmsave
+    rpmconf \
     bzr \
     cppcheck \
     curl \
@@ -149,6 +151,8 @@ RUN \
     xorg-x11-fonts \
     xorg-x11-fonts-core \
     && \
+  python3 -c "from rpmconf import rpmconf; rpmconf.RpmConf(clean=True, debug=True)" && \
+  rpm -e -f -v rpmconf && \
   rm -rf \
     /usr/lib64/python2.7/doctest.py \
     /usr/lib64/python2.7/ensurepip/ \
