@@ -66,7 +66,9 @@ RUN \
     linux-glibc-devel \
     liblua5_3-5 \
     lua53 \
+    lua53-devel \
     lua53-luacheck \
+    lua53-luarocks \
     m4 \
     nodejs7 \
     npm7 \
