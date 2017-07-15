@@ -193,6 +193,12 @@ RUN \
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
+RUN find /usr/share/lua/5.3
+
+RUN luacheck /usr/share/lua/5.3/luacheck.lua
+
+RUN exit
+
 # Coala setup and python deps
 RUN cd / && \
   git clone --depth 1 --branch=$branch https://github.com/coala/coala.git && \
