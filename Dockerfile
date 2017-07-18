@@ -25,7 +25,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
       # science contains latest Julia
       --plus-repo http://download.opensuse.org/repositories/science/openSUSE_Tumbleweed/ \
       # luarocks
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Tumbleweed/ \
+      --plus-repo http://download.opensuse.org/repositories/home:jayvdb:coala/openSUSE_Tumbleweed/ \
       install \
     bzr \
     cppcheck \
@@ -56,8 +56,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     # linux-glibc-devel needed for Ruby native extensions
     linux-glibc-devel \
     lua \
-    lua-devel \
-    luarocks \
+    luacheck \
     m4 \
     nodejs \
     npm \
@@ -280,10 +279,6 @@ RUN time julia -e 'Pkg.add("Lint")' && \
     ~/.julia/v0.5/*/.git \
     ~/.julia/v0.5/*/test \
     ~/.julia/v0.5/*/docs && \
-  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
-
-# Lua commands
-RUN time luarocks install luacheck && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # PMD setup
