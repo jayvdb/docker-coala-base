@@ -36,7 +36,10 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/home:flacco:rtk:php7/openSUSE_Leap_42.2/ \
       # flawfinder
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
+      # astyle
+      --plus-repo http://download.opensuse.org/repositories/devel:tools/openSUSE_Tumbleweed/ \
       install --replacefiles \
+    astyle \
     bzr \
     cppcheck \
     curl \
