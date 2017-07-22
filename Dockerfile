@@ -30,6 +30,8 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Leap_42.2/ \
       # For go 1.8, especially gotype
       --plus-repo http://download.opensuse.org/repositories/devel:languages:go/openSUSE_Leap_42.2/ \
+      # rubygem-bundler
+      --plus-repo http://download.opensuse.org/repositories/home:darix:apps/openSUSE_Leap_42.2/ \
       # clang
       --plus-repo http://download.opensuse.org/repositories/devel:tools:compiler/openSUSE_Leap_42.2/ \
       # php7-imagemagick
@@ -98,7 +100,7 @@ RUN \
     R-base \
     ruby2.2 \
     ruby2.2-devel \
-    ruby2.2-rubygem-bundler \
+    rubygem-bundler \
     ShellCheck \
     subversion \
     tar \
