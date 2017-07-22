@@ -1,4 +1,4 @@
-FROM opensuse:tumbleweed
+FROM opensuse:42.3
 MAINTAINER Fabian Neuschmidt fabian@neuschmidt.de
 
 ARG branch=master
@@ -18,28 +18,39 @@ ADD host/ /
 
 RUN \
   # Remove unnecessary repos to avoid refreshes
-  zypper removerepo 'NON-OSS' && \
+  zypper removerepo 'NON-OSS' 'Update Non-Oss' && \
   # Package dependencies
   echo 'Running zypper install ...' && \
   (time zypper -vv --no-gpg-checks --non-interactive \
       # nodejs 7
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Tumbleweed/ \
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.3/ \
       # science contains latest Julia
-      --plus-repo http://download.opensuse.org/repositories/science/openSUSE_Tumbleweed/ \
+      --plus-repo http://download.opensuse.org/repositories/science/openSUSE_Leap_42.3/ \
       # luarocks
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Factory/ \
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Leap_42.3/ \
       # brotlipy
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:python/openSUSE_Tumbleweed/ \
-      # ruby 2.2
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:ruby/openSUSE_Tumbleweed/ \
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:python/openSUSE_Leap_42.3/ \
+      # go
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:go/openSUSE_Leap_42.3/ \
+      # R
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:R:released/openSUSE_Leap_42.3/ \
+      # clang
+      --plus-repo http://download.opensuse.org/repositories/devel:tools:compiler/openSUSE_Leap_42.3/ \
+      # php7-imagick
+      --plus-repo http://download.opensuse.org/repositories/home:flacco:rtk:php7/openSUSE_Leap_42.3/ \
       # flawfinder
-      --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
+      --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Leap_42.3/ \
       # astyle
-      --plus-repo http://download.opensuse.org/repositories/devel:tools/openSUSE_Tumbleweed/ \
+      --plus-repo http://download.opensuse.org/repositories/devel:tools/openSUSE_Leap_42.3/ \
       # Python 3 packages
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:python3/openSUSE_Tumbleweed/ \
+      --plus-repo http://download.opensuse.org/repositories/home:jayvdb:python36/openSUSE_Leap_42.3/ \
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:python3/openSUSE_Leap_42.3/ \
       # stable packages built for coala
-      --plus-repo http://download.opensuse.org/repositories/home:jayvdb:coala/openSUSE_Tumbleweed/ \
+      --plus-repo http://download.opensuse.org/repositories/home:jayvdb:coala/openSUSE_Leap_42.3/ \
+      # julia 0.6
+      --plus-repo http://download.opensuse.org/repositories/home:jayvdb:julia06/openSUSE_Leap_42.3/ \
+      # perl 5.24
+      --plus-repo http://download.opensuse.org/repositories/home:jayvdb:perl-critic/openSUSE_Leap_42.3/ \
       install --replacefiles --download-in-advance \
     astyle \
     bzr \
@@ -57,6 +68,9 @@ RUN \
     java-1_8_0-openjdk-headless \
     julia \
     libclang3_8 \
+    # Explicitly mentioned to assist libgit2-5 needed by julia 0.6
+    'libcurl4 >= 7' \
+    'libssh2-1 >= 1.8' \
     # libcurl-devel needed by R httr
     libcurl-devel \
     # icu needed by R stringi
@@ -82,6 +96,8 @@ RUN \
     npm7 \
     # patch is used by Ruby gem pg_query
     patch \
+    # Explicit perl version needed to switch vendor to jayvdb
+    'perl-base >= 5.24' \
     perl-Perl-Critic \
     php7 \
     php7-pear \
@@ -118,12 +134,13 @@ RUN \
     aaa_base \
     cron \
     cronie \
-    dbus-1 \
     fdupes \
     fontconfig \
     fonts-config \
-    kbd \
-    kmod \
+    libdrm_amdgpu1 \
+    libdrm_intel1 \
+    libdrm_nouveau2 \
+    libdrm_radeon1 \
     libICE6 \
     libthai-data \
     libxcb1 libxcb-render0 libxcb-shm0 \
@@ -135,37 +152,30 @@ RUN \
     libXmuu1 \
     libXrender1 \
     libXss1 libXt6 \
-    lksctp-tools \
     logrotate \
     ncurses-utils \
     openssh \
     openslp \
     perl-File-ShareDir \
     perl-Net-DBus \
-    perl-Pod-Coverage \
-    perl-Test-Pod \
-    perl-Test-Pod-Coverage \
     perl-X11-Protocol \
     php7-zlib \
     python-curses \
-    python2-packaging \
-    python2-Pygments \
-    python2-pyparsing \
-    python-rpm-macros \
-    python2-setuptools \
+    python-packaging \
+    python-Pygments \
+    python-pyparsing \
+    python-setuptools \
     python-xml \
     R-core-doc \
     rsync \
     systemd \
-    texlive-gsftopk \
-    texlive-gsftopk-bin \
+    systemd-presets-branding-openSUSE \
     texlive-kpathsea \
     texlive-kpathsea-bin \
     texlive-tetex-bin \
     texlive-texconfig \
     texlive-texconfig-bin \
     texlive-texlive.infra \
-    texlive-updmap-map \
     xhost \
     xorg-x11-fonts \
     xorg-x11-fonts-core \

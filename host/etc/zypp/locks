@@ -40,9 +40,9 @@ solvable_name: R-base < 3.4
 match_type: exact
 solvable_name: R-base >= 3.5
 
-# Only allow PHP 7.1
+# Only allow PHP 7.0
 match_type: exact
-solvable_name: php7 < 7.1
+solvable_name: php7 < 7.0
 
 match_type: exact
-solvable_name: php7 >= 7.2
+solvable_name: php7 >= 7.1
