@@ -100,7 +100,7 @@ RUN \
     R-base \
     ruby2.2 \
     ruby2.2-devel \
-    rubygem-bundler \
+    ruby2.2-rubygem-bundler \
     ShellCheck \
     subversion \
     tar \
