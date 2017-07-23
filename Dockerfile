@@ -1,6 +1,8 @@
 FROM opensuse:tumbleweed
 MAINTAINER Fabian Neuschmidt fabian@neuschmidt.de
 
+ARG exclude_deps="julia php R lua"
+
 ARG branch=master
 RUN echo branch=$branch
 
@@ -218,7 +220,7 @@ RUN cd / && \
   time npm install && npm cache clean && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
-RUN time pear install PHP_CodeSniffer && \
+RUN [[ ${exclude_deps/php/} != ${exclude_deps} ]] || time pear install PHP_CodeSniffer && \
   pear channel-discover pear.phpmd.org && \
   pear channel-discover pear.pdepend.org && \
   pear install --alldeps phpmd/PHP_PMD && \
@@ -271,7 +273,7 @@ RUN source /etc/profile.d/go.sh && time go get -u \
 # ENV PATH=$PATH:/home/opam/infer-linux64-v0.9.0/infer/bin
 
 # Julia setup
-RUN time julia -e 'Pkg.add("Lint")' && \
+RUN [[ ${exclude_deps/julia/} != ${exclude_deps} ]] || time julia -e 'Pkg.add("Lint")' && \
   rm -rf \
     ~/.julia/.cache \
     ~/.julia/v0.5/.cache \
@@ -282,7 +284,7 @@ RUN time julia -e 'Pkg.add("Lint")' && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # Lua commands
-RUN time luarocks install luacheck && \
+RUN [[ ${exclude_deps/lua/} != ${exclude_deps} ]] || time luarocks install luacheck && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # PMD setup
@@ -291,7 +293,7 @@ RUN curl -fsSL https://github.com/pmd/pmd/releases/download/pmd_releases/5.4.1/p
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
 # R setup
-RUN mkdir -p ~/.RLibrary && \
+RUN [[ ${exclude_deps/R/} != ${exclude_deps} ]] || mkdir -p ~/.RLibrary && \
   echo '.libPaths( c( "~/.RLibrary", .libPaths()) )' >> ~/.Rprofile && \
   echo 'options(repos=structure(c(CRAN="http://cran.rstudio.com")))' >> ~/.Rprofile && \
   export ICUDT_DIR=/usr/share/icu/57.1/ && \
