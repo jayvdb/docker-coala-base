@@ -3,7 +3,11 @@
 set -e -x
 
 export OS_NAME=posix;
-cd /coala; python3 -m pytest;
+cd /coala;
+git remote add jv https://github.com/jayvdb/coala
+git fetch jv
+git checkout jv/fix-test_get_filtered_bears-order
+python3 -m pytest;
 cd /coala-bears;
 rm bears/Constants.py;  # There are no tests covering this module
 rm bears/c_languages/CSharpLintBear.py tests/c_languages/CSharpLintBearTest.py;
