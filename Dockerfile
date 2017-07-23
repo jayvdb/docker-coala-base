@@ -33,6 +33,8 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/devel:languages:ruby/openSUSE_Leap_42.2/ \
       # go
       --plus-repo http://download.opensuse.org/repositories/devel:languages:go/openSUSE_Leap_42.2/ \
+      # python
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:python:Factory/openSUSE_Leap_42.2/ \
       # rubygem-bundler
       --plus-repo http://download.opensuse.org/repositories/home:darix:apps/openSUSE_Leap_42.2/ \
       # clang
@@ -67,6 +69,7 @@ RUN \
     libopenssl-devel \
     # pcre needed by Julia runtime
     libpcre2-8-0 \
+    libpython3_6m1_0 \
     libxml2-devel \
     # libxml2-tools provides xmllint
     libxml2-tools \
