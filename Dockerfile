@@ -151,6 +151,7 @@ RUN \
     texlive-texconfig-bin \
     texlive-texlive.infra \
     texlive-updmap-map \
+    xbitmaps \
     xhost \
     xorg-x11-fonts \
     xorg-x11-fonts-core \
