@@ -35,6 +35,7 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/devel:languages:go/openSUSE_Leap_42.2/ \
       # python
       --plus-repo http://download.opensuse.org/repositories/devel:languages:python:Factory/openSUSE_Leap_42.2/ \
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:python/openSUSE_Leap_42.2/ \
       # rubygem-bundler
       --plus-repo http://download.opensuse.org/repositories/home:darix:apps/openSUSE_Leap_42.2/ \
       # clang
