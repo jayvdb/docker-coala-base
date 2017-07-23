@@ -74,6 +74,7 @@ RUN \
     lua53-luarocks \
     m4 \
     nodejs7 \
+    nodejs-oniguruma \
     npm7 \
     # patch is used by Ruby gem pg_query
     patch \
