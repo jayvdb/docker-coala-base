@@ -100,7 +100,6 @@ RUN \
     # Needed for proselint
     python3-dbm \
     python3-nltk \
-    python3-pip \
     python3-devel \
     R-base \
     ruby2.2 \
@@ -174,6 +173,7 @@ RUN \
   # Disable nltk downloader
   printf 'def download(*args): pass\ndownload_shell = download\n' \
     > /usr/lib/python3.6/site-packages/nltk/downloader.py && \
+  python3 -m ensurepip && \
   rm -rf \
     /usr/lib64/python2.7/doctest.py \
     /usr/lib64/python2.7/ensurepip/ \
