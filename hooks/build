@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
+set -e -x
+
 export DEBIAN_FRONTEND=noninteractive
 apt-get --yes install golang-go
+GOPATH=$HOME/goroot
 go get github.com/grammarly/rocker
+PATH=$PATH:$GOPATH/bin
 
 ROCKER="$(which rocker)"
 if [[ -z "$TOOL" ]]; then
