@@ -16,15 +16,15 @@ ENV LANG=en_US.UTF-8 \
       home:illuusio \
       devel:tools \
     " \
-    PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18 \
+    PATH=/bin:/usr/bin:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18 \
     NODE_PATH=/coala-bears/node_modules
 
 # Create symlink for cache
 RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
+RUN echo PATH=$PATH
 RUN echo DOCKER_FROM=$DOCKER_FROM
-RUN exit 1
 
 RUN \
   zypper addlock \

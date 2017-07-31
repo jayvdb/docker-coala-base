@@ -4,6 +4,11 @@ COALA_BRANCH=$(python guess_branch.py "$SOURCE_BRANCH")
 
 echo "Building coala branch $COALA_BRANCH for docker branch $SOURCE_BRANCH"
 
+DOCKER_FROM=leap
+
+envsubst < Dockerfile > Dockerfile.out
+mv Dockerfile.out Dockerfile
+
 docker build -f Dockerfile \
   --build-arg=branch="$COALA_BRANCH" \
   -t "$IMAGE_NAME" .
