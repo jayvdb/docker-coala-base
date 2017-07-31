@@ -7,7 +7,7 @@ if [[ "${IMAGE_NAME/:/}" == "${IMAGE_NAME}" ]]; then
   IMAGE_NAME="${IMAGE_NAME}:this"
 fi
 
-ROCKER="$(which rocker)"
+ROCKER="$(which rocker | true)"
 
 # On DockerCloud, include the rocker command added in pre_build
 if [[ -z "$ROCKER" && -f "$HOME/goroot/bin/rocker" ]]; then
