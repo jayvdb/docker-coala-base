@@ -3,10 +3,11 @@
 set -e -x
 
 export DEBIAN_FRONTEND=noninteractive
+export GOPATH=$HOME/goroot
+export PATH=$PATH:$GOPATH/bin
+
 apt-get --yes install golang-go
-GOPATH=$HOME/goroot
 go get github.com/grammarly/rocker
-PATH=$PATH:$GOPATH/bin
 
 ROCKER="$(which rocker)"
 if [[ -z "$TOOL" ]]; then
