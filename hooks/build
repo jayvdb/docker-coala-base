@@ -6,7 +6,7 @@ export DEBIAN_FRONTEND=noninteractive
 export GOPATH=$HOME/goroot
 export PATH=$PATH:$GOPATH/bin
 
-apt-get --yes install golang-go
+apt-get --yes install golang-1.6-go
 go get github.com/grammarly/rocker
 
 ROCKER="$(which rocker)"
