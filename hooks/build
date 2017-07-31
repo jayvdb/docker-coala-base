@@ -18,9 +18,9 @@ if [[ -z "$TOOL" ]]; then
   fi
 fi
 
-if [[ "$TOOL" == "docker" ]]; then
+if [[ "${TOOL%docker}" != "$TOOL" ]]; then
   TOOL_ARGS="-t $IMAGE_NAME"
-elif [[ "$TOOL" == "rocker" ]]; then
+elif [[ "${TOOL%rocker}" != "$TOOL" ]]; then
   TOOL_ARGS="--var image=$IMAGE_NAME"
   sed -i 's/^# rocker \([A-Z]*\) /\1 /' Dockerfile
 fi
