@@ -202,7 +202,7 @@ RUN \
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
-# rocker TAG {{ .image }}:suse
+# rocker TAG {{ .image }}_suse
 
 # Coala setup and python deps
 RUN cd / && \

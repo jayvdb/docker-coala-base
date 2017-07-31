@@ -2,6 +2,8 @@
 
 set -e -x
 
+set
+
 export DEBIAN_FRONTEND=noninteractive
 export GOPATH=$HOME/goroot
 export PATH=$PATH:/usr/lib/go-1.6/bin/:$GOPATH/bin
