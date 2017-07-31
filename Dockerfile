@@ -23,6 +23,8 @@ ENV LANG=en_US.UTF-8 \
 RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
+RUN echo FROM=$FROM
+RUN exit 1
 
 RUN \
   zypper addlock \
