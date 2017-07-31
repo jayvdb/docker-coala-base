@@ -2,14 +2,10 @@
 
 set -e -x
 
-set
-
-export DEBIAN_FRONTEND=noninteractive
-export GOPATH=$HOME/goroot
-export PATH=$PATH:/usr/lib/go-1.6/bin/:$GOPATH/bin
-
-apt-get --yes install golang-1.6-go
-go get github.com/grammarly/rocker
+if [[ "${IMAGE_NAME/:/}" == "${IMAGE_NAME}" ]]; then
+  # DockerCloud uses :this for pull requests
+  IMAGE_NAME="${IMAGE_NAME}:this"
+fi
 
 ROCKER="$(which rocker)"
 if [[ -z "$TOOL" ]]; then
