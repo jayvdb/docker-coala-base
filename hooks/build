@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export DEBIAN_FRONTEND=noninteractive
-apt-get --yes install golang
+apt-get --yes install golang-go
 go get github.com/grammarly/rocker
 
 ROCKER="$(which rocker)"
