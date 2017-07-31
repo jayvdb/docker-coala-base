@@ -1,9 +1,27 @@
 #!/usr/bin/env bash
 
+ROCKER="$(which rocker)"
+if [[ -z "$TOOL" ]]; then
+  if [[ -n "$ROCKER" ]]; then
+    TOOL="$ROCKER"
+  else
+    TOOL=docker
+  fi
+fi
+
+if [[ "$TOOL" == "docker" ]]; then
+  TOOL_ARGS="-t $IMAGE_NAME"
+elif [[ "$TOOL" == "rocker" ]]; then
+  TOOL_ARGS="--var image=$IMAGE_NAME"
+  sed -i 's/^# rocker \([A-Z]*\) /\1 /' Dockerfile
+fi
+
 COALA_BRANCH=$(python guess_branch.py "$SOURCE_BRANCH")
 
 echo "Building coala branch $COALA_BRANCH for docker branch $SOURCE_BRANCH"
+echo "as image ${IMAGE_NAME}, using ${TOOL} on $(uname -a)."
 
-docker build -f Dockerfile \
+$TOOL build \
+  -f Dockerfile \
   --build-arg=branch="$COALA_BRANCH" \
-  -t "$IMAGE_NAME" .
+  $TOOL_ARGS .
