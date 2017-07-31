@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+export DEBIAN_FRONTEND=noninteractive
+apt-get --yes install golang
+go get github.com/grammarly/rocker
+
 ROCKER="$(which rocker)"
 if [[ -z "$TOOL" ]]; then
   if [[ -n "$ROCKER" ]]; then
