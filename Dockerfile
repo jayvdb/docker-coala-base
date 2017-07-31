@@ -7,6 +7,8 @@ RUN echo branch=$branch
 # Set the locale
 ENV LANG=en_US.UTF-8 \
     LANGUAGE=en_US:en \
+    SUSE_DOWNLOAD_BASE=http://download.opensuse.org/repositories \
+    SUSE_DOWNLOAD_SUFFIX=openSUSE_Leap_42.2 \
     PATH=$PATH:/root/pmd-bin-5.4.1/bin:/root/dart-sdk/bin:/coala-bears/node_modules/.bin:/root/bakalint-0.4.0:/root/elm-format-0.18 \
     NODE_PATH=/coala-bears/node_modules
 
@@ -22,29 +24,26 @@ RUN \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' 'Update Non-Oss' && \
   # Package dependencies
+  function plus_repos { \
+    for repo in $* ; do
+      return --plus-repo $SUSE_DOWNLOAD_BASE/$repo/$SUSE_DOWNLOAD_SUFFIX; \
+    done
+  } && \
+  REPOS=" \
+    devel:languages:nodejs \
+    science \
+    devel:languages:lua \
+    devel:languages:ruby \
+    devel:languages:python:Factory \
+    devel:languages:go \
+    home:darix:apps \
+    devel:tools:compiler \
+    home:flacco:rtk:php7 \
+    home:illuusio \
+    devel:tools \
+  " && \
   time zypper --no-gpg-checks --non-interactive \
-      # nodejs 7
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/ \
-      # science contains latest Julia
-      --plus-repo http://download.opensuse.org/repositories/science/openSUSE_Leap_42.2/ \
-      # luarocks
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Leap_42.2/ \
-      # ruby 2.2
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:ruby/openSUSE_Leap_42.2/ \
-      # python
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:python:Factory/openSUSE_Leap_42.2/ \
-      # go
-      --plus-repo http://download.opensuse.org/repositories/devel:languages:go/openSUSE_Leap_42.2/ \
-      # rubygem-bundler
-      --plus-repo http://download.opensuse.org/repositories/home:darix:apps/openSUSE_Leap_42.2/ \
-      # clang
-      --plus-repo http://download.opensuse.org/repositories/devel:tools:compiler/openSUSE_Leap_42.2/ \
-      # php7-imagemagick
-      --plus-repo http://download.opensuse.org/repositories/home:flacco:rtk:php7/openSUSE_Leap_42.2/ \
-      # flawfinder
-      --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
-      # astyle
-      --plus-repo http://download.opensuse.org/repositories/devel:tools/openSUSE_Tumbleweed/ \
+      $(plus_repos $REPOS) \
       install --replacefiles \
     astyle \
     bzr \
