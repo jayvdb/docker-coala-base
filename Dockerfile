@@ -24,7 +24,7 @@ RUN \
   zypper removerepo 'NON-OSS' && \
   # Package dependencies
   echo 'Running zypper...' && \
-  ((time zypper -x --no-gpg-checks --non-interactive \
+  time zypper --no-gpg-checks --non-interactive \
       # nodejs 7
       --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Tumbleweed/ \
       # science contains latest Julia
@@ -105,12 +105,7 @@ RUN \
     tar \
     texlive-chktex \
     unzip \
-      | tee /tmp/zypper.xml \
-      | sed -ne '/type="info">Selecting/{s/<[^>]*>//g;s/&apos;//g;p}' \
-    ) || (cat /tmp/zypper.xml && false) \
-  ) && \
-  echo 'Installed:' && \
-  sed -ne '/download url=/{s/^.*url="//;s/".*//;p}' /tmp/zypper.xml | uniq && \
+     && \
   time rpm -e -f --nodeps -v \
     aaa_base \
     cron \
