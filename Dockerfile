@@ -16,14 +16,15 @@ RUN mkdir -p /root/.local/share/coala && \
 
 
 RUN \
+  set -o pipefail && \
   zypper addlock \
     postfix \
     && \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' && \
-  echo 'Running zypper...' && \
   # Package dependencies
-  (time zypper -x --no-gpg-checks --non-interactive \
+  echo 'Running zypper...' && \
+  ((time zypper -x --no-gpg-checks --non-interactive \
       # nodejs 7
       --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Tumbleweed/ \
       # science contains latest Julia
@@ -104,9 +105,10 @@ RUN \
     tar \
     texlive-chktex \
     unzip \
-      > /tmp/zypper.xml \
-    || (cat /tmp/zypper.xml && false)) \
-    && \
+      | tee /tmp/zypper.xml \
+      | sed -ne '/type="info">Selecting/{s/<[^>]*>//;s/&apos;//;p}' \
+    ) || (cat /tmp/zypper.xml && false) \
+  ) && \
   echo 'Installed:' && \
   sed -ne '/download url=/{s/^.*url="//;s/".*//;p}' /tmp/zypper.xml | uniq && \
   time rpm -e -f --nodeps -v \
