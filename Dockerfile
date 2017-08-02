@@ -28,7 +28,7 @@ RUN \
       # nodejs 7
       --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Tumbleweed/ \
       # science contains latest Julia
-      --plus-repo http://download.opensuse.org/repositories/science/openSUSE_Tumbleweed/ \
+      --plus-repo http://download.opensuse.org/repository/science/openSUSE_Tumbleweed/ \
       # luarocks
       --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Factory/ \
       # ruby 2.2
