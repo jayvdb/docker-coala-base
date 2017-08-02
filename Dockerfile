@@ -104,7 +104,7 @@ RUN \
     tar \
     texlive-chktex \
     unzip \
-      | tee /tmp/zypper.xml \
+      > /tmp/zypper.xml \
     ) || (cat /tmp/zypper.xml && false) \
   ) && \
   echo 'Installed:' && \
