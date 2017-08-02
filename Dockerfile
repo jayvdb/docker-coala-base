@@ -36,6 +36,8 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
       # astyle
       --plus-repo http://download.opensuse.org/repositories/devel:tools/openSUSE_Tumbleweed/ \
+      # Python 3 packages
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:python3/openSUSE_Tumbleweed/ \
       # stable packages built for coala
       --plus-repo http://download.opensuse.org/repositories/home:jayvdb:coala/openSUSE_Tumbleweed/ \
       --plus-repo http://download.opensuse.org/repositories/home:jayvdb:test/openSUSE_Tumbleweed/ \
@@ -77,6 +79,9 @@ RUN \
     lua53-devel \
     lua53-luarocks \
     m4 \
+    nltk-data-averaged_perceptron_tagger \
+    nltk-data-maxent_treebank_pos_tagger \
+    nltk-data-punkt \
     nodejs7 \
     npm7 \
     # patch is used by Ruby gem pg_query
@@ -96,6 +101,7 @@ RUN \
     python3 \
     # Needed for proselint
     python3-dbm \
+    python3-nltk \
     python3-pip \
     python3-devel \
     R-base \
