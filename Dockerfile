@@ -16,6 +16,7 @@ RUN mkdir -p /root/.local/share/coala && \
 
 
 RUN \
+  zypper --version && \
   zypper addlock \
     postfix \
     && \
