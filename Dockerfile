@@ -42,7 +42,7 @@ RUN \
     cppcheck \
     curl \
     expect \
-    flawfinder \
+    flawinder \
     gcc-c++ \
     gcc-fortran \
     git \
