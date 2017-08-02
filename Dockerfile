@@ -22,7 +22,7 @@ RUN \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' && \
   # Package dependencies
-  time zypper -vv --color --no-gpg-checks --non-interactive \
+  time zypper -vv --color --table-style 10 --no-gpg-checks --non-interactive \
       # nodejs 7
       --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Tumbleweed/ \
       # science contains latest Julia
