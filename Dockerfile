@@ -16,7 +16,6 @@ RUN mkdir -p /root/.local/share/coala && \
 
 
 RUN \
-  set -o pipefail && \
   zypper addlock \
     postfix \
     && \
@@ -106,11 +105,13 @@ RUN \
     texlive-chktex \
     unzip \
       | tee /tmp/zypper.xml \
-      | sed -ne '/type="info">Selecting/{s/<[^>]*>//g;s/&apos;//g;p}' \
     ) || (cat /tmp/zypper.xml && false) \
   ) && \
   echo 'Installed:' && \
-  sed -ne '/download url=/{s/^.*url="//;s/".*//;p}' /tmp/zypper.xml | uniq && \
+  sed -n -e ' \
+    /type="info">Selecting/{s/<[^>]*>//g;s/&apos;//g;p} \
+    /download url=/{s/^.*url="//;s/".*//;p} \
+    ' /tmp/zypper.xml | uniq && \
   time rpm -e -f --nodeps -v \
     aaa_base \
     cron \
