@@ -106,7 +106,7 @@ RUN \
     texlive-chktex \
     unzip \
       | tee /tmp/zypper.xml \
-      | sed -ne '/type="info">Selecting/{s/<[^>]*>//;s/&apos;//;p}' \
+      | sed -ne '/type="info">Selecting/{s/<[^>]*>//g;s/&apos;//g;p}' \
     ) || (cat /tmp/zypper.xml && false) \
   ) && \
   echo 'Installed:' && \
