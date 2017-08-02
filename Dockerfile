@@ -108,10 +108,10 @@ RUN \
     ) || (cat /tmp/zypper.xml && false) \
   ) && \
   echo 'Installed:' && \
-  sed -n -e ' \
-    /type="info">Selecting/{s/<[^>]*>//g;s/&apos;//g;p} \
-    /download url=/{s/^.*url="//;s/".*//;p} \
-    ' /tmp/zypper.xml | uniq && \
+  sed -n \
+    -e '/type="info">Selecting/{s/<[^>]*>//g;s/&apos;//g;p}' \
+    -e '/download url=/{s/^.*url="//;s/".*//;p}' \
+    /tmp/zypper.xml | uniq && \
   time rpm -e -f --nodeps -v \
     aaa_base \
     cron \
