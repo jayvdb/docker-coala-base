@@ -228,9 +228,6 @@ RUN cd / && \
     -e /coala-quickstart \
     -r /coala/test-requirements.txt && \
   cd coala-bears && \
-  # NLTK data
-  time python3 -m nltk.downloader punkt maxent_treebank_pos_tagger averaged_perceptron_tagger && \
-  find /usr/share/nltk_data && \
   # Remove Ruby directive from Gemfile as this image has 2.2.5
   sed -i '/^ruby/d' Gemfile && \
   # Ruby dependencies
