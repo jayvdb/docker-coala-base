@@ -33,7 +33,7 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/devel:languages:ruby/openSUSE_Tumbleweed/ \
       # ruby gems
       --plus-repo http://download.opensuse.org/repositories/devel:languages:ruby:extensions/openSUSE_Leap_42.3/ \
-      --plus-repo http://download.opensuse.org/repositories/devel:libraries:c_c++/openSUSE_Factory/ \
+      --plus-repo http://download.opensuse.org/repositories/devel:gcc/openSUSE_Factory/ \
       # flawfinder
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
       # astyle
@@ -71,7 +71,7 @@ RUN \
     devscripts \
     # linux-glibc-devel needed for Ruby native extensions
     linux-glibc-devel \
-    libffi7 \
+    libffi4 \
     liblua5_3-5 \
     lua53 \
     lua53-devel \
