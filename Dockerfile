@@ -33,7 +33,7 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/devel:languages:ruby/openSUSE_Tumbleweed/ \
       # ruby gems
       --plus-repo http://download.opensuse.org/repositories/devel:languages:ruby:extensions/openSUSE_Leap_42.3/ \
-      --plus-repo http://download.opensuse.org/repositories/devel:libraries:c_c++/openSUSE_Tumbleweed/ \
+      --plus-repo http://download.opensuse.org/repositories/devel:libraries:c_c++/openSUSE_Factory/ \
       # flawfinder
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
       # astyle
