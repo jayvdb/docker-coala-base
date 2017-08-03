@@ -217,6 +217,9 @@ RUN \
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
+RUN echo 'def download(*args): pass' > /usr/lib/python3.6/site-packages/nltk/downloader.py
+RUN echo 'def download_shell(*args): pass' >> /usr/lib/python3.6/site-packages/nltk/downloader.py
+
 # Coala setup and python deps
 RUN cd / && \
   git clone --depth 1 --branch=$branch https://github.com/coala/coala.git && \
