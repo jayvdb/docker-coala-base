@@ -80,7 +80,6 @@ RUN \
     lua53-luarocks \
     m4 \
     nltk-data-averaged_perceptron_tagger \
-    nltk-data-maxent_treebank_pos_tagger \
     nltk-data-punkt \
     nodejs7 \
     npm7 \
