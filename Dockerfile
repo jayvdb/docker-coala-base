@@ -70,6 +70,7 @@ RUN \
     devscripts \
     # linux-glibc-devel needed for Ruby native extensions
     linux-glibc-devel \
+    libffi \
     liblua5_3-5 \
     lua53 \
     lua53-devel \
