@@ -102,8 +102,10 @@ RUN \
     ruby2.2 \
     ruby2.2-devel \
     ruby2.2-rubygem-bundler \
-    ruby2.2-rubygem-faraday_middleware \
+    ruby2.2-rubygem-escape_utils \
     ruby2.2-rubygem-ffi \
+    ruby2.2-rubygem-json \
+    ruby2.2-rubygem-rainbow \
     ShellCheck \
     subversion \
     tar \
