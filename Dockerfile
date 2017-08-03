@@ -31,6 +31,8 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Factory/ \
       # ruby 2.2
       --plus-repo http://download.opensuse.org/repositories/devel:languages:ruby/openSUSE_Tumbleweed/ \
+      # ruby gems
+      --plus-repo http://download.opensuse.org/repositories/devel:languages:ruby:extensions/openSUSE_Leap_42.3/ \
       # flawfinder
       --plus-repo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/ \
       # astyle
@@ -98,6 +100,8 @@ RUN \
     ruby2.2 \
     ruby2.2-devel \
     ruby2.2-rubygem-bundler \
+    ruby2.2-rubygem-faraday_middleware \
+    ruby2.2-rubygem-ffi \
     ShellCheck \
     subversion \
     tar \
