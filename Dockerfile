@@ -14,11 +14,9 @@ ENV LANG=en_US.UTF-8 \
 RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
+ADD zypp-locks /etc/zypp/locks
 
 RUN \
-  zypper addlock \
-    postfix \
-    && \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' && \
   # Package dependencies

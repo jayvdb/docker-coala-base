@@ -1,0 +1,4 @@
+solvable_name: postfix
+
+match_type: exact
+solvable_name: python3 < 3.6
