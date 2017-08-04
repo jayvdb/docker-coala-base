@@ -17,6 +17,7 @@ RUN mkdir -p /root/.local/share/coala && \
 RUN \
   zypper addlock \
     'python3 < 3.6' \
+    'python3 >= 3.7' \
     && \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' && \
