@@ -1,0 +1,13 @@
+# postfix has more dependencies than its alternatives like exim
+solvable_name: postfix
+
+# julia-compat is unoptimised
+match_type: exact
+solvable_name: julia-compat
+
+# Only allow Julia 0.6
+match_type: exact
+solvable_name: julia < 0.6
+
+match_type: exact
+solvable_name: julia >= 0.7
