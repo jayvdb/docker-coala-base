@@ -54,4 +54,4 @@ fi
 
 # Run coala non-interactively
 msg "Running coala non-interactively ..."
-exec coala $COALA_ARGS --non-interactive
+exec coala $COALA_ARGS --non-interactive --verbose
