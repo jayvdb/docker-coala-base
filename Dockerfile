@@ -55,7 +55,7 @@ RUN \
     hlint \
     indent \
     java-1_8_0-openjdk-headless \
-    julia \
+    julia-compat \
     libclang3_8 \
     # libcurl-devel needed by R httr
     libcurl-devel \
