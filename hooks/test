@@ -27,7 +27,6 @@ docker run -i "$IMAGE_NAME" /bin/sh -c "
 
 # Verify that a missing .coafile in the work directory causes coala-quickstart
 # to be run, creating a .coafile that is visible outside of the container.
-
 docker run --volume="$(pwd)/.ci/sample:/work" --workdir=/work "$IMAGE_NAME"
 ls -la ./.ci/sample/.coafile
 
