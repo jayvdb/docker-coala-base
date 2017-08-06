@@ -1,6 +1,13 @@
 # postfix has more dependencies than its alternatives like exim
 solvable_name: postfix
 
+# Only allow Python 3.6
+match_type: exact
+solvable_name: python3-base < 3.6
+
+match_type: exact
+solvable_name: python3-base >= 3.7
+
 # julia-compat is unoptimised
 match_type: exact
 solvable_name: julia-compat
