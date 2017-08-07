@@ -49,7 +49,7 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/home:jayvdb:coala/openSUSE_Leap_42.3/ \
       # perl 5.24
       --plus-repo http://download.opensuse.org/repositories/home:jayvdb:perl-critic/openSUSE_Leap_42.3/ \
-      install --replacefiles --download-in-advance \
+      install -t package --replacefiles --download-in-advance \
     astyle \
     bzr \
     cppcheck \
