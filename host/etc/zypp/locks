@@ -28,9 +28,11 @@ solvable_name: julia-compat
 
 # Only allow Julia 0.6
 match_type: exact
+type: application
 solvable_name: julia < 0.6
 
 match_type: exact
+type: application
 solvable_name: julia >= 0.7
 
 # Only allow R 3.4
