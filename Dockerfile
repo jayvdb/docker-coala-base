@@ -130,102 +130,10 @@ RUN \
     || (cat /tmp/zypper.out && false)) \
     && \
   grep -E '(new packages to install|^Retrieving: )' /tmp/zypper.out && \
-  time rpm -e -f --nodeps -v \
-    aaa_base \
-    cron \
-    cronie \
-    fdupes \
-    fontconfig \
-    fonts-config \
-    libdrm_amdgpu1 \
-    libdrm_intel1 \
-    libdrm_nouveau2 \
-    libdrm_radeon1 \
-    libICE6 \
-    libthai-data \
-    libxcb1 libxcb-render0 libxcb-shm0 \
-    libX11-6 libX11-data \
-    libXau6 \
-    libXext6 \
-    libXft2 \
-    libXmu6 \
-    libXmuu1 \
-    libXrender1 \
-    libXss1 libXt6 \
-    logrotate \
-    ncurses-utils \
-    openssh \
-    openslp \
-    perl-File-ShareDir \
-    perl-Net-DBus \
-    perl-X11-Protocol \
-    php7-zlib \
-    python-curses \
-    python-packaging \
-    python-Pygments \
-    python-pyparsing \
-    python-setuptools \
-    python-xml \
-    R-core-doc \
-    rsync \
-    systemd \
-    systemd-presets-branding-openSUSE \
-    texlive-kpathsea \
-    texlive-kpathsea-bin \
-    texlive-tetex-bin \
-    texlive-texconfig \
-    texlive-texconfig-bin \
-    texlive-texlive.infra \
-    xhost \
-    xorg-x11-fonts \
-    xorg-x11-fonts-core \
-    && \
   # Disable nltk downloader
   printf 'def download(*args): pass\ndownload_shell = download\n' \
     > /usr/lib/python3.6/site-packages/nltk/downloader.py && \
-  python3 -m ensurepip && \
-  rm -rf \
-    /usr/lib64/python2.7/doctest.py \
-    /usr/lib64/python2.7/ensurepip/ \
-    /usr/lib64/python2.7/idlelib/ \
-    /usr/lib64/python2.7/imaplib.py \
-    /usr/lib64/python2.7/lib2to3/ \
-    /usr/lib64/python2.7/pydoc.py \
-    /usr/lib64/python2.7/pydoc_data/ \
-    /usr/lib64/python2.7/unittest/ \
-    /usr/lib64/python2.7/test/ \
-    /usr/lib64/python2.7/turtle.py \
-    /usr/lib64/python2.7/wsgiref \
-    /usr/lib64/python2.7/site-packages/bzrlib/doc/ \
-    /usr/lib64/python2.7/site-packages/bzrlib/export/ \
-    /usr/lib64/python2.7/site-packages/bzrlib/help_topics/en/ \
-    /usr/lib64/python2.7/site-packages/hgext/convert/ \
-    /usr/lib64/python2.7/site-packages/mercurial/help/ \
-    /usr/lib64/python2.7/site-packages/mercurial/hgweb/ \
-    /usr/lib64/python2.7/site-packages/mercurial/templates/ \
-    /usr/lib64/ruby/gems/2.2.0/gems/bundler-*/man/* \
-    /usr/lib64/R/library/translations/*/LC_MESSAGES/*.[mp]o* \
-    /usr/lib64/R/library/*/po/* \
-    /usr/lib64/R/library/*/doc/* \
-    /usr/lib64/R/library/*/help/* \
-    /usr/lib64/R/library/*/demo/* \
-    /usr/lib64/R/library/*/man/* \
-    /usr/lib64/R/library/*/NEWS \
-    /usr/lib64/libsvnjavahl-* \
-    /usr/lib64/svn-javahl \
-    /usr/share/emacs/ \
-    /usr/share/xemacs/ \
-    /usr/share/locale/*/LC_MESSAGES/*.[mp]o* \
-    /var/log/ \
-    && \
-  find /usr/lib64/python2.7/ \
-    \( -name 'test' -o -name 'tests' -o -name 'test_*' -o \
-       -name '*.pyc' -o -name '*.pyo' \
-    \) -prune -exec rm -rf '{}' '+' \
-    && \
-  # Clear zypper cache
-  time zypper clean -a && \
-  find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
+  python3 -m ensurepip
 
 RUN ls /usr/share/lua/5.3/
 
