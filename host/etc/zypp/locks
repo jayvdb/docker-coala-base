@@ -26,13 +26,6 @@ solvable_name: nodejs7 >= 7.11
 match_type: exact
 solvable_name: julia-compat
 
-# Only allow Julia 0.6
-match_type: exact
-solvable_name: julia < 0.6
-
-match_type: exact
-solvable_name: julia >= 0.7
-
 # Only allow R 3.4
 match_type: exact
 solvable_name: R-base < 3.4
