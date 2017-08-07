@@ -14,7 +14,7 @@ ENV LANG=en_US.UTF-8 \
 RUN mkdir -p /root/.local/share/coala && \
   ln -s /root/.local/share/coala /cache
 
-ADD host/ /
+# ADD host/ /
 
 RUN \
   # Remove unnecessary repos to avoid refreshes
