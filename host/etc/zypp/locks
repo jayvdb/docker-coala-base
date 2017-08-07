@@ -1,12 +1,26 @@
 # postfix has more dependencies than its alternatives like exim
 solvable_name: postfix
 
+# Pins
+# - Major versions should not be changed on a release branch.
+# - Minor versions should be changed as required with a separate commit
+#   to document the upstream change.
+
+# Ruby and Lua are pinned to minor versions in Dockerfile
+
 # Only allow Python 3.6
 match_type: exact
 solvable_name: python3-base < 3.6
 
 match_type: exact
 solvable_name: python3-base >= 3.7
+
+# Only allow Node 7.10
+match_type: exact
+solvable_name: nodejs7 < 7.10
+
+match_type: exact
+solvable_name: nodejs7 >= 7.11
 
 # julia-compat is unoptimised
 match_type: exact
@@ -18,3 +32,17 @@ solvable_name: julia < 0.6
 
 match_type: exact
 solvable_name: julia >= 0.7
+
+# Only allow R 3.4
+match_type: exact
+solvable_name: R-base < 3.4
+
+match_type: exact
+solvable_name: R-base >= 3.5
+
+# Only allow PHP 7.1
+match_type: exact
+solvable_name: php7 < 7.1
+
+match_type: exact
+solvable_name: php7 >= 7.2
