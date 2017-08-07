@@ -24,6 +24,8 @@ RUN \
   (time zypper -vv --no-gpg-checks --non-interactive \
       # nodejs 7
       --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.3/ \
+      # science is needed for updated libraries
+      --plus-repo http://download.opensuse.org/repositories/science/openSUSE_Leap_42.3/ \
       # luarocks
       --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Leap_42.3/ \
       # brotlipy
