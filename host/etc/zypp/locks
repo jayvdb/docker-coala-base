@@ -22,10 +22,6 @@ solvable_name: nodejs7 < 7.10
 match_type: exact
 solvable_name: nodejs7 >= 7.11
 
-# julia-compat is unoptimised
-match_type: exact
-solvable_name: julia-compat
-
 # Only allow Julia 0.6
 match_type: exact
 solvable_name: julia < 0.6
