@@ -227,6 +227,10 @@ RUN \
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
+RUN echo '' > foo.lua && luacheck foo.lua
+
+RUN exit
+
 # rocker TAG {{ .image }}_suse
 
 # Coala setup and python deps
