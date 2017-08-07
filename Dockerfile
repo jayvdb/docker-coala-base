@@ -19,7 +19,6 @@ ADD host/ /
 RUN \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' 'Update Non-Oss' && \
-  zypper -vv --no-gpg-checks --non-interactive install zypper libzypp libsolv && \
   # Package dependencies
   echo 'Running zypper install ...' && \
   (time zypper -vv --no-gpg-checks --non-interactive \
