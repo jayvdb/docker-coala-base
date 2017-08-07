@@ -227,6 +227,8 @@ RUN \
   time zypper clean -a && \
   find /tmp -mindepth 1 -prune -exec rm -rf '{}' '+'
 
+RUN ls /usr/share/lua/5.3/
+
 RUN echo '' > foo.lua && luacheck foo.lua
 
 RUN exit
