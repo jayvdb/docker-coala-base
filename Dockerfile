@@ -24,8 +24,8 @@ RUN \
   (time zypper -vv --no-gpg-checks --non-interactive \
       # nodejs 7
       --plus-repo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.3/ \
-      # science contains latest Julia
-      --plus-repo http://download.opensuse.org/repositories/science/openSUSE_Leap_42.3/ \
+      # custom repo required for latest Julia
+      --plus-repo http://download.opensuse.org/repositories/home:jayvdb:julia06/openSUSE_Leap_42.3/ \
       # luarocks
       --plus-repo http://download.opensuse.org/repositories/devel:languages:lua/openSUSE_Leap_42.3/ \
       # brotlipy
@@ -47,8 +47,6 @@ RUN \
       --plus-repo http://download.opensuse.org/repositories/devel:languages:python3/openSUSE_Leap_42.3/ \
       # stable packages built for coala
       --plus-repo http://download.opensuse.org/repositories/home:jayvdb:coala/openSUSE_Leap_42.3/ \
-      # julia 0.6
-      --plus-repo http://download.opensuse.org/repositories/home:jayvdb:julia06/openSUSE_Leap_42.3/ \
       # perl 5.24
       --plus-repo http://download.opensuse.org/repositories/home:jayvdb:perl-critic/openSUSE_Leap_42.3/ \
       install --replacefiles --download-in-advance \
